@@ -1,0 +1,53 @@
+<style>
+    .ly_other_2 .other_wrapper .bread_crumb a[href="/cases/"] {position: relative;visibility: hidden;}
+    .ly_other_2 .other_wrapper .bread_crumb a[href="/cases/"]::before {content: "Integration solutions";visibility: visible;position: absolute;left: 0;}
+    /* 定位目标元素 */
+a[href="/cases"][title="Cases"] {
+  position: relative; /* 为伪元素提供定位参考 */
+  visibility: hidden; /* 隐藏原文本 */
+}
+/* 用伪元素插入新内容 */
+a[href="/cases"][title="Cases"]::before {
+  content: "Integration solutions";
+  visibility: visible; /* 显示伪元素内容 */
+  position: absolute;
+  left: 0; /* 对齐原文本位置 */
+}
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('a[href="/cases"][title="Cases"]').text('Integration solutions');
+    });
+</script>
+
+
+<style>
+    body .ly_cases_detail_2 .wrapper .right_side>.contents {margin-top: 0;}
+    body .ly_cases_detail_2 .right_side .top_title {display: none;}
+</style>
+
+<script>
+    // 等待DOM加载完成后执行
+    $(document).ready(function() {
+    // 定位目标元素（兼容right_side后带空格的class）
+    const $contentsTitle = $('.contents_title');
+    const $rightSide = $('.right_side');
+
+    // 确保元素存在再操作，避免报错
+    if ($contentsTitle.length && $rightSide.length) {
+        // prepend：将元素插入到目标容器的第一个子元素位置
+        $rightSide.prepend($contentsTitle);
+    }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const $contentsTitle = $('.ly_cases_detail_2 .contents_title');
+        const $rightSide = $('.ly_cases_detail_2 .right_side');
+        if ($contentsTitle.length && $rightSide.length) {
+            $rightSide.prepend($contentsTitle);
+        }
+    });
+</script>

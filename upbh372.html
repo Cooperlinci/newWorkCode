@@ -1,0 +1,505 @@
+<style>
+    @media (min-width: 1000px) {
+        body .ly_products_35 .pro_box .pro_list .prod_item .s_box .img_box {margin: 25px auto 0;}
+    }
+</style>
+
+<style>
+    .ly_faq_1 .top_info {display: none;}
+</style>
+
+<style>
+    .ly_poster_51 .poster_box .item_box .info_box .i_content {display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;}
+</style>
+
+<style>
+    @media (width: 1480px) {
+        /* 父容器（scroll_suit_box）开启Flex布局，强制子元素高度一致 */
+        .scroll_suit_box {
+            display: flex !important;
+            align-items: stretch !important; /* 子元素高度拉伸至父容器/最高项高度 */
+            width: 7201px !important; /* 保留原有宽度，避免布局错乱 */
+            transform: translate3d(-1440px, 0px, 0px) !important; /* 保留原有位移 */
+        }
+
+        /* 目标元素：所有item_box.Poster-* 统一样式 */
+        .item_box[class*="Poster-"] {
+            flex: 0 0 auto !important; /* 保留原有宽度，不自动伸缩 */
+            display: block !important; /* 重置display，避免inline-block影响 */
+            height: 100% !important; /* 强制高度继承父容器（即最高项高度） */
+            box-sizing: border-box !important; /* 避免内边距/边框撑高 */
+        }
+    }
+</style>
+
+
+.ly_poster_51 .poster_box .item_box
+<style>
+    @media (max-width: 1480px) {
+        .ly_poster_51 .poster_box .scroll_suit_box {display: flex !important;align-items: stretch !important;width: 7201px !important;transform: translate3d(-1440px, 0px, 0px) !important;}
+        .ly_poster_51 .poster_box .item_box {flex: 0 0 auto !important;display: block !important;height: 100% !important;box-sizing: border-box !important;}
+    }
+</style>
+
+<script>
+    // 统一设置高度的核心函数
+    function setUniformPosterHeight() {
+        const winWidth = $(window).width();
+        // 目标元素：所有item_box.Poster-1/2/3/4
+        const $posterItems = $('.item_box[class^="Poster-"]');
+
+        // 仅在1480px宽度时执行高度统一
+        if (winWidth === 1480) {
+            let maxHeight = 0;
+            // 先重置高度为auto，获取真实高度
+            $posterItems.css('height', 'auto');
+            // 遍历计算最高高度
+            $posterItems.each(function() {
+            const curHeight = $(this).outerHeight(true); // 含内边距/边框的高度
+            maxHeight = Math.max(maxHeight, curHeight);
+            });
+            // 统一设置最高高度
+            $posterItems.css('height', maxHeight + 'px');
+        } else {
+            // 离开1480px断点时，恢复高度为自动
+            $posterItems.css('height', 'auto');
+        }
+    }
+
+    // 初始化执行+监听窗口缩放
+    $(function() {
+        setUniformPosterHeight();
+        $(window).on('resize', setUniformPosterHeight);
+    });
+</script>
+
+
+<script>
+    function setUniformPosterHeight() {
+        const winWidth = $(window).width();
+        const $posterItems = $('.ly_poster_51 .poster_box .item_box');
+        if (winWidth === 1480) {
+            let maxHeight = 0;
+            $posterItems.css('height', 'auto');
+            $posterItems.each(function() {
+            const curHeight = $(this).outerHeight(true);
+            maxHeight = Math.max(maxHeight, curHeight);
+            });
+            $posterItems.css('height', maxHeight + 'px');
+        } else {
+            $posterItems.css('height', 'auto');
+        }
+    }
+    $(function() {
+        setUniformPosterHeight();
+        $(window).on('resize', setUniformPosterHeight);
+    });
+</script>
+
+<script>
+    // 统一item_box高度的核心函数
+function unifyItemBoxHeight() {
+    // 1. 获取当前窗口宽度
+    const winWidth = $(window).width();
+    // 2. 目标元素：所有带Poster的item_box（.item_box.Poster-1/.Poster-2等）
+    const $itemBoxes = $('.item_box[class*="Poster-"]');
+
+    // 仅在页面宽度=1480px时执行高度统一（若为≤1480px则改 winWidth <= 1480）
+    if (winWidth === 1480) {
+        let maxHeight = 0;
+
+        // 第一步：重置所有item_box高度为auto，获取文本撑大的真实高度
+        $itemBoxes.css('height', 'auto');
+
+        // 第二步：遍历计算所有item_box的最大高度（outerHeight含内边距/边框，更精准）
+        $itemBoxes.each(function() {
+            const currentHeight = $(this).outerHeight(); // 若要包含margin则传true：outerHeight(true)
+            maxHeight = Math.max(maxHeight, currentHeight);
+        });
+
+        // 第三步：统一设置所有item_box为最大高度
+        $itemBoxes.css('height', maxHeight + 'px');
+    } else {
+        // 非1480px宽度时，恢复高度为自动（避免影响其他尺寸布局）
+        $itemBoxes.css('height', 'auto');
+    }
+}
+
+// 页面加载完成后执行 + 监听窗口缩放（适配尺寸变化）
+$(document).ready(function() {
+    // 初始执行一次
+    unifyItemBoxHeight();
+    // 窗口缩放时重新计算
+    $(window).on('resize', unifyItemBoxHeight);
+
+    // 【可选】若文本是异步加载（如接口渲染），需在内容加载完成后再执行一次
+    // 示例：假设异步加载完成后触发自定义事件，或延迟执行
+    // setTimeout(unifyItemBoxHeight, 500); // 简单延迟（按需调整）
+    // $(document).on('textLoaded', unifyItemBoxHeight); // 自定义事件（推荐）
+});
+</script>
+
+
+<script>
+function unifyItemBoxHeight() {
+    const winWidth = $(window).width();
+    const $itemBoxes = $('.ly_poster_51 .poster_box .item_box');
+    if (winWidth === 1480) {
+        let maxHeight = 0;
+        $itemBoxes.css('height', 'auto');
+        $itemBoxes.each(function() {
+            const currentHeight = $(this).outerHeight();
+            maxHeight = Math.max(maxHeight, currentHeight);
+        });
+        $itemBoxes.css('height', maxHeight + 'px');
+    } else {
+        $itemBoxes.css('height', 'auto');
+    }
+}
+$(document).ready(function() {
+    unifyItemBoxHeight();
+    $(window).on('resize', unifyItemBoxHeight);
+});
+</script>
+
+
+<script>
+    // 统一高度核心函数（增强版）
+function unifyItemBoxHeight() {
+    // 🔥 改用clientWidth（排除滚动条影响，精准获取可视宽度）
+    const winWidth = document.documentElement.clientWidth;
+    const $itemBoxes = $('.ly_poster_51 .poster_box .item_box');
+    
+    // 若需求是≤1480px则改为 winWidth <= 1480
+    if (winWidth === 1480) {
+        let maxHeight = 0;
+
+        // 🔥 先重置样式（解决inline-block对齐+高度自动）
+        $itemBoxes.css({
+            'height': 'auto',
+            'display': 'block', // 临时改为block，避免inline-block空白/对齐问题
+            'vertical-align': 'top', // 兜底对齐
+            'box-sizing': 'border-box' // 确保padding/border不撑高
+        });
+
+        // 🔥 计算「包含padding+border+margin」的总高度
+        $itemBoxes.each(function() {
+            // outerHeight(true) = 内容+padding+border+margin
+            const totalHeight = $(this).outerHeight(true);
+            maxHeight = Math.max(maxHeight, totalHeight);
+        });
+
+        // 🔥 统一赋值（还原inline-block，保证原有布局）
+        $itemBoxes.css({
+            'height': maxHeight + 'px',
+            'display': 'inline-block',
+            'vertical-align': 'top' // 强制顶部对齐，避免视觉错位
+        });
+    } else {
+        // 恢复默认样式
+        $itemBoxes.css({
+            'height': 'auto',
+            'display': 'inline-block',
+            'vertical-align': 'baseline'
+        });
+    }
+}
+
+// 🔥 确保内容完全加载后执行（图片+文本都加载完）
+$(window).on('load', function() {
+    unifyItemBoxHeight();
+    // 窗口缩放时防抖执行（避免频繁计算）
+    let resizeTimer = null;
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(unifyItemBoxHeight, 100);
+    });
+});
+</script>
+
+
+<style>
+    /* ========== 统一切换按钮样式 ========== */
+/* 前后切换按钮基础样式：固定宽高、背景、定位 */
+.scroll_btn_prev, .scroll_btn_next {
+  /* 固定宽高（根据设计稿调整数值） */
+  width: 48px !important; 
+  height: 48px !important;
+  /* 固定背景：大小/位置/重复（雪碧图需替换为实际坐标） */
+  background-size: cover !important; /* 雪碧图用：background-size: 100px auto !important; */
+  background-position: center center !important; /* 雪碧图用：background-position: -20px -30px !important; */
+  background-repeat: no-repeat !important;
+  /* 绝对定位：脱离内容流，不随文字高度变化 */
+  position: absolute !important;
+  top: 50% !important; /* 垂直居中 */
+  transform: translateY(-50%) !important; /* 居中修正（关键） */
+  /* 重置默认样式，避免继承干扰 */
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  z-index: 999 !important; /* 确保按钮在最上层 */
+}
+/* 左按钮位置 */
+.scroll_btn_prev {
+  left: 0 !important; 
+}
+/* 右按钮位置 */
+.scroll_btn_next {
+  right: 0 !important; 
+}
+
+/* ========== 统一容器高度，避免塌陷 ========== */
+/* 按钮父容器：相对定位（给按钮做定位基准）+ 固定最小高度 */
+.scroll_list {
+  position: relative !important;
+  min-height: 200px !important; /* 按设计需求调整，统一高度基准 */
+  overflow: visible !important; /* 确保按钮不被隐藏 */
+}
+/* 内容项：统一最小高度，避免高度不一致导致容器变形 */
+.item_box_Poster-1, .item_box_Poster-2, .item_box_Poster-3, .item_box_Poster-4 {
+  min-height: 200px !important; /* 和scroll_list保持一致 */
+  box-sizing: border-box !important;
+}
+</style>
+
+
+<script>
+$(function() {
+  function initScrollBtnStyle() {
+    $('.ly_poster_51 .scroll_btn_prev,.ly_poster_51 .scroll_btn_next').css({
+      width: '48px',
+      height: '48px',
+      'background-size': 'cover',
+      'background-position': 'center center',
+      'background-repeat': 'no-repeat',
+      position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      padding: 0,
+      margin: 0,
+      border: 'none',
+      outline: 'none',
+      zIndex: 999
+    });
+    // 2. 左右按钮位置
+    $('.scroll_btn_prev').css('left', '0');
+    $('.scroll_btn_next').css('right', '0');
+    // 3. 父容器定位+高度
+    $('.scroll_list').css({
+      position: 'relative',
+      'min-height': '200px',
+      overflow: 'visible'
+    });
+    // 4. 内容项统一高度
+    $('[class^="item_box_Poster-"]').css({
+      'min-height': '200px',
+      'box-sizing': 'border-box'
+    });
+  }
+
+  // 初始化执行
+  initScrollBtnStyle();
+
+  // 监听切换按钮点击（动态切换后重新生效）
+  $(document).on('click', '.scroll_btn', function() {
+    setTimeout(initScrollBtnStyle, 100); // 延迟确保DOM更新后生效
+  });
+
+  // 若有AJAX加载，在加载完成后调用 initScrollBtnStyle()
+  // 示例：$(document).on('ajaxComplete', initScrollBtnStyle);
+});
+</script>
+
+
+<script>
+$(function() {
+  // 核心函数：以item_box_Poster-2的高度统一所有item_box高度
+  function unifyItemBoxHeight() {
+    // 1. 获取item_box_Poster-2的实时高度（offsetHeight包含padding/border，clientHeight仅内容+padding，按需选）
+    const targetHeight = $('.item_box_Poster-2').outerHeight(true); // outerHeight(true)含margin，更精准
+    
+    // 2. 给所有item_box_Poster-*元素设置相同高度
+    $('[class^="item_box_Poster-"]').css({
+      height: targetHeight + 'px', // 强制统一高度
+      minHeight: 'auto', // 覆盖之前的min-height，避免冲突
+      overflow: 'auto' // 若内容超出，显示滚动条（可选，也可设为hidden）
+    });
+
+    // 3. 同步切换按钮容器高度（可选，确保按钮垂直居中不偏移）
+    $('.scroll_list').css('min-height', targetHeight + 'px');
+  }
+
+  // ========== 触发时机 ==========
+  // 1. 页面初始化时执行
+  unifyItemBoxHeight();
+
+  // 2. 点击前后切换按钮后重新计算（切换后内容可能变化）
+  $(document).on('click', '.scroll_btn_prev, .scroll_btn_next', function() {
+    setTimeout(unifyItemBoxHeight, 100); // 延迟100ms，确保DOM更新完成
+  });
+
+  // 3. 窗口大小变化时重新计算（响应式场景）
+  $(window).on('resize', unifyItemBoxHeight);
+
+  // 4. 若有AJAX/懒加载内容，加载完成后执行（示例）
+  // $(document).on('ajaxComplete', unifyItemBoxHeight);
+});
+</script>
+
+<script>
+$(function() {
+    function unifyItemBoxHeight() {
+        const targetHeight = $('.ly_poster_51 .poster_box .item_box.Poster-2').outerHeight(true);
+        $('.ly_poster_51 .poster_box .item_box').css({
+        height: targetHeight + 'px',
+        minHeight: 'auto',
+        overflow: 'auto'
+        });
+        $('.ly_poster_51 .poster_box .scroll_list').css('min-height', targetHeight + 'px');
+    }
+    unifyItemBoxHeight();
+    $(document).on('click', '.ly_poster_51 .poster_box .srcoll_list .srcoll_btn.srcoll_btn_prev, .ly_poster_51 .poster_box .srcoll_list .srcoll_btn.srcoll_btn_next', function() {
+        setTimeout(unifyItemBoxHeight, 100);
+    });
+    $(window).on('resize', unifyItemBoxHeight);
+});
+</script>
+
+
+
+<script>
+$(function() {
+    // 封装高度计算核心逻辑：确保获取Poster-2的真实高度（即使被位移/隐藏）
+    function getRealHeight($target) {
+        if (!$target.length) return 0;
+        // 临时记录原样式，避免修改影响视觉
+        const originStyle = {
+            position: $target.css('position'),
+            visibility: $target.css('visibility'),
+            display: $target.css('display'),
+            transform: $target.css('transform'),
+            height: $target.css('height')
+        };
+        // 临时显示元素并计算真实高度（避免位移/隐藏导致取值错误）
+        $target.css({
+            position: 'absolute',
+            visibility: 'hidden',
+            display: 'block',
+            transform: 'none',
+            height: 'auto' // 还原为自动高度，获取真实内容高度
+        });
+        const realHeight = $target.outerHeight(true); // 含margin的真实高度
+        // 还原原样式
+        $target.css(originStyle);
+        return realHeight;
+    }
+
+    function unifyItemBoxHeight() {
+        const $targetEl = $('.ly_poster_51 .poster_box .item_box.Poster-2');
+        // 容错：目标元素不存在则终止
+        if (!$targetEl.length) return;
+        
+        // 关键：获取Poster-2的真实内容高度（而非可视高度）
+        const targetHeight = getRealHeight($targetEl);
+        // 容错：高度为0时不覆盖（避免异常缩小）
+        if (targetHeight <= 0) return;
+
+        // 统一所有item_box高度（强制固定高度，关闭overflow避免干扰）
+        $('.ly_poster_51 .poster_box .item_box').css({
+            height: targetHeight + 'px',
+            minHeight: 'auto', // 覆盖原有min-height
+            overflow: 'hidden', // 改为hidden，避免scrollbar导致宽度/高度偏差
+            boxSizing: 'border-box' // 确保padding/border不影响高度计算
+        });
+        // 同步容器最小高度
+        $('.ly_poster_51 .poster_box .scroll_list').css({
+            minHeight: targetHeight + 'px',
+            position: 'relative' // 确保按钮定位基准
+        });
+    }
+
+    // 初始化执行
+    unifyItemBoxHeight();
+
+    // 修正：选择器拼写错误（srcoll→scroll）+ 增加滚动动画完成后的延迟
+    $(document).on('click', '.ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_prev, .ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_next', function() {
+        // 延迟增加到300ms（适配滚动动画时长），确保切换后DOM稳定
+        setTimeout(unifyItemBoxHeight, 300);
+    });
+
+    // 窗口resize重新计算
+    $(window).on('resize', unifyItemBoxHeight);
+
+    // 额外：监听滚动容器的transform变化（兼容自动轮播场景）
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'style' && mutation.target.classList.contains('scroll_suit_box')) {
+                setTimeout(unifyItemBoxHeight, 200);
+            }
+        });
+    });
+    // 监听滚动容器的样式变化（自动轮播/轮回时触发）
+    $('.ly_poster_51 .poster_box .scroll_suit_box').each(function() {
+        observer.observe(this, { attributes: true, attributeFilter: ['style'] });
+    });
+});
+</script>
+
+
+
+<script>
+$(function() {
+    function getRealHeight($target) {
+        if (!$target.length) return 0;
+        const originStyle = {
+            position: $target.css('position'),
+            visibility: $target.css('visibility'),
+            display: $target.css('display'),
+            transform: $target.css('transform'),
+            height: $target.css('height')
+        };
+        $target.css({
+            position: 'absolute',
+            visibility: 'hidden',
+            display: 'block',
+            transform: 'none',
+            height: 'auto'
+        });
+        const realHeight = $target.outerHeight(true);
+        $target.css(originStyle);
+        return realHeight;
+    }
+    function unifyItemBoxHeight() {
+        const $targetEl = $('.ly_poster_51 .poster_box .item_box.Poster-2');
+        if (!$targetEl.length) return;
+        const targetHeight = getRealHeight($targetEl);
+        if (targetHeight <= 0) return;
+        $('.ly_poster_51 .poster_box .item_box').css({
+            height: targetHeight + 'px',
+            minHeight: 'auto',
+            overflow: 'hidden',
+            boxSizing: 'border-box'
+        });
+        $('.ly_poster_51 .poster_box .scroll_list').css({
+            minHeight: targetHeight + 'px',
+            position: 'relative'
+        });
+    }
+    unifyItemBoxHeight();
+    $(document).on('click', '.ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_prev, .ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_next', function() {
+        setTimeout(unifyItemBoxHeight, 300);
+    });
+    $(window).on('resize', unifyItemBoxHeight);
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'style' && mutation.target.classList.contains('scroll_suit_box')) {
+                setTimeout(unifyItemBoxHeight, 200);
+            }
+        });
+    });
+    $('.ly_poster_51 .poster_box .scroll_suit_box').each(function() {
+        observer.observe(this, { attributes: true, attributeFilter: ['style'] });
+    });
+});
+</script>

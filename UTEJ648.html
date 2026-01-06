@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>高德地图嵌入示例</title>
+    <style>
+        /* 给地图容器设置宽高，否则地图无法显示 */
+        #themap {
+            width: 100%;
+            height: 600px; /* 核心：必须设置高度 */
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+        /* 可选：给父容器加基础样式 */
+        #parent-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+    <!-- 1. 先引入jQuery库（必须，否则$符号报错） -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- 2. 引入高德地图API，替换为自己的API Key -->
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=你的高德API Key"></script>
+</head>
+<body>
+    <div id="parent-container">
+        这是页面中已有的内容
+    </div>
+
+    <script>
+        $(function() {
+            // 修正选择器：匹配页面中的父容器ID（若实际是.article_content，可改回$('.article_content')）
+            const $parentDiv = $('#parent-container');
+            if ($parentDiv.length === 0) {
+                console.error('目标div不存在，请检查选择器！');
+                return;
+            }
+
+            // 创建地图容器div，ID为themap
+            const $themap = $('<div/>', {
+                id: 'themap',
+                text: '即将嵌入高德地图...' // 加载中提示，地图初始化后会覆盖
+            });
+            $parentDiv.append($themap);
+
+            // 关键：在容器创建完成后，再初始化高德地图
+            var map = new AMap.Map('themap', { // 修正容器ID为themap
+                resizeEnable: true, // 窗口大小变化时自动调整地图
+                center: [113.335381, 22.596991], // 你的经纬度坐标
+                zoom: 15 // 修正缩放级别（3-19之间，15是常用值）
+            });
+
+            // 可选：添加地图标记点，让坐标位置更直观
+            var marker = new AMap.Marker({
+                position: [113.335381, 22.596991], // 与地图中心一致
+                map: map // 绑定到创建的地图实例
+            });
+        });
+    </script>
+</body>
+</html>
+
+<script src="https://webapi.amap.com/maps?v=1.4.15&key="></script>
+<script>
+    $(function() {
+        const $parentDiv = $('.article_content');
+        const $themap1 = $('<div/>', {
+            id: 'themap1',
+            text: '即将嵌入高德地图...'
+        });
+        $parentDiv.append($themap1);
+        var map = new AMap.Map('themap1', { 
+            resizeEnable: true, 
+            center: [113.335381, 22.596991], 
+            zoom: 15 
+        });
+        var marker = new AMap.Marker({
+            position: [113.335381, 22.596991], 
+            map: map 
+        });
+    });
+</script>
+
+
+<style>
+    body .ly_article_1 #themap1 {width: 100%;height: 600px;margin-top: 20px;border: 1px solid #eee;}
+    .richtext.is-magic img {max-width:none;}
+</style>
+
+
+
+<style>
+    body .ly_article_1 #themap1 {width: 100%;height: 600px;margin-top: 20px;border: 1px solid #eee;}
+</style>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key="></script>
+<script>
+    $(function() {
+        const $parentDiv = $('.article_content');
+        const $themap1 = $('<div/>', {
+            id: 'themap1',
+            text: '即将嵌入高德地图...'
+        });
+        $parentDiv.append($themap1);
+        var map = new AMap.Map('themap1', { 
+            resizeEnable: true, 
+            center: [113.335381, 22.596991], 
+            zoom: 100
+        });
+        var marker = new AMap.Marker({
+            position: [113.335381, 22.596991], 
+            map: map 
+        });
+    });
+</script>
+
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_footer_26 .default_foot_menu_style .menu_list[data-blocks="CustomContent-2"] {padding-left: 50px;}
+        body .ly_footer_26 .default_foot_menu_style .menu_list[data-blocks="CustomContent-3"] {padding-left: 110px;}
+    }
+</style>
+
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_poster_52 .poster_wrapper {padding: 40px 5%;}
+        body .ly_poster_52 .r_button {margin-right: 35px;}
+    }
+</style>
+
+
+<style>
+    body .ly_poster_63 .top_title .btn_box {margin-right: 60px;}
+    body .ly_poster_63 .top_title .btn_box .item_btn.prev_btn i {font-size: 20px;}
+    body .ly_poster_63 .top_title .btn_box .item_btn {background-color: #2981F7;}
+    body .ly_poster_63[data-visual-id="78187"] .wide .poster_box .poster_item .i_link {font-family: 'HarmoniaSansStd-Regular';width: 245px;height: 55px;font-size: 22px;}
+    body .ly_poster_63[data-visual-id="78187"] .wide .poster_box .poster_item .i_link:hover {color: #000000;background-color: #ffffff;border: 1px solid #000000;}
+
+    @media screen and (max-width: 1000px) {
+        body .ly_poster_63 .top_title .btn_box {margin-right: 0px;}
+        body .ly_poster_63 .top_title .btn_box .item_btn.prev_btn i {font-size: 18px;}
+        body .ly_poster_63 .poster_box .poster_item .i_link {width: 215px;height: 45px;font-size: 20px;text-align: center;}
+        body .ly_poster_63[data-visual-id="78187"] .wide .poster_box .poster_item .i_link:hover {color: #000000;background-color: #ffffff;border-bottom: 1px solid #000000;}
+        body .ly_poster_63[data-visual-id="78187"] .wide .poster_box .poster_item .i_link {-webkit-tap-highlight-color: transparent;}
+    }
+</style>
+
+
+<style>
+    body .ly_form_1 .form_wrapper .form_box .input_txt {border: 1px solid #000000;}
+</style>
+
+
+
+<style>
+    body .global_products_may_like .like_products_box .like_products_item .item_img .item_img_tab img { height: 100%; }
+</style>
+
+<style>
+    @media screen and (min-width: 1500px) {
+        body .ly_poster_19 .item_container .item_box {width: 400px !important;}   
+    }
+</style>
+
+<style>
+    body .ly_products_35 .top_tab .list .tab_item.current img,
+    body.ly_products_35 .top_tab .list .tab_item:hover img {filter: none;}
+</style>
+
+<style>
+    @media (min-width: 1680px) {
+        .ly_header_48 .nav li:nth-child(6) {padding: 16px 0 16px;right: -3px;}
+        .ly_header_48 .nav li:nth-child(5) {padding: 16px 15px 16px 11px;}
+        .ly_header_48 .nav li:nth-child(3) {padding: 16px 10px 16px 11px;}
+        .ly_header_48 .nav li:nth-child(1) {padding-right: 11px;}
+        .ly_header_48 .nav li:nth-child(6) a {letter-spacing: 0px;}   
+    }
+</style>
+
+<script>
+    $(function(){
+        $('.ly_inquiry_list_1 .notice_box .notice_button[title*="Return to shop"]').text('Return')
+    });
+</script>
+
+<style>
+    body .info_270_1 .news_item .ni_img_box .padding_img .img_p {padding-top: 81%;}
+</style>
+
+<style>
+    .ly_form_10 .flex_box .s_left .qrcode {justify-content: space-around;}
+</style>

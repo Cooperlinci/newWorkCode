@@ -1,0 +1,584 @@
+<script>
+    // 1. 找到包含内容的父容器
+    const contentContainer = document.querySelector('.i_content.themes_text_content');
+    if (contentContainer) {
+        // 2. 获取容器内的原始HTML内容
+        let originalHtml = contentContainer.innerHTML;
+
+        // 3. 处理列表项：
+        // - 去除开头的 &nbsp;&nbsp;（消除缩进）
+        // - 保留 "- " 符号，确保列表样式
+        // - 为列表项添加左对齐样式
+        const modifiedHtml = originalHtml
+            // 处理第一个列表项
+            .replace(
+                /&nbsp;&nbsp;More than half of Singaporeans take no sun protection measures at all\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- More than half of Singaporeans take no sun protection measures at all.</span>'
+            )
+            // 处理第二个列表项
+            .replace(
+                /&nbsp;&nbsp;No hats. No UPF clothing. Sometimes not even sunscreen\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- No hats. No UPF clothing. Sometimes not even sunscreen.</span>'
+            );
+
+        // 4. 更新容器内容，生效修改
+        contentContainer.innerHTML = modifiedHtml;
+
+        // 5. 额外确保父容器整体左对齐（防止继承其他样式）
+        contentContainer.style.textAlign = 'left';
+        contentContainer.style.paddingLeft = '0';
+        contentContainer.style.marginLeft = '0';
+    } else {
+        console.warn('未找到目标容器，请检查class名称是否正确');
+    }
+</script>
+
+
+<script>
+    const contentContainer = document.querySelector('.ly_about_7 .item.About-2 .i_content.themes_text_content');
+    if (contentContainer) {
+        let originalHtml = contentContainer.innerHTML;
+        const modifiedHtml = originalHtml
+            .replace(
+                /&nbsp;&nbsp;More than half of Singaporeans take no sun protection measures at all\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- More than half of Singaporeans take no sun protection measures at all.</span>'
+            )
+            .replace(
+                /&nbsp;&nbsp;No hats. No UPF clothing. Sometimes not even sunscreen\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- No hats. No UPF clothing. Sometimes not even sunscreen.</span>'
+            );
+        contentContainer.innerHTML = modifiedHtml;
+        contentContainer.style.textAlign = 'left';
+        contentContainer.style.paddingLeft = '0';
+        contentContainer.style.marginLeft = '0';
+    } else {
+        console.warn('未找到目标容器，请检查class名称是否正确');
+    }
+
+
+    // 找到内容容器
+    const container = document.querySelector('.i_content.themes_text_content');
+    if (container) {
+        // 获取容器内所有子节点（包含文本和元素）
+        const nodes = container.childNodes;
+        
+        // 遍历节点，定位目标列表项
+        nodes.forEach(node => {
+            // 只处理文本节点或包含目标文本的元素
+            if (node.nodeType === 3 || node.nodeType === 1) {
+                let textContent = node.textContent || node.innerText;
+                
+                // 匹配第一个列表项："-   More than..."
+                if (textContent.includes('-   More than half of Singaporeans take no sun protection measures at all.')) {
+                    // 去除多余空格缩进（保留 "- " 符号），并添加左对齐样式
+                    const cleanedText = textContent.replace('-   ', '- '); // 把 "-   " 缩减为 "- " 减少缩进
+                    node.textContent = cleanedText; // 保留原内容，仅调整空格
+                    // 强制左对齐（若节点是元素，直接加样式；若为文本节点，给父元素加）
+                    const targetElement = node.nodeType === 1 ? node : node.parentElement;
+                    targetElement.style.textAlign = 'left';
+                    targetElement.style.paddingLeft = '0';
+                    targetElement.style.marginLeft = '0';
+                }
+                
+                // 匹配第二个列表项："-   No hats..."
+                if (textContent.includes('-   No hats. No UPF clothing. Sometimes not even sunscreen.')) {
+                    // 同样去除多余空格缩进
+                    const cleanedText = textContent.replace('-   ', '- ');
+                    node.textContent = cleanedText;
+                    // 强制左对齐
+                    const targetElement = node.nodeType === 1 ? node : node.parentElement;
+                    targetElement.style.textAlign = 'left';
+                    targetElement.style.paddingLeft = '0';
+                    targetElement.style.marginLeft = '0';
+                }
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+    const container = document.querySelector('.ly_about_7 .item.About-2 .i_content.themes_text_content');
+    if (container) {
+        const nodes = container.childNodes;
+        nodes.forEach(node => {
+            if (node.nodeType === 3 || node.nodeType === 1) {
+                let textContent = node.textContent || node.innerText;
+                if (textContent.includes('-   More than half of Singaporeans take no sun protection measures at all. ')) {
+                    const cleanedText = textContent.replace('-   ', '- ');
+                    node.textContent = cleanedText;
+                    const targetElement = node.nodeType === 1 ? node : node.parentElement;
+                    targetElement.style.textAlign = 'left';
+                    targetElement.style.paddingLeft = '0';
+                    targetElement.style.marginLeft = '0';
+                }
+                if (textContent.includes('-   No hats. No UPF clothing. Sometimes not even sunscreen. ')) {
+                    const cleanedText = textContent.replace('-   ', '- ');
+                    node.textContent = cleanedText;
+                    const targetElement = node.nodeType === 1 ? node : node.parentElement;
+                    targetElement.style.textAlign = 'left';
+                    targetElement.style.paddingLeft = '0';
+                    targetElement.style.marginLeft = '0';
+                }
+            }
+        });
+    }
+</script>
+
+
+
+<script>
+    const container = document.querySelector('.ly_about_7 .item.About-2 .i_content.themes_text_content');
+    if (container) {
+        const nodes = container.childNodes;
+        nodes.forEach(node => {
+           
+        });
+    } 
+</script>
+
+The Sun Is Strong — But Our Habits Are Weak
+A landmark NUS–National Skin Centre study surveyed 2,300 adults across Singapore in 2020. The findings were clear:
+More than half of Singaporeans take no sun protection measures at all.
+No hats. No UPF clothing. Sometimes not even sunscreen.
+For a country that’s sunny all year, that’s a surprising and serious gap in everyday health habits.
+
+<div class="i_content themes_text_content">
+    "A landmark MUS-National Skin Centre study surveyed 2,300 adults across Singapore in 2020. The findings were clear:"
+    <br>
+    <br>
+    "-&nbsp;&nbsp;More than half of Singaporeans take no sun protection measures at all."
+    <br>
+    <br>
+    "-&nbsp;&nbsp;No hats. No UPF clothing. Sometimes not even sunscreen."
+    <br>
+    <br>
+    "orcottatsylaassriiasergveethi"
+</div>
+
+
+<script>
+    const contentDiv = document.querySelector('.i_content.themes_text_content');
+    const textWalker = document.createTreeWalker(
+    contentDiv,
+    NodeFilter.SHOW_TEXT
+    );
+    let textNode;
+    while (textNode = textWalker.nextNode()) {
+    const text = textNode.textContent;
+    if (
+        text.startsWith('-  More than half of Singaporeans take no sun protection measures at all.') || 
+        text.startsWith('-  No hats. No UPF clothing. Sometimes not even sunscreen.')
+    ) {
+        const newText = text.replace('-  ', '- ');
+        const newNode = document.createTextNode(newText);
+        textNode.parentNode.replaceChild(newNode, textNode);
+    }
+    }
+</script>
+
+<style>
+    body #header.ly_header_73 .ly_header_bot .ly_i_wrapper_1500 {padding-top: 10px;padding-bottom: 8px;}
+</style>
+
+
+<script>
+    const contentContainer = document.querySelector('.ly_about_7 .item.About-2 .i_content.themes_text_content');
+    if (contentContainer) {
+        let originalHtml = contentContainer.innerHTML;
+        const modifiedHtml = originalHtml
+            .replace(
+                /&nbsp;&nbsp;More than half of Singaporeans take no sun protection measures at all\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- More than half of Singaporeans take no sun protection measures at all.</span>'
+            )
+            .replace(
+                /&nbsp;&nbsp;No hats. No UPF clothing. Sometimes not even sunscreen\./g,
+                '<span style="display: block; text-align: left; margin: 0; padding: 0;">- No hats. No UPF clothing. Sometimes not even sunscreen.</span>'
+            );
+        contentContainer.innerHTML = modifiedHtml;
+    }
+</script>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改HTML内容样式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fdbb2d;
+        }
+        
+        .themes_text_content {
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a2a6c;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .comparison-box {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .original {
+            background-color: #f0f8ff;
+            border: 2px dashed #1a2a6c;
+        }
+        
+        .modified {
+            background-color: #fff0f5;
+            border: 2px solid #b21f1f;
+        }
+        
+        .code-container {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .note {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>修改HTML内容样式</h1>
+    <div class="subtitle">使用JavaScript获取HTML元素并动态修改其样式</div>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2>原始内容</h2>
+            <div class="themes_text_content" id="originalContent">
+                "A landmark MUS-National Skin Centre study surveyed 2,300 adults across Singapore in 2020. The findings were clear:"
+                <br>
+                <br>
+                "-&nbsp;&nbsp;More than half of Singaporeans take no sun protection measures at all."
+                <br>
+                <br>
+                "-&nbsp;&nbsp;No hats. No UPF clothing. Sometimes not even sunscreen."
+                <br>
+                <br>
+                "orcottatsylaassriiasergveethi"
+            </div>
+            
+            <div class="controls">
+                <button id="changeStyle">应用样式修改</button>
+                <button id="resetStyle">重置样式</button>
+                <button id="highlightText">高亮重要内容</button>
+                <button id="changeLayout">更改布局</button>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-box original">
+                    <h3>原始样式</h3>
+                    <div id="originalDisplay"></div>
+                </div>
+                <div class="comparison-box modified">
+                    <h3>修改后样式</h3>
+                    <div id="modifiedDisplay"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <h3>JavaScript 代码</h3>
+                <span>实现样式修改的核心逻辑</span>
+            </div>
+            <pre><code>
+// 获取原始元素
+const originalContent = document.getElementById('originalContent');
+
+// 复制内容用于显示
+document.getElementById('originalDisplay').innerHTML = originalContent.innerHTML;
+document.getElementById('modifiedDisplay').innerHTML = originalContent.innerHTML;
+
+// 修改样式函数
+function changeStyles() {
+    const content = document.getElementById('modifiedDisplay');
+    
+    // 修改样式属性
+    content.style.fontFamily = "'Georgia', serif";
+    content.style.fontSize = "18px";
+    content.style.lineHeight = "1.8";
+    content.style.color = "#2c3e50";
+    content.style.backgroundColor = "#f9f7f1";
+    content.style.padding = "25px";
+    content.style.borderRadius = "10px";
+    content.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+    content.style.borderLeft = "5px solid #e74c3c";
+    
+    // 修改特定文本样式
+    const text = content.innerHTML;
+    content.innerHTML = text.replace(/Singapore/g, '<span style="color: #e74c3c; font-weight: bold;">Singapore</span>');
+}
+
+// 高亮重要内容
+function highlightImportant() {
+    const content = document.getElementById('modifiedDisplay');
+    let text = content.innerHTML;
+    
+    // 高亮关键信息
+    text = text.replace(/no sun protection measures/g, '<span class="highlight">no sun protection measures</span>');
+    text = text.replace(/no hats/g, '<span class="highlight">no hats</span>');
+    text = text.replace(/no UPF clothing/g, '<span class="highlight">no UPF clothing</span>');
+    text = text.replace(/not even sunscreen/g, '<span class="highlight">not even sunscreen</span>');
+    
+    content.innerHTML = text;
+}
+
+// 更改布局
+function changeLayout() {
+    const content = document.getElementById('modifiedDisplay');
+    content.style.columns = "2";
+    content.style.columnGap = "30px";
+    content.style.columnRule = "2px dashed #3498db";
+}
+
+// 重置样式
+function resetStyles() {
+    const content = document.getElementById('modifiedDisplay');
+    content.style = "";
+    content.innerHTML = document.getElementById('originalContent').innerHTML;
+}
+
+// 添加事件监听器
+document.getElementById('changeStyle').addEventListener('click', changeStyles);
+document.getElementById('resetStyle').addEventListener('click', resetStyles);
+document.getElementById('highlightText').addEventListener('click', highlightImportant);
+document.getElementById('changeLayout').addEventListener('click', changeLayout);
+            </code></pre>
+        </div>
+        
+        <div class="note">
+            <p><strong>提示：</strong> 这个示例展示了如何使用JavaScript获取HTML元素并动态修改其样式。在实际项目中，这种方法可以用于创建交互式用户界面、动态主题切换或响应式内容调整。</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>JavaScript HTML样式修改示例 &copy; 2023</p>
+    </div>
+
+    <script>
+        // 获取原始元素
+        const originalContent = document.getElementById('originalContent');
+
+        // 复制内容用于显示
+        document.getElementById('originalDisplay').innerHTML = originalContent.innerHTML;
+        document.getElementById('modifiedDisplay').innerHTML = originalContent.innerHTML;
+
+        // 修改样式函数
+        function changeStyles() {
+            const content = document.getElementById('modifiedDisplay');
+            
+            // 修改样式属性
+            content.style.fontFamily = "'Georgia', serif";
+            content.style.fontSize = "18px";
+            content.style.lineHeight = "1.8";
+            content.style.color = "#2c3e50";
+            content.style.backgroundColor = "#f9f7f1";
+            content.style.padding = "25px";
+            content.style.borderRadius = "10px";
+            content.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+            content.style.borderLeft = "5px solid #e74c3c";
+            
+            // 修改特定文本样式
+            const text = content.innerHTML;
+            content.innerHTML = text.replace(/Singapore/g, '<span style="color: #e74c3c; font-weight: bold;">Singapore</span>');
+        }
+
+        // 高亮重要内容
+        function highlightImportant() {
+            const content = document.getElementById('modifiedDisplay');
+            let text = content.innerHTML;
+            
+            // 高亮关键信息
+            text = text.replace(/no sun protection measures/g, '<span class="highlight">no sun protection measures</span>');
+            text = text.replace(/no hats/g, '<span class="highlight">no hats</span>');
+            text = text.replace(/no UPF clothing/g, '<span class="highlight">no UPF clothing</span>');
+            text = text.replace(/not even sunscreen/g, '<span class="highlight">not even sunscreen</span>');
+            
+            content.innerHTML = text;
+        }
+
+        // 更改布局
+        function changeLayout() {
+            const content = document.getElementById('modifiedDisplay');
+            content.style.columns = "2";
+            content.style.columnGap = "30px";
+            content.style.columnRule = "2px dashed #3498db";
+        }
+
+        // 重置样式
+        function resetStyles() {
+            const content = document.getElementById('modifiedDisplay');
+            content.style = "";
+            content.innerHTML = document.getElementById('originalContent').innerHTML;
+        }
+
+        // 添加事件监听器
+        document.getElementById('changeStyle').addEventListener('click', changeStyles);
+        document.getElementById('resetStyle').addEventListener('click', resetStyles);
+        document.getElementById('highlightText').addEventListener('click', highlightImportant);
+        document.getElementById('changeLayout').addEventListener('click', changeLayout);
+    </script>
+</body>
+</html>
+
+
+<script>
+    $(function() {
+        const $content = $('.ly_about_7 .item.About-2 .i_content.themes_text_content');
+        $content.contents().each(function() {
+            if (this.nodeType === 3) {
+                let text = this.textContent;
+                const targetPrefix1 = '- \u00A0More than half of Singaporeans take no sun protection measures at all.';
+                const targetPrefix2 = '- \u00A0No hats. No UPF clothing. Sometimes not even sunscreen.';
+                if (text.startsWith(targetPrefix1) || text.startsWith(targetPrefix2)) {
+                    text = text.replace('- \u00A0', '- ');
+                    this.textContent = text;
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_header_73 .default_search_style .default_search_form .form .button {width: 60px;height: 40px;}
+        body .ly_header_73 .default_search_style .default_search_form .form .text {line-height: 40px;}
+    }
+</style>

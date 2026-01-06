@@ -1,0 +1,34 @@
+<script>
+    // 纯JS版本
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneElement = document.getElementById('phone-info');
+        if (phoneElement) {
+            const text = phoneElement.textContent;
+            const formattedText = text.replace(/ Mobile:/, '\nMobile:');
+            phoneElement.textContent = formattedText;
+            
+            // 或者使用CSS保持换行
+            phoneElement.style.whiteSpace = 'pre-line';
+        }
+    });
+
+    // jQuery版本
+    $(document).ready(function() {
+        $('.ly_footer_32 .default_foot_menu_style .menu_list dd a[title=" Tel: +86 755 8179 8116 / 8179 0006 Mobile: +86 189 2657 4646 "]').html(function() {
+            return $(this).text().replace(/ Mobile:/, '<br>Mobile:');
+        });
+    });
+</script>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_poster_64 .top_title .t_content,
+        body .ly_poster_64 .top_title .t_title {margin-bottom: 5px;}   
+    }
+</style>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_footer_32 .default_foot_menu_style .menu_list.menu_list_custom_content {height: 10px;}
+    }
+</style>

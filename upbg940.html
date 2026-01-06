@@ -1,0 +1,126 @@
+<style>
+    body .ly_header_26.header.header_float.header_abs .headerFixed {position: unset;background-color: rgba(0, 50, 101, 100%);}
+</style>
+
+
+<style>
+    @media (min-width: 1280px) {
+        body .ly_poster_50 .item_box .c_title {margin-bottom: 24px;}
+        body .ly_poster_50 .item_box .c_content {line-height: 2.25;}
+    }
+
+            /* 全局样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f7fa;
+            color: #333;
+        }
+</style>
+
+
+<style>
+    @media (min-width: 1280px) {
+        body .ly_poster_50 .item_box .c_title {margin-bottom: 24px;}
+        body .ly_poster_50 .item_box .c_content {line-height: 2.25;}
+    }
+    @media screen and (max-width: 1000px) {
+        body .ly_poster_50 .item_box .c_title {font-size: 15px;}
+        body .ly_poster_50 .item_box .c_content {line-height: 1.75;}
+    }
+</style>
+
+
+<style>
+    body .ly_poster_13 .poster_box {line-height: normal;}
+    @media screen and (max-width: 500px) {
+        body .ly_poster_13 .t_button {
+            margin-top: 0px;
+        }
+    }
+</style>
+
+
+<style>
+    body .ly_news_list_2 .wide .section {padding-right: 20%;}
+    body .ly_news_list_2 .list_box .themes_news .pic_box {width: 60%;}
+    body .ly_news_list_2 .list_box .themes_news .text_box {width: 30%;}
+    body .ly_news_list_2 .list_box .themes_news .brief {-webkit-line-clamp: 5 !important;}
+</style>
+
+<style>
+    body .global_mode_customize .wide {max-width: 1920px;}
+    body .global_mode_customize .wide .section .content iframe{width: 100% !important;}
+</style>
+
+<style>
+    body .ly_product_purchase_3 .goods_wrapper .goods_info .share_toolbox {display: none;}
+    body .ly_product_purchase_3 .goods_box .goods_menu .category_nav .cate_a {font-size: 18px;}
+</style>
+
+<style>
+    body .ly_product_purchase_3 .goods_wrapper .goods_info .share_toolbox {display: none;}
+    body .ly_product_purchase_3 .goods_box .goods_menu .category_nav .nav_box .fir_cate_item .cate_a {font-size: 18px;}
+    body .ly_product_purchase_3 .goods_box .goods_menu .category_nav .top_title {font-size: 0;}
+    body .ly_product_purchase_3 .goods_box .goods_menu .category_nav .top_title::after {font-size: 18px;content: "类别";color: inherit;font-family: inherit;display: inline-block;}
+</style>
+
+
+<script>
+    $(document).ready(function() {
+        $('.top-title.themes_box_title').text('类别');
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 找到包含版权信息的元素（根据class定位）
+        const copyrightElement = $('.copy .wide');
+        
+        // 仅当找到元素时执行替换
+        if (copyrightElement.length) {
+            // 获取原内容
+            let originalHtml = copyrightElement.html();
+            
+            // 替换“法律声明”为带链接的a标签（href替换为实际链接）
+            originalHtml = originalHtml.replace('法律声明', '<a href="/legal-statement" target="_blank" style="color: inherit; text-decoration: underline;">法律声明</a>');
+            
+            // 替换“隐私政策”为带链接的a标签（href替换为实际链接）
+            originalHtml = originalHtml.replace('隐私政策', '<a href="/privacy-policy" target="_blank" style="color: inherit; text-decoration: underline;">隐私政策</a>');
+            
+            // 更新元素内容
+            copyrightElement.html(originalHtml);
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const copyrightElement = $('.ly_footer_26 .copy .wide');
+        if (copyrightElement.length) {
+            let originalHtml = copyrightElement.html();
+            originalHtml = originalHtml.replace('法律声明', '<a href="/legal-statement" target="_blank" style="color: inherit; text-decoration: underline;">法律声明</a>');
+            originalHtml = originalHtml.replace('隐私政策', '<a href="/privacy-policy" target="_blank" style="color: inherit; text-decoration: underline;">隐私政策</a>');
+            copyrightElement.html(originalHtml);
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const copyrightElement = $('.ly_footer_26 .copy .wide');
+        if (copyrightElement.length) {
+            let originalHtml = copyrightElement.html();
+            originalHtml = originalHtml.replace('法律声明', '<a href="https://upbg940.myueeshop.com/pages/法律声明" target="_blank" style="color: inherit; text-decoration: underline;">法律声明</a>');
+            originalHtml = originalHtml.replace('隐私政策', '<a href="https://upbg940.myueeshop.com/pages/隐私政策" target="_blank" style="color: inherit; text-decoration: underline;">隐私政策</a>');
+            copyrightElement.html(originalHtml);
+        }
+    });
+</script>
+
+<style>
+    body .ly_header_26 .tool .tool_inquiry_btn {display: none;}
+</style>

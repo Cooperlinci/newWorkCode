@@ -1,0 +1,347 @@
+<style>
+    .ly_develop_1 .develop_box .dev_item .pic_box {display: none;}
+    body .ly_develop_1 .develop_box .srcoll_btn.srcoll_btn_prev,
+    body .ly_develop_1 .develop_box .srcoll_btn.srcoll_btn_next {top: 25%;}
+</style>
+
+<style>
+    @media (max-width: 1000px) {
+        .ly_product_description_1 .editor_txt img {height: auto;}
+    }
+</style>
+
+<style>
+    .ly_special_9 .list .special_item .pic_box .compute_item_img .compute_process_img {padding-top: 50% !important;}
+</style>
+
+<style>
+    body .ly_poster_92 .box {justify-content: space-between;}
+</style>
+
+<style>
+    .ly_header_5 .tool .tool_inquiry_btn {display: none;}
+</style>
+
+<script>
+    $(document).ready(function() {
+        // 获取当前页面URL路径
+        const currentPath = window.location.pathname;
+        // 定义分类容器的选择器（匹配截图里的class：one_title + item_title）
+        const categoryItemSelector = '.one_title.item_title';
+
+        // 场景1：当前页面是「业务分类」(collections/业务分类)
+        if (currentPath.includes('collections/业务分类')) {
+            // 隐藏「行业解决方案」分类项
+            $(categoryItemSelector).filter(function() {
+                return $(this).find('a').attr('href').includes('collections/行业解决方案');
+            }).hide();
+            // 确保「业务分类」分类项显示
+            $(categoryItemSelector).filter(function() {
+                return $(this).find('a').attr('href').includes('collections/业务分类');
+            }).show();
+        } 
+        // 场景2：当前页面是「行业解决方案」(collections/行业解决方案)
+        else if (currentPath.includes('collections/行业解决方案')) {
+            // 隐藏「业务分类」分类项
+            $(categoryItemSelector).filter(function() {
+                return $(this).find('a').attr('href').includes('collections/业务分类');
+            }).hide();
+            // 确保「行业解决方案」分类项显示
+            $(categoryItemSelector).filter(function() {
+                return $(this).find('a').attr('href').includes('collections/行业解决方案');
+            }).show();
+        }
+    });
+</script>
+
+<style>
+    body .default_nav .full_nav_style .small_nav_sec .small .nav_sec_item {width: calc(100% / 3);}
+    body .default_nav .full_nav_style .nav_sec .small .nav_list {min-width: 1440px;}
+    body .default_nav .full_nav_style .nav_sec .small {max-width: 1440px;}
+    body .default_nav .nav_sec_item .nav_third_box {width: 480px;}
+</style>
+
+<style>
+    .ly_product_list_2 .list_box .themes_prod .pic_box {display: none;}
+    .ly_product_list_2 .list_box .themes_prod .name {border-bottom: 1px dotted #ccc;padding: 0 30px 8px !important;}
+    body .ly_product_list_2 .list_box {display: block;margin-top: 35px;}
+    body .ly_product_list_2 .list_box .themes_prod {margin-bottom: 0;text-align: left;}
+</style>
+
+<style>
+    .default_nav .nav_sec_item .nav_third_box .nav_third_item:first-child {padding-top: 13px;}
+    .default_nav .nav_sec_item .nav_third_box .nav_third_item:last-child {padding-bottom: 17px;}
+</style>
+
+
+<script>
+    // 等待页面所有资源加载完成
+    $(window).on('load', function() {
+        $('.ly_special_5 .list .special_item .info .timer').each(function() {
+            const $this = $(this);
+            // 强制重置初始值为0
+            $this.text('0');
+            
+            const target = parseInt($this.data('to')) || 0;
+            const duration = parseInt($this.data('speed')) || 1500;
+            const totalFrames = Math.max(30, duration / 16); // 至少30帧，保证可见
+            const step = target / totalFrames;
+            let current = 0;
+            let frameCount = 0;
+
+            const countUp = () => {
+            frameCount++;
+            current += step;
+            if (frameCount >= totalFrames) {
+                $this.text(target);
+                return;
+            }
+            $this.text(Math.floor(current));
+            requestAnimationFrame(countUp);
+            };
+
+            setTimeout(countUp, 200);
+        });
+    });
+</script>
+
+
+<script>
+    // 原生JS + 视口检测
+    window.addEventListener('load', function() {
+        const timerElements = document.querySelectorAll('.ly_special_5 .list .special_item .info .timer');
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        // 计数动画函数
+        function startCount(timer) {
+            if (timer.dataset.animated) return; // 避免重复执行
+            timer.dataset.animated = 'true'; // 标记已执行
+            
+            timer.textContent = '0';
+            const target = parseInt(timer.dataset.to) || 0;
+            const duration = parseInt(timer.dataset.speed) || 1500;
+            const totalFrames = Math.max(30, duration / 16);
+            const step = target / totalFrames;
+            let current = 0;
+            let frameCount = 0;
+
+            const countUp = () => {
+            frameCount++;
+            current += step;
+            if (frameCount >= totalFrames) {
+                timer.textContent = target;
+                return;
+            }
+            timer.textContent = Math.floor(current);
+            requestAnimationFrame(countUp);
+            };
+            setTimeout(countUp, 200);
+        }
+
+        // 初始检测：可视区元素直接启动
+        timerElements.forEach(timer => {
+            if (isInViewport(timer)) {
+            startCount(timer);
+            }
+        });
+
+        // 滚动时检测：元素进入视口则启动
+        window.addEventListener('scroll', function() {
+            timerElements.forEach(timer => {
+            if (!timer.dataset.animated && isInViewport(timer)) {
+                startCount(timer);
+            }
+            });
+        });
+    });
+</script>
+
+<script>
+    window.addEventListener('load', function() {
+        const timerElements = document.querySelectorAll('.ly_special_5 .list .special_item .info .timer');
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+        function startCount(timer) {
+            if (timer.dataset.animated) return;
+            timer.dataset.animated = 'true';
+            timer.textContent = '0';
+            const target = parseInt(timer.dataset.to) || 0;
+            const duration = parseInt(timer.dataset.speed) || 1500;
+            const totalFrames = Math.max(30, duration / 16);
+            const step = target / totalFrames;
+            let current = 0;
+            let frameCount = 0;
+            const countUp = () => {
+            frameCount++;
+            current += step;
+            if (frameCount >= totalFrames) {
+                timer.textContent = target;
+                return;
+            }
+            timer.textContent = Math.floor(current);
+            requestAnimationFrame(countUp);
+            };
+            setTimeout(countUp, 200);
+        }
+        timerElements.forEach(timer => {
+            if (isInViewport(timer)) {
+            startCount(timer);
+            }
+        });
+        window.addEventListener('scroll', function() {
+            timerElements.forEach(timer => {
+            if (!timer.dataset.animated && isInViewport(timer)) {
+                startCount(timer);
+            }
+            });
+        });
+    });
+</script>
+
+数字跑动的问题special_5
+
+
+<script>
+    $(function() {
+        $('.timer').each(function() {
+            const $timer = $(this);
+            $timer.attr('data-scroll', '');
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const $timerSpan = $('.ly_special_5 .list .special_item .info span.timer');
+        if ($timerSpan.length) {
+            $timerSpan.attr('data-scroll', '');
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const timerSpan = document.querySelector('.ly_special_5 .list .special_item .info span.timer');
+        if (timerSpan) {
+            timerSpan.setAttribute('data-scroll', '');
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPath = window.location.pathname;
+        console.log(currentPath);
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+    toggleCurSubHide();
+    $('.ly_product_list_2 .cate_item').on('click', function() {
+        $('.ly_product_list_2 .cate_item').removeClass('cur');
+        $(this).addClass('cur');
+        toggleCurSubHide();
+    });
+});
+function toggleCurSubHide() {
+    $('.ly_product_list_2 .products_category_wrapper .products_category_box .one_item.sub_hide').css('display', 'none');
+    $('.ly_product_list_2 .products_category_wrapper .products_category_box .one_item.sub_hide:has(.cur)').css('display', 'block');
+}
+</script>
+
+<style>
+    @media screen and (min-width:1000px) {
+        .ly_product_list_2 .products_category_wrapper .cate_item.cur,
+        .ly_product_list_2 .products_category_wrapper .products_category_box .one_title .cate_item.cur + .iconfont {display: inline-block !important;}
+        .ly_product_list_2 .products_category_wrapper .products_category_box .one_title .cate_item,
+        .ly_product_list_2 .products_category_wrapper .products_category_box .one_title .cate_item + .iconfont {display: none;}   
+    }
+    @media screen and (max-width:1000px) {
+        .ly_product_list_2 .products_category_wrapper .cate_item.cur {display: inline-block !important;}
+        .ly_product_list_2 .products_category_wrapper .products_category_box .one_title .cate_item {display: none;} 
+    }
+</style>
+
+
+<script>
+// 等待页面DOM加载完成
+$(document).ready(function() {
+    // 初始化执行：显示含cur的one_item_sub_hide，隐藏其他
+    toggleCurSubHide();
+
+    // 【可选】如果有点击切换cur类的场景（比如点击分类项切换cur），添加事件监听
+    $('.cate_item').on('click', function() {
+        // 移除所有cate_item的cur类，避免多个cur
+        $('.cate_item').removeClass('cur');
+        // 给当前点击的分类项添加cur
+        $(this).addClass('cur');
+        // 重新执行显示/隐藏逻辑
+        toggleCurSubHide();
+    });
+});
+
+// 核心逻辑：显示包含cur的one_item_sub_hide，隐藏其他
+function toggleCurSubHide() {
+    // 1. 隐藏所有一级的one_item_sub_hide
+    $('.products_category_box .one_item_sub_hide').css('display', 'none');
+    
+    // 2. 找到包含.cur类的one_item_sub_hide并显示（display值可根据实际样式调整，比如flex/inline-block）
+    $('.products_category_box .one_item_sub_hide:has(.cur)').css('display', 'block');
+}
+</script>
+
+
+<style>
+/* 第一步：隐藏所有一级的one_item_sub_hide */
+.products_category_box .one_item_sub_hide {
+  display: none;
+}
+
+/* 第二步：显示包含.cur后代的one_item_sub_hide（display值按需调整） */
+.products_category_box .one_item_sub_hide:has(.cur) {
+  display: block;
+  /* 如果原样式是flex/inline-block，替换为对应值：
+  display: flex;
+  display: inline-block;
+  */
+}
+</style>
+
+
+<style>
+.products_category_box .one_item_sub_hide {
+  display: none;
+}
+.products_category_box .one_item_sub_hide:has(.cur) {
+  display: block;
+}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    toggleCurSubHide();
+    $('.ly_product_list_2 .cate_item').on('click', function() {
+        $('.ly_product_list_2 .cate_item').removeClass('cur');
+        $(this).addClass('cur');
+        toggleCurSubHide();
+    });
+});
+function toggleCurSubHide() {
+    $('.ly_product_list_2 .products_category_wrapper .products_category_box .one_item.sub_hide').css('display', 'none');
+    $('.ly_product_list_2 .products_category_wrapper .products_category_box .one_item.sub_hide:has(.cur)').css('display', 'block');
+}
+</script>
+<style>
+    .ly_product_list_2 .products_category_wrapper .products_category_box .category_box .iconfont,
+    .ly_product_list_2 .products_category_wrapper .products_category_box .one_title.item_title,
+    .ly_product_list_2 .products_category_wrapper .products_category_box .third_box.next_box{display: none !important;}
+</style>

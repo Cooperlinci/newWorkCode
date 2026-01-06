@@ -1,0 +1,182 @@
+方案一:
+&emsp;&emsp;&emsp;&emsp;&emsp;+86 13812632051<br />
+方案二:
+<?=$c['lang_pack']['user']['Telephone']." : "?>+86 13812632051<br />
+
+
+<style>
+    
+</style>
+
+<script>
+    $(document).ready(function() {
+        // 选中所有导航项的a标签（根据HTML结构定位）
+        const navLinks = $('.n_item.fl a');
+        
+        // 遍历每个导航链接，处理文本格式
+        navLinks.each(function() {
+            const originalText = $(this).text();
+            // 处理逻辑：拆分为单词 → 每个单词首字母大写，其余小写 → 重新拼接
+            const formattedText = originalText
+            .toLowerCase() // 先全部转为小写
+            .split(' ') // 按空格拆分为单词数组
+            .map(word => {
+                // 每个单词首字母大写，其余字母保持小写
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            })
+            .join('&'); // 重新拼接为完整字符串
+            
+            // 更新导航文本
+            $(this).text(formattedText);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const navLinks = $('.headerNav .head-nav .n_item .topName');
+        navLinks.each(function() {
+            const originalText = $(this).text();
+            const formattedText = originalText
+            .toLowerCase()
+            .split(' ')
+            .map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            })
+            $(this).text(formattedText);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const navLinks = $('.headerNav .head-nav .n_item .topName');
+        navLinks.each(function() {
+            let originalText = $(this).text();
+            // 先将原始文本中的逗号替换为空格（处理类似"Product,Gallery"的情况）
+            originalText = originalText.replace(',', ' ');
+            
+            const formattedText = originalText
+                .toLowerCase() // 全转为小写
+                .split(' ') // 按空格拆分为单词数组（过滤空字符）
+                .filter(word => word) // 去除可能的空字符串（如连续空格产生的）
+                .map(word => {
+                    return word.charAt(0).toUpperCase() + word.slice(1); // 首字母大写
+                })
+                .join(' '); // 用空格拼接单词数组（核心：替换默认的逗号连接）
+            
+            $(this).text(formattedText);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const navLinks = $('.headerNav .head-nav .n_item .topName');
+        navLinks.each(function() {
+            let originalText = $(this).text();
+            originalText = originalText.replace(',', ' ');
+            const formattedText = originalText
+                .toLowerCase()
+                .split(' ')
+                .filter(word => word)
+                .map(word => {
+                    if (word.includes('&')) {
+                        return word.split('&')
+                            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+                            .join('&');
+                    } else {
+                        return word.charAt(0).toUpperCase() + word.slice(1);
+                    }
+                })
+                .join(' ');
+            $(this).text(formattedText);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const navLinks = $('.headerNav .head-nav .n_item .topName');
+        navLinks.each(function() {
+            let originalText = $(this).text();
+            originalText = originalText.replace(',', ' ');
+            const formattedText = originalText
+                .toLowerCase()
+                .split(' ')
+                .filter(word => word)
+                .map(word => {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                })
+                .join(' ');
+            $(this).text(formattedText);
+        });
+    });
+</script>
+
+<style>
+    body .headerNav .head-nav .n_item .topName {text-transform: unset;}
+</style>
+
+
+
+
+// 自定义301重定向规则,写在了/static/static/inc/init.php
+$redirect_rules = [
+    '/case/production-lines_c0032' => '/article/production-lines_c0003',
+    '/case/packing-and-shipping_c0033' => '/article/packing-and-shipping_c0016'
+];
+
+// 获取当前请求的URI（不含域名的路径部分）
+$current_uri = $_SERVER['REQUEST_URI'];
+
+// 检查当前URI是否需要重定向
+if (isset($redirect_rules[$current_uri])) {
+    // 发送301永久重定向头
+    header("HTTP/1.1 301 Moved Permanently");
+    // 重定向到目标URL（拼接网站域名）
+    header("Location: " . $c['http_type'] . $_SERVER['HTTP_HOST'] . $redirect_rules[$current_uri]);
+    exit(); // 终止脚本，确保重定向生效
+}
+
+$ser_url = $_SERVER['REQUEST_URI'];
+$jump_arr = array(
+	'/case/production-lines_c0032'=>'/article/production-lines_c0003',
+	'/case/packing-and-shipping_c0033'=>'/article/packing-and-shipping_c0016',
+);
+
+// if(is_set($jump_arr[$sre_url])){
+// 	js:location($jump_arr[$sre_url]);
+// }
+
+
+
+
+
+// 原代码中$c['http_type']定义后
+$c['http_type']=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on')?'https://':'http://';
+
+$c['where']=array(...); // 原查询条件
+
+// ↓↓↓ 插入上述重定向代码 ↓↓↓
+$redirect_rules = array(
+    '/case/production-lines_c0032' => '/article/production-lines_c0003',
+    '/case/packing-and-shipping_c0033' => '/article/packing-and-shipping_c0016'
+);
+
+$current_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$current_uri_trimmed = trim($current_uri, '/');
+
+foreach ($redirect_rules as $old_path => $new_path) {
+    $old_path_trimmed = trim($old_path, '/');
+    if ($current_uri_trimmed === $old_path_trimmed) {
+        $target_url = $c['http_type'] . $_SERVER['HTTP_HOST'] . $new_path;
+        header("HTTP/1.1 301 Moved Permanently");
+        js::location($target_url);
+        exit;
+    }
+}
+// ↑↑↑ 重定向代码结束 ↑↑↑
+
+// 原代码后续逻辑（$do_action等）

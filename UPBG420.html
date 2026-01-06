@@ -1,0 +1,466 @@
+<style>
+    .ly_poster_103[data-visual-id="91467"] .poster_box .list .item.Poster-1:hover {background-color: transparent !important;}
+</style>
+
+<style>
+    .ly_poster_103 .poster_box .list .item:hover {background-color: transparent !important;}
+    .ly_poster_103 .poster_box .list .item:hover .i_content {color: #222222 !important;}
+    .ly_poster_103 .poster_box .list .item:hover .i_title {color: #222222 !important;}
+    body .ly_poster_103 .list .item:hover .img_box img {filter: none;}
+    body .ly_poster_103 .poster_box .list .item:hover .img_box {background-color: #1D2088 !important;}
+</style>
+
+<style>
+    body .ly_products_35 .pro_box .pro_list .prod_item .abs_box {display: none;}
+    body .ly_products_35 .pro_box .pro_list .prod_item.switch_second_img:hover .s_box .img_box {opacity: 1;}
+</style>
+
+<script>
+    // 等待页面DOM加载完成后执行
+    $(document).ready(function() {
+        // 1. 选中目标元素：class为view_btn的a标签
+        var $viewBtn = $('.view_btn');
+        // 2. 选中目标容器：class为s_box的div
+        var $sBox = $('.s_box');
+        // 3. 将view_btn移动到s_box内部的最后位置（append会自动移除原位置元素并添加到目标末尾）
+        $sBox.append($viewBtn);
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        var $viewBtn = $('.ly_products_35 .view_btn');
+        var $sBox = $('.ly_products_35 .s_box');
+        $sBox.append($viewBtn);
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        var $viewBtn = $('.ly_products_35 .pro_box .pro_list .prod_item .abs_box .abs_info .view_btn');
+        var $imgBox = $('.ly_products_35 .s_box .img_box');
+        $imgBox.append($viewBtn);
+    });
+</script>
+
+
+
+<script>
+    // 获取要剪切的元素
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    if (!shareToolbox) return;
+
+        // 保存元素HTML并从当前页面移除
+        localStorage.setItem('sharedToolbox', shareToolbox.outerHTML);
+        shareToolbox.remove();
+
+        // ---------------------------------------------------------
+
+        // 监听 localStorage 变化（当当前页面保存数据时触发）
+        window.addEventListener('storage', function(event) {
+        if (event.key === 'sharedToolbox' && event.newValue) {
+            // 目标模块（其他页面中要插入的位置）
+            const targetModule = document.querySelector('.target-module');
+            if (targetModule) {
+            // 插入元素
+            targetModule.innerHTML += event.newValue;
+            // 清除本地存储（避免重复插入）
+            localStorage.removeItem('sharedToolbox');
+            }
+        }
+    });
+
+    // 初始加载时检查是否有未处理的数据
+    if (localStorage.getItem('sharedToolbox')) {
+        const targetModule = document.querySelector('.target-module');
+        if (targetModule) {
+            targetModule.innerHTML += localStorage.getItem('sharedToolbox');
+            localStorage.removeItem('sharedToolbox');
+        }
+    }
+</script>
+
+
+<!-- 用iframe -->
+<script>
+    // 等待 iframe 加载完成
+    window.onload = function() {
+        // 获取要剪切的元素
+        const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+        if (!shareToolbox) return;
+
+        // 剪切（从当前页面移除）
+        const toolboxHTML = shareToolbox.outerHTML; // 保存元素的完整HTML
+        shareToolbox.remove();
+
+        // 获取 iframe 页面的 window 对象（假设 iframe 的 id 为 "otherPageFrame"）
+        const otherPageFrame = document.getElementById('otherPageFrame');
+        const otherPageWindow = otherPageFrame.contentWindow;
+
+        // 通过 postMessage 发送元素HTML到 iframe 页面
+        otherPageWindow.postMessage({
+            type: 'moveShareToolbox',
+            html: toolboxHTML
+        }, '*'); // 第二个参数填目标页面的域名（如 "https://yourdomain.com"）更安全
+    };
+
+    // 监听父页面发送的消息
+    window.addEventListener('message', function(event) {
+        // 验证消息来源（安全措施）
+        if (event.origin !== 'https://当前页面域名') return;
+
+        if (event.data.type === 'moveShareToolbox') {
+            // 目标模块（其他页面中要插入的位置，假设其选择器为 ".target-module"）
+            const targetModule = document.querySelector('.target-module');
+            if (targetModule) {
+                // 插入剪切的元素
+                targetModule.innerHTML += event.data.html;
+            }
+        }
+    });
+</script>
+
+
+
+<script>
+    window.onload = function() {
+        const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+        if (!shareToolbox) return;
+        const toolboxHTML = shareToolbox.outerHTML;
+        console.log(toolboxHTML);
+        const otherPageFrame = document.getElementById('otherPageFrame');
+        const otherPageWindow = otherPageFrame.contentWindow;
+        otherPageWindow.postMessage({
+            type: 'moveShareToolbox',
+            html: toolboxHTML
+        }, '*');
+    };
+    window.addEventListener('message', function(event) {
+        console.log(event);
+        if (event.origin !== 'https://adworldnfc.com/') return;
+        if (event.data.type === 'moveShareToolbox') {
+            const targetModule = document.querySelector('div.s_right');
+            if (targetModule) {
+                targetModule.innerHTML += event.data.html;
+            }
+        }
+    });
+</script>
+
+<script>
+    // 步骤1：获取要剪切的元素（class="share_toolbox clearfix"）
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    console.log(1);
+    if (!shareToolbox) {
+        console.log('未找到 .share_toolbox.clearfix 元素');
+        return;
+    }
+
+    // 步骤2：保存元素的完整 HTML 到 localStorage（模拟“复制”）
+    localStorage.setItem('movedShareToolbox', shareToolbox.outerHTML);
+
+    // 步骤3：从当前页面移除元素（模拟“剪切”）
+    shareToolbox.remove();
+
+    console.log('元素已剪切并保存到本地存储');
+
+    // 函数：插入元素到 div.s_right
+    function insertShareToolbox(html) {
+    // 获取目标容器（div.s_right）
+        const targetContainer = document.querySelector('div.s_right');
+        if (!targetContainer) {
+            console.log('未找到 div.s_right 容器');
+            return;
+        }
+        // 插入元素（追加到容器末尾，如需插入到开头可改用 targetContainer.innerHTML = html + targetContainer.innerHTML）
+        targetContainer.innerHTML += html;
+        console.log('元素已插入到 div.s_right');
+        }
+
+        // 情况1：页面加载时检查是否已有保存的元素
+        const savedToolbox = localStorage.getItem('movedShareToolbox');
+        if (savedToolbox) {
+            insertShareToolbox(savedToolbox);
+            // 插入后清除本地存储，避免重复插入
+            localStorage.removeItem('movedShareToolbox');
+        }
+
+        // 情况2：监听本地存储变化（当源页面保存元素后，目标页面会实时触发）
+        window.addEventListener('storage', (event) => {
+        if (event.key === 'movedShareToolbox' && event.newValue) {
+            insertShareToolbox(event.newValue);
+            localStorage.removeItem('movedShareToolbox');
+        }
+    });
+</script>
+
+
+<script>
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    if (!shareToolbox) return;
+        localStorage.setItem('sharedToolbox', shareToolbox.outerHTML);
+        console.log(shareToolbox);
+        window.addEventListener('storage', function(event) {
+        if (event.key === 'sharedToolbox' && event.newValue) {
+            const targetModule = document.querySelector('div.s_right');
+            if (targetModule) {
+            targetModule.innerHTML += event.newValue;
+            localStorage.removeItem('sharedToolbox');
+            }
+        }
+    });
+    if (localStorage.getItem('sharedToolbox')) {
+        const targetModule = document.querySelector('.target-module');
+        if (targetModule) {
+            targetModule.innerHTML += localStorage.getItem('sharedToolbox');
+            localStorage.removeItem('sharedToolbox');
+        }
+    }
+</script>
+
+
+
+
+
+<script>
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    localStorage.setItem('movedShareToolbox', shareToolbox.outerHTML);
+    console.log('test');
+</script>
+<script>
+    function insertShareToolbox(html) {
+        const targetContainer = document.querySelector('div.s_right');
+        targetContainer.innerHTML += html;
+        console.log('div.s_right');
+    }
+    const savedToolbox = localStorage.getItem('movedShareToolbox');
+    if (savedToolbox) {
+        insertShareToolbox(savedToolbox);
+        localStorage.removeItem('movedShareToolbox');
+    }
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'movedShareToolbox' && event.newValue) {
+            insertShareToolbox(event.newValue);
+            localStorage.removeItem('movedShareToolbox');
+        }
+    });
+</script>
+
+
+<script>
+// 1. 定义要生成的 .share_toolbox.clearfix 元素结构（根据原元素结构适配）
+// 注意：data-title 和 data-url 已设置为首页信息，可根据实际需求修改
+const toolboxHTML = `
+  <div class="share_toolbox clearfix">
+    <a 
+      data-title="AdWorldNFC Homepage"  <!-- 首页标题 -->
+      data-url="https://adworldnfc.com"  <!-- 首页URL -->
+      href="javascript:;" 
+      class="share-link"
+    >
+      
+    </a>
+  </div>
+`;
+
+// 2. 插入元素到 div.s_right，且确保刷新后不消失
+function insertToolbox() {
+  const targetContainer = document.querySelector('div.s_right');
+  if (!targetContainer) {
+    console.log('未找到 div.s_right 容器');
+    return;
+  }
+
+  // 避免重复插入（如果已有则不重复添加）
+  if (!targetContainer.querySelector('.share_toolbox.clearfix')) {
+    targetContainer.innerHTML += toolboxHTML;
+    console.log('元素已插入，属性匹配首页');
+  }
+}
+
+// 3. 页面加载时执行（确保刷新后重新插入）
+window.addEventListener('load', insertToolbox);
+</script>
+
+<script>
+    // 获取分享工具条并存入localStorage（仅在源页面执行一次即可）
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    if (shareToolbox) { // 增加判断，避免元素不存在时报错
+        localStorage.setItem('movedShareToolbox', shareToolbox.outerHTML);
+        console.log('元素已存入localStorage');
+    } else {
+        console.log('未找到.share_toolbox.clearfix元素');
+    }
+</script>
+
+<script>
+    // 自定义首页的data属性值（根据实际需求修改）
+    const homeTitle = "AdWorldNFC Homepage"; // 首页标题
+    const homeUrl = "https://adworldnfc.com"; // 首页URL
+
+    // 处理元素：插入前修改data-title和data-url，并避免重复插入
+    function insertShareToolbox(html) {
+        const targetContainer = document.querySelector('div.s_right');
+        if (!targetContainer) {
+            console.log('未找到div.s_right容器');
+            return;
+        }
+
+        // 避免重复插入（已存在则跳过）
+        if (targetContainer.querySelector('.share_toolbox.clearfix')) {
+            console.log('元素已存在，无需重复插入');
+            return;
+        }
+
+        // 将HTML字符串转为DOM元素，方便修改属性
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const toolbox = tempDiv.querySelector('.share_toolbox.clearfix');
+        if (!toolbox) return;
+
+        // 修改data属性为首页信息
+        toolbox.setAttribute('data-title', homeTitle);
+        toolbox.setAttribute('data-url', homeUrl);
+
+        // 插入到目标容器
+        targetContainer.appendChild(toolbox);
+        console.log('元素已插入，属性已更新为首页信息');
+    }
+
+    // 页面加载时读取localStorage并插入（支持刷新后重新显示）
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedToolbox = localStorage.getItem('movedShareToolbox');
+        if (savedToolbox) {
+            insertShareToolbox(savedToolbox);
+            // 不删除localStorage数据，确保刷新后仍能读取
+        }
+    });
+
+    // 监听localStorage变化（源页面更新时同步触发）
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'movedShareToolbox' && event.newValue) {
+            insertShareToolbox(event.newValue);
+            // 不删除localStorage数据，保持刷新后可用
+        }
+    });
+</script>
+
+
+<script>
+    const shareToolbox = document.querySelector('.share_toolbox.clearfix');
+    if (shareToolbox) {
+        localStorage.setItem('movedShareToolbox', shareToolbox.outerHTML);
+        console.log('元素已存入localStorage');
+    } else {
+        console.log('未找到.share_toolbox.clearfix元素');
+    }
+</script>
+<script>
+    const homeTitle = "Homepage";
+    const homeUrl = "https://adworldnfc.com";
+    function insertShareToolbox(html) {
+        const targetContainer = document.querySelector('div.s_right');
+        if (!targetContainer) {
+            console.log('未找到div.s_right容器');
+            return;
+        }
+        if (targetContainer.querySelector('.share_toolbox.clearfix')) {
+            console.log('元素已存在，无需重复插入');
+            return;
+        }
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const toolbox = tempDiv.querySelector('.share_toolbox.clearfix');
+        if (!toolbox) return;
+        toolbox.setAttribute('data-title', homeTitle);
+        toolbox.setAttribute('data-url', homeUrl);
+        targetContainer.appendChild(toolbox);
+        console.log('元素已插入，属性已更新为首页信息');
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedToolbox = localStorage.getItem('movedShareToolbox');
+        if (savedToolbox) {
+            insertShareToolbox(savedToolbox);
+        }
+    });
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'movedShareToolbox' && event.newValue) {
+            insertShareToolbox(event.newValue);
+        }
+    });
+</script>
+
+
+<script>
+    const toolboxHTML = `
+        <div class="share_toolbox clearfix" data-title="Homepage" data-url="https://adworldnfc.com">
+            <ul>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_facebook share_s_btn" data="facebook" title="facebook">Facebook</a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_line share_s_btn" data="line" title="line">Line</a>
+                </li>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_twitter share_s_btn" data="twitter" title="twitter">Twitter</a>
+                </li>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_whatsapp share_s_btn" data="whatsapp" title="whatsapp">Whatsapp</a>
+                </li>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_pinterest share_s_btn" data="pinterest" title="pinterest">Pinterest</a>
+                </li>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_tumblr share_s_btn" data="tumblr" title="tumblr">Tumblr</a>
+                </li>
+                <li>
+                    <a href="javascript:;" rel="nofollow" class="share_s_linkedin share_s_btn" data="linkedin" title="linkedin">LinkedIn</a>
+                </li>
+            </ul>
+        </div>
+    `;
+    function insertToolbox() {
+        const targetContainer = document.querySelector('div.s_right');
+        if (targetContainer.querySelector('.share_toolbox.clearfix'))return;
+        // targetContainer.innerHTML += toolboxHTML;
+        targetContainer.insertAdjacentHTML('afterbegin', toolboxHTML);
+    }
+    window.addEventListener('DOMContentLoaded', insertToolbox);
+</script>
+
+<style>
+    .share_toolbox li {width: 30px;margin-right: 20px;display: inline-block;vertical-align: top;}
+    .share_toolbox li a {width: inherit;height: 30px;display: block;line-height: 30px;white-space: nowrap;text-indent: -999px;overflow: hidden;background-image: url(/static/v1/v6.0451/static/images/global/icon_follow_detail_cur.png);background-repeat: no-repeat;transition: all .2s ease-in-out;-webkit-transition: all .2s ease-in-out;background-size: 30px auto;}
+</style>
+
+
+
+<style>
+    body .ly_form_10 .flex_box .s_left .list .item {margin-top: 35px;}
+    body .ly_form_10 .flex_box .s_left .list .item .text.themes_box_title {line-height: 1.5;}
+    body .ly_form_10 .flex_box {align-items: flex-start;}
+    body .ly_form_10 .flex_box .s_left .qrcode {margin-top: 0;}
+    body .ly_form_10 .flex_box .s_left .qrcode .item {width: 80%;}
+    body .ly_form_10 .top_info .top_title {text-align: center;}
+    body .ly_form_10 .top_info .top_title {margin-bottom: 95px;}
+    body .ly_form_10 .flex_box .s_left .list .item.Form-5 .img {display: none;}
+    body .ly_form_10 .flex_box .s_left .list .item.Form-5 .text.themes_box_title {display: -webkit-box;-webkit-line-clamp: 10;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;}
+    body .ly_form_10 .flex_box .s_right {position: relative;padding-top: 70px;}
+    body .ly_form_10 .flex_box .s_right .share_toolbox {position: absolute;top: 2%;right: 30px;}
+    body .ly_form_10 .flex_box .s_right .share_toolbox li {margin-right: 15px;}
+    @media screen and (max-width: 1280px) {
+        body .ly_form_10 .flex_box .s_right .share_toolbox {right: 0px;width: 94%;}
+        body .ly_form_10 .flex_box .s_right .share_toolbox li {margin-right: 10px;}
+    }
+    @media screen and (max-width: 1000px) {
+        body .ly_form_10 .flex_box .s_left .qrcode .item {max-width: 360px;}
+        body .ly_form_10 .flex_box .s_left .qrcode {justify-content: center !important;}
+    }
+</style>
+
+<style>
+    @media screen and (width:1000px) {
+        .ly_footer_47 .default_foot_menu_style .menu_list.menu_list_newsletter .default_newsletter_form .text {width: 58%;}   
+    }
+</style>

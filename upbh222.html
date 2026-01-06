@@ -1,0 +1,180 @@
+<script>
+    $(function() {
+        // 月份缩写映射表
+        const monthMap = {
+            Jan: '01', Feb: '02', Mar: '03', Apr: '04',
+            May: '05', Jun: '06', Jul: '07', Aug: '08',
+            Sep: '09', Oct: '10', Nov: '11', Dec: '12'
+        };
+
+        // 遍历所有.n_date元素
+        $('.ly_news_detail_2 .wrapper .right_side .right_news_info .n_date').each(function() {
+            const $this = $(this);
+            const originalText = $this.text().trim();
+            if (!originalText) return;
+
+            const [monthAbbr, dayYearStr] = originalText.split(' ');
+            const [dayWithSuffix, year] = dayYearStr.split(',');
+            const day = dayWithSuffix.replace(/[a-zA-Z]+/g, '').padStart(2, '0');
+            const month = monthMap[monthAbbr.charAt(0).toUpperCase() + monthAbbr.slice(1).toLowerCase()];
+            const newDateText = `${year}年${month}月${day}日`;
+            
+            $this.text(newDateText);
+        });
+    });
+</script>
+
+
+<script>
+$(function() {
+    // 1. 获取html标签的lang属性（处理空格/undefined情况）
+    const htmlLang = $('html').attr('lang')?.trim() || '';
+    
+    // 2. 仅当lang严格等于"cn"时，执行日期转换
+    if (htmlLang === 'cn') {
+        // 月份映射表
+        const monthMap = {
+            Jan: '01', Feb: '02', Mar: '03', Apr: '04',
+            May: '05', Jun: '06', Jul: '07', Aug: '08',
+            Sep: '09', Oct: '10', Nov: '11', Dec: '12'
+        };
+
+        // 遍历目标日期元素（你的精准选择器）
+        $('.ly_news_detail_2 .wrapper .right_side .right_news_info .n_date').each(function() {
+            const $this = $(this);
+            const originalText = $this.text().trim();
+            
+            // 空内容直接跳过
+            if (!originalText) return;
+
+            // ===== 新增：容错处理（避免日期格式异常报错）=====
+            const [monthAbbr, dayYearStr] = originalText.split(' ');
+            if (!monthAbbr || !dayYearStr) return; // 拆分月份失败则跳过
+            
+            const [dayWithSuffix, year] = dayYearStr.split(',');
+            if (!dayWithSuffix || !year) return; // 拆分日期/年份失败则跳过
+
+            // 提取日期数字（去后缀）+ 补零
+            const day = dayWithSuffix.replace(/[a-zA-Z]+/g, '').padStart(2, '0');
+            // 匹配月份（兼容大小写）
+            const normalizedMonthAbbr = monthAbbr.charAt(0).toUpperCase() + monthAbbr.slice(1).toLowerCase();
+            const month = monthMap[normalizedMonthAbbr];
+            
+            // 月份匹配失败则跳过
+            if (!month) return;
+
+            // 拼接中文日期并替换
+            const newDateText = `${year}年${month}月${day}日`;
+            $this.text(newDateText);
+        });
+    }
+});
+</script>
+
+<script>
+$(function() {
+    const htmlLang = $('html').attr('lang')?.trim() || '';
+    if (htmlLang === 'cn') {
+        const monthMap = {
+            Jan: '01', Feb: '02', Mar: '03', Apr: '04',
+            May: '05', Jun: '06', Jul: '07', Aug: '08',
+            Sep: '09', Oct: '10', Nov: '11', Dec: '12'
+        };
+        $('.ly_news_detail_2 .wrapper .right_side .right_news_info .n_date').each(function() {
+            const $this = $(this);
+            const originalText = $this.text().trim();
+            if (!originalText) return;
+            const [monthAbbr, dayYearStr] = originalText.split(' ');
+            if (!monthAbbr || !dayYearStr) return;
+            const [dayWithSuffix, year] = dayYearStr.split(',');
+            if (!dayWithSuffix || !year) return;
+            const day = dayWithSuffix.replace(/[a-zA-Z]+/g, '').padStart(2, '0');
+            const normalizedMonthAbbr = monthAbbr.charAt(0).toUpperCase() + monthAbbr.slice(1).toLowerCase();
+            const month = monthMap[normalizedMonthAbbr];
+            if (!month) return;
+            const newDateText = `${year}年${month}月${day}日`;
+            $this.text(newDateText);
+        });
+    }
+});
+</script>
+
+<style>
+    @media (min-width: 1000px) {
+        .ly_footer_43 .nav {padding-bottom: 0;}
+    }
+</style>
+
+
+
+<script>
+$(function() {
+  // 1. 定位目标div（class为wlde）
+  const $targetDiv = $('.wlde');
+  // 2. 获取原始文本
+  const originalText = $targetDiv.text();
+  // 3. 定义要替换的备案号和超链接模板
+  const icpText = '皖ICP备2023024476号-4';
+  const icpLink = `<a href="https://beian.miit.gov.cn/" target="_blank" style="color: inherit; text-decoration: underline;">${icpText}</a>`;
+  // 4. 替换文本并重新赋值（仅替换目标备案号，其他内容保留）
+  const newHtml = originalText.replace(icpText, icpLink);
+  $targetDiv.html(newHtml);
+});
+</script>
+
+<script>
+$(function() {
+    const $targetDiv = $('.ly_footer_35 .wide');
+    const originalText = $targetDiv.text();
+    const icpText = '皖ICP备2023024476号-4';
+    const icpLink = `<a href="https://beian.miit.gov.cn/" target="_blank" style="color: inherit; text-decoration: underline;">${icpText}</a>`;
+    const newHtml = originalText.replace(icpText, icpLink);
+    $targetDiv.html(newHtml);
+});
+</script>
+
+<script>
+    $(function() {
+        // 定位目标容器，仅替换指定备案号为超链接
+        const $container = $('.wlde');
+        const originalContent = $container.html();
+        // 要替换的备案号
+        const icpCode = '皖ICP备2023024476号-4';
+        // 替换为超链接（链接地址可自行修改，这里默认指向工信部备案查询）
+        const linkContent = `<a href="https://beian.miit.gov.cn/" target="_blank">${icpCode}</a>`;
+        // 仅替换匹配的备案号，其他内容原样保留
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_35 .copy .wide');
+        const originalContent = $container.html();
+        const icpCode = '皖ICP备2023024476号-4';
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_49 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '鲁ICP备2025167463号-9';
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_27 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '京ICP备11044289号-2';
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>

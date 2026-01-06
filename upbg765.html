@@ -1,0 +1,58 @@
+<style>
+    .ly_service_19 .top_title .t_content {text-align: left;}
+</style>
+
+<script>
+    $(function() {
+        $('.ft_item:first .item_content a').attr('target', '_blank');
+        const $originalTitleSpan = $('.ft_item:first .item_title span');
+        $originalTitleSpan.replaceWith(`
+            <a href="/" title="TWINGS Homepage" class="title_link" target="_blank">TWINGS</a>
+        `);
+        const twingsLinks = $('.ft_item:first ul');
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/contact-us-9" title="Contact Us" target="_blank">Contact Us</a>
+            </li>
+        `);
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/blog/" title="Blog" target="_blank">Blog</a>
+            </li>
+        `);
+        const $originalTitleSpan1 = $('.ft_item:eq(1) .item_title span');
+        $originalTitleSpan1.replaceWith(`
+            <a href="/products/" title="TWINGS Product" class="title_link" target="_blank">Product</a>
+        `);
+        $('.ft_item:eq(1) .item_content:first a').text('Silicone Badge').attr('target', '_blank');
+        const productLinks = $('.ft_item:eq(1) ul');
+        const products = [
+            'Silicone Patch',
+            'PVC / TPR Patch',
+            'TPU Patch',
+            'Zipper Pull',
+            'Transfer',
+            'Gifts',
+            'Shoelace Tips'
+        ];
+        products.forEach(product => {
+            let productHref;
+            switch(product) {
+            case 'PVC /TPR PATCH':
+                productHref = 'https://twings.cn/collections/pvc-tpr-patch';
+                break;
+            case 'Shoelace tips':
+                productHref = 'https://twings.cn/collections/shoelace%C2%A0tips%C2%A0';
+                break;
+            default:
+                productHref = `/collections/${product.toLowerCase().replace(/\s|\/+/g, '-')}`;
+            }
+            
+            productLinks.append(`
+            <li class="item_content hide">
+                <a href="${productHref}" title="${product}" target="_blank">${product}</a>
+            </li>
+            `);
+        });
+    });
+</script>

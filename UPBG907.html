@@ -1,0 +1,49 @@
+<script>
+    $(function() {
+        // 获取所有分类按钮
+        var $tabButtons = $('#visualTab<?= $PId; ?> .title_slide .global_themes_button');
+        // 延迟定时器（避免快速移过误触发）
+        var hoverTimer;
+
+        // 鼠标移入事件
+        $tabButtons.on('mouseenter', function() {
+            var $this = $(this);
+            // 100ms延迟，避免快速移过触发多次切换
+            hoverTimer = setTimeout(function() {
+                // 仅非激活状态时触发切换
+                if (!$this.hasClass('cur')) {
+                    $this.trigger('click'); // 复用原有点击切换逻辑
+                }
+            }, 100);
+        }).on('mouseleave', function() {
+            // 鼠标离开时清除延迟，取消切换
+            clearTimeout(hoverTimer);
+        });
+
+        // 可选：保留点击功能（如需禁用点击，可注释此行）
+        $tabButtons.on('click', function(e) {
+            e.preventDefault(); // 阻止默认行为（如需保留点击跳转可删除）
+        });
+    });
+</script>
+
+
+<script>
+    $(function() {
+        var $tabButtons = $('.ly_products_4 .title_slide .global_themes_button');
+        var hoverTimer;
+        $tabButtons.on('mouseenter', function() {
+            var $this = $(this);
+            hoverTimer = setTimeout(function() {
+                if (!$this.hasClass('cur')) {
+                    $this.trigger('click');
+                }
+            }, 100);
+        }).on('mouseleave', function() {
+            clearTimeout(hoverTimer);
+        });
+        $tabButtons.on('click', function(e) {
+            e.preventDefault();
+        });
+    });
+</script>

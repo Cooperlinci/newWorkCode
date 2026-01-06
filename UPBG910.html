@@ -1,0 +1,731 @@
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {flex-direction: column; }
+            .vertical-link {display: block; padding: 2px 0px;font-size: 0.8rem; }
+            .vertical-link:hover {background-color: #e0e0e0;}
+        `;
+        document.head.appendChild(style);
+    }
+    
+    const targetDiv = document.querySelector('.menu_item[data-index="4"]');
+    if (targetDiv) {
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container1';
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'horizontal-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'horizontal-link';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        targetDiv.parentNode.insertBefore(linkContainer, targetDiv.nextSibling);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container1 {display: flex; margin: 10px 0;padding: 0 10px;}
+            .horizontal-link { padding: 8px 16px; border-radius: 4px; text-align: center; flex: 1;}
+            .horizontal-link:hover {background-color: #e0e0e0;}
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+<script>
+    const targetDiv = document.querySelector('.ajax_search.global_search');
+    if (targetDiv) {
+        const parentDiv = targetDiv.parentElement;
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'vertical-link-container';
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, targetDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .vertical-link-container {
+                display: flex;
+                flex-direction: column;
+            }
+            .vertical-link {
+                font-size: 12px
+                display: block;
+                padding: 2px 0px;
+                text-align: center;
+            }
+            .vertical-link:hover {
+                background-color: #e9ecef;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        
+        // 创建并插入两个a标签
+        ['+86 15854398888', '+86 18354847062'].forEach((text, index) => {
+            const link = document.createElement('a');
+            link.href = `#link${index + 1}`;
+            link.textContent = text;
+            link.className = 'custom-link';
+            parentDiv.insertBefore(link, toolSearchDiv);
+        });
+    }
+</script>
+
+<script>
+    // 找到目标元素
+    const toolSearchDiv = document.querySelector('.tool_search');
+
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        
+        // 创建第一个a标签
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '第一个链接';
+        link1.className = 'vertical-link';
+        
+        // 创建第二个a标签
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '第二个链接';
+        link2.className = 'vertical-link';
+        
+        // 创建容器div来包裹两个a标签
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        
+        // 在tool_search div前插入容器
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+        
+        // 添加CSS样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            .vertical-link {
+                display: block;
+                padding: 8px 12px;
+                background-color: #f0f0f0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                text-decoration: none;
+                color: #333;
+                text-align: center;
+                transition: background-color 0.3s;
+            }
+            .vertical-link:hover {
+                background-color: #e0e0e0;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            .vertical-link {
+                display: block;
+                padding: 8px 12px;
+                background-color: #f0f0f0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                text-decoration: none;
+                color: #333;
+                text-align: center;
+                transition: background-color 0.3s;
+            }
+            .vertical-link:hover {
+                background-color: #e0e0e0;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .vertical-link {display: block; padding: 2px 0px;font-size: 0.8rem; }
+            .vertical-link:hover {background-color: #e0e0e0;}
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    // 找到data-index为4的div元素
+    const targetDiv = document.querySelector('.menu_item[data-index="4"]');
+
+    if (targetDiv) {
+        // 创建容器div来包裹两个a标签，使其并排显示
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        
+        // 创建第一个a标签
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '链接一';
+        link1.className = 'horizontal-link';
+        
+        // 创建第二个a标签
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '链接二';
+        link2.className = 'horizontal-link';
+        
+        // 将a标签添加到容器
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        
+        // 在目标div后面插入容器
+        targetDiv.parentNode.insertBefore(linkContainer, targetDiv.nextSibling);
+        
+        // 添加CSS样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {
+                display: flex;
+                gap: 10px;
+                margin: 10px 0;
+                padding: 0 10px;
+            }
+            .horizontal-link {
+                display: inline-block;
+                padding: 8px 16px;
+                background-color: #4a90e2;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                text-align: center;
+                flex: 1;
+                transition: background-color 0.3s;
+            }
+            .horizontal-link:hover {
+                background-color: #3a7bc8;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    const targetDiv = document.querySelector('.menu_item[data-index="4"]');
+    if (targetDiv) {
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'horizontal-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'horizontal-link';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        targetDiv.parentNode.insertBefore(linkContainer, targetDiv.nextSibling);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {
+                display: flex;
+                gap: 10px;
+                margin: 10px 0;
+                padding: 0 10px;
+            }
+            .horizontal-link {
+                display: inline-block;
+                padding: 8px 16px;
+                background-color: #4a90e2;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                text-align: center;
+                flex: 1;
+                transition: background-color 0.3s;
+            }
+            .horizontal-link:hover {
+                background-color: #3a7bc8;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container { flex-direction: column;gap: 10px;margin-bottom: 15px;}
+            .vertical-link {display: block; padding: 2px 0px;font-size: 0.8rem; flex-direction: column; }
+            .vertical-link:hover {background-color: #e0e0e0;}
+        `;
+        document.head.appendChild(style);
+    }
+    
+    const targetDiv = document.querySelector('.menu_item[data-index="4"]');
+    if (targetDiv) {
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'horizontal-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'horizontal-link';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        targetDiv.parentNode.insertBefore(linkContainer, targetDiv.nextSibling);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {display: flex; margin: 10px 0;padding: 0 10px;}
+            .horizontal-link { padding: 8px 16px; border-radius: 4px; text-align: center; flex: 1;}
+            .horizontal-link:hover {background-color: #e0e0e0;}
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+<style>
+    body .ly_product_list_2 .list_box .themes_prod .name {margin-bottom: 0;}
+    body .ly_product_list_2 .list_box .themes_prod {margin-bottom: 0;}
+    body .ly_product_list_2 .list_box {gap: 25px 30px;}
+</style>
+
+
+服务-9     PC:  1920 像素 × 250 像素  mobile: 750 像素 × 256 像素
+
+图文橱窗-31     PC:  1920 像素 × 1030 像素    mobile: 像素 750 × 568 像素
+
+新闻-11     PC:  1920 像素 × 845 像素     mobile: 750 像素 × 586 像素
+
+询盘表单-10     PC:  1920 像素 × 985 像素     mobile: 750 像素 × 1251 像素
+
+
+<script>
+    const toolSearchDiv = document.querySelector('.tool_search');
+    if (toolSearchDiv) {
+        const parentDiv = toolSearchDiv.parentElement;
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link';
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'link-container';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, toolSearchDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-container {flex-direction: column; }
+            .vertical-link {display: block; padding: 2px 0px;font-size: 0.8rem;color: #ffffff;}
+        `;
+        document.head.appendChild(style);
+    }
+    
+    const targetDiv = document.querySelector('.ajax_search.global_search');
+    if (targetDiv) {
+        const parentDiv = targetDiv.parentElement;
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'vertical-link-container';
+        const link1 = document.createElement('a');
+        link1.href = '#';
+        link1.textContent = '+86 15854398888';
+        link1.className = 'vertical-link1';
+        const link2 = document.createElement('a');
+        link2.href = '#';
+        link2.textContent = '+86 18354847062';
+        link2.className = 'vertical-link1';
+        linkContainer.appendChild(link1);
+        linkContainer.appendChild(link2);
+        parentDiv.insertBefore(linkContainer, targetDiv);
+        const style = document.createElement('style');
+        style.textContent = `
+            .vertical-link-container {display: flex; flex-direction: column;}
+            .vertical-link1 {font-size: 12px;padding: 2px 0px; text-align: center; }
+            .vertical-link1:hover { background-color: #e9ecef;}
+        `;
+        document.head.appendChild(style);
+    }
+</script>
+
+
+<style>
+    .ly_header_11 .headerFixed {background-color: hsla(0, 0%, 100%, 0.5);}   
+</style>
+
+<script>
+$(function() {
+    // 封装：获取单个元素的真实高度（即使被位移/隐藏）
+    function getSingleRealHeight($target) {
+        if (!$target.length) return 0;
+        // 临时记录原样式，避免修改影响视觉
+        const originStyle = {
+            position: $target.css('position'),
+            visibility: $target.css('visibility'),
+            display: $target.css('display'),
+            transform: $target.css('transform'),
+            height: $target.css('height')
+        };
+        // 临时显示元素并计算真实高度（取消位移/固定高度，还原自动高度）
+        $target.css({
+            position: 'absolute',
+            visibility: 'hidden',
+            display: 'block',
+            transform: 'none',
+            height: 'auto' 
+        });
+        const realHeight = $target.outerHeight(true); // 含margin的真实高度
+        // 还原原样式
+        $target.css(originStyle);
+        return realHeight;
+    }
+
+    // 新增核心函数：遍历所有item_box，获取最大真实高度
+    function getMaxItemBoxHeight($module) {
+        let maxHeight = 0;
+        // 遍历当前模块下的所有item_box
+        $module.find('.poster_box .item_box').each(function() {
+            const currentHeight = getSingleRealHeight($(this));
+            // 取最大值
+            if (currentHeight > maxHeight) {
+                maxHeight = currentHeight;
+            }
+        });
+        return maxHeight;
+    }
+
+    function unifyItemBoxHeight() {
+        // 遍历每个ly_poster_51模块（避免多模块相互干扰）
+        $('.ly_poster_51').each(function() {
+            const $module = $(this);
+            // 获取当前模块下所有item_box的最大真实高度
+            const maxHeight = getMaxItemBoxHeight($module);
+            
+            // 容错：最大高度为0时不执行（避免异常缩小）
+            if (maxHeight <= 0) return;
+
+            // 统一当前模块下所有item_box的高度
+            $module.find('.poster_box .item_box').css({
+                height: maxHeight + 'px',
+                minHeight: 'auto',
+                overflow: 'hidden',
+                boxSizing: 'border-box'
+            });
+            // 同步容器最小高度
+            $module.find('.poster_box .scroll_list').css({
+                minHeight: maxHeight + 'px',
+                position: 'relative'
+            });
+        });
+    }
+
+    // 初始化执行
+    unifyItemBoxHeight();
+
+    // 点击切换按钮后重新计算（延迟300ms适配滚动动画）
+    $(document).on('click', '.ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_prev, .ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_next', function() {
+        setTimeout(unifyItemBoxHeight, 300);
+    });
+
+    // 窗口resize重新计算
+    $(window).on('resize', unifyItemBoxHeight);
+
+    // 监听滚动容器样式变化（兼容自动轮播/轮回场景）
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'style' && mutation.target.classList.contains('scroll_suit_box')) {
+                setTimeout(unifyItemBoxHeight, 200);
+            }
+        });
+    });
+    // 给每个模块的滚动容器添加监听
+    $('.ly_poster_51 .poster_box .scroll_suit_box').each(function() {
+        observer.observe(this, { attributes: true, attributeFilter: ['style'] });
+    });
+
+    // 额外：图片加载完成后重新计算（避免图片未加载导致高度计算错误）
+    $('.ly_poster_51 .poster_box .item_box img').on('load', function() {
+        setTimeout(unifyItemBoxHeight, 100);
+    });
+});
+</script>
+
+// 使用版
+<script>
+$(function() {
+    function getSingleRealHeight($target) {
+        if (!$target.length) return 0;
+        const originStyle = {
+            position: $target.css('position'),
+            visibility: $target.css('visibility'),
+            display: $target.css('display'),
+            transform: $target.css('transform'),
+            height: $target.css('height')
+        };
+        $target.css({
+            position: 'absolute',
+            visibility: 'hidden',
+            display: 'block',
+            transform: 'none',
+            height: 'auto' 
+        });
+        const realHeight = $target.outerHeight(true);
+        $target.css(originStyle);
+        return realHeight;
+    }
+    function getMaxItemBoxHeight($module) {
+        let maxHeight = 0;
+        $module.find('.poster_box .item_box').each(function() {
+            const currentHeight = getSingleRealHeight($(this));
+            if (currentHeight > maxHeight) {
+                maxHeight = currentHeight;
+            }
+        });
+        return maxHeight;
+    }
+    function unifyItemBoxHeight() {
+        $('.ly_poster_51').each(function() {
+            const $module = $(this);
+            const maxHeight = getMaxItemBoxHeight($module);
+            if (maxHeight <= 0) return;
+            $module.find('.poster_box .item_box').css({
+                height: maxHeight + 'px',
+                minHeight: 'auto',
+                overflow: 'hidden',
+                boxSizing: 'border-box'
+            });
+            $module.find('.poster_box .scroll_list').css({
+                minHeight: maxHeight + 'px',
+                position: 'relative'
+            });
+        });
+    }
+    unifyItemBoxHeight();
+    $(document).on('click', '.ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_prev, .ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_next', function() {
+        setTimeout(unifyItemBoxHeight, 300);
+    });
+    $(window).on('resize', unifyItemBoxHeight);
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'style' && mutation.target.classList.contains('scroll_suit_box')) {
+                setTimeout(unifyItemBoxHeight, 200);
+            }
+        });
+    });
+    $('.ly_poster_51 .poster_box .scroll_suit_box').each(function() {
+        observer.observe(this, { attributes: true, attributeFilter: ['style'] });
+    });
+    $('.ly_poster_51 .poster_box .item_box img').on('load', function() {
+        setTimeout(unifyItemBoxHeight, 100);
+    });
+});
+</script>
+// 结束
+
+
+<script>
+$(function() {
+    function getRealHeight($target) {
+        if (!$target.length) return 0;
+        const originStyle = {
+            position: $target.css('position'),
+            visibility: $target.css('visibility'),
+            display: $target.css('display'),
+            transform: $target.css('transform'),
+            height: $target.css('height')
+        };
+        $target.css({
+            position: 'absolute',
+            visibility: 'hidden',
+            display: 'block',
+            transform: 'none',
+            height: 'auto'
+        });
+        const realHeight = $target.outerHeight(true);
+        $target.css(originStyle);
+        return realHeight;
+    }
+    function unifyItemBoxHeight() {
+        const $targetEl = $('.ly_poster_51 .poster_box .item_box.Poster-2');
+        if (!$targetEl.length) return;
+        const targetHeight = getRealHeight($targetEl);
+        if (targetHeight <= 0) return;
+        $('.ly_poster_51 .poster_box .item_box').css({
+            height: targetHeight + 'px',
+            minHeight: 'auto',
+            overflow: 'hidden',
+            boxSizing: 'border-box'
+        });
+        $('.ly_poster_51 .poster_box .scroll_list').css({
+            minHeight: targetHeight + 'px',
+            position: 'relative'
+        });
+    }
+    unifyItemBoxHeight();
+    $(document).on('click', '.ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_prev, .ly_poster_51 .poster_box .scroll_list .scroll_btn.scroll_btn_next', function() {
+        setTimeout(unifyItemBoxHeight, 300);
+    });
+    $(window).on('resize', unifyItemBoxHeight);
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'style' && mutation.target.classList.contains('scroll_suit_box')) {
+                setTimeout(unifyItemBoxHeight, 200);
+            }
+        });
+    });
+    $('.ly_poster_51 .poster_box .scroll_suit_box').each(function() {
+        observer.observe(this, { attributes: true, attributeFilter: ['style'] });
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function () {
+    const imgElements = document.querySelectorAll('img');
+    const cleanImageUrl = (url) => {
+        if (!url) return url;
+        return url.replace(/(\.\d+x\d+\.\w+)?(\?x-oss-process=.*)?$/g, '');
+    };
+    Array.from(imgElements).forEach(img => {
+        const $img = $(img);
+        ['data-srcset', 'srcset', 'src'].forEach(attr => {
+            const value = $img.attr(attr);
+            if (value) $img.attr(attr, cleanImageUrl(value));
+        });
+    });
+});
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('img').each(function () {
+            const dataSrcset = $(this).attr('data-srcset');
+            const srcset = $(this).attr('srcset');
+            const removeUnwantedPart = (value) => {
+                if (!value) return value;
+                return value.replace(/\?x-oss-process=image\/format,webp.*/g, '');
+            };
+            if (dataSrcset) {
+                $(this).attr('data-srcset', removeUnwantedPart(dataSrcset));
+            }
+            if (srcset) {
+                $(this).attr('srcset', removeUnwantedPart(srcset));
+            }
+        });
+    });
+</script>
+
+

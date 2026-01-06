@@ -1,0 +1,316 @@
+<script>
+    function cleanCarouselImageSrcset() {
+        const carouselDivs = document.querySelectorAll('div.carousel_img');
+        carouselDivs.forEach(div => {
+            const images = div.querySelectorAll('img[srcset]');
+            images.forEach(img => {
+                img.srcset = img.srcset.split(',').map(urlPart => {
+                    return urlPart.trim().split('?')[0];
+                }).join(', ');
+            });
+        });
+    }
+    cleanCarouselImageSrcset();
+
+    function cleanCarouselImageSrcset() {
+        const carouselDivs = document.querySelectorAll('div.carousel_img');
+        carouselDivs.forEach(div => {
+            const images = div.querySelectorAll('img[srcset]');
+            images.forEach(img => {
+                img.srcset = img.srcset.split(',').map(urlPart => {
+                    return urlPart.trim().split('?')[0];
+                }).join(', ');
+            });
+        });
+    }
+
+
+    window.addEventListener('load', function() {
+        setTimeout(cleanCarouselImageSrcset, 1000);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(cleanCarouselImageSrcset, 500);
+    });
+</script>
+
+<style>
+    body .ly_special_13 .compute_item_img .compute_process_img {padding-top: 0 !important;height: 100%;}
+    body .ly_special_13 .compute_item_img {max-width: 100%;margin: auto;width: 1920px;height: 100%;}
+    body .ly_special_13 .pic_box {height: 100%;}
+    body .ly_special_13 .poster_wrapper .img_box {position: absolute;left: 0;right: 0;top: 0;bottom: 0;}
+</style>
+
+<style>
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .g_params.subtitle {font-weight: bold;font-size: 16px;}
+</style>
+
+
+<style>
+    @media (max-width: 1280px) {
+        body .ly_special_13 .compute_item_img .compute_process_img {height: 100%;}
+        body .ly_special_13 .compute_item_img {height: 100%;}
+        body .ly_special_13 .pic_box {height: 100%;}
+        body .ly_special_13 .poster_wrapper .img_box {position: absolute;left: 0;right: 0;top: 0;bottom: 0;}
+    }
+</style>
+
+<style>
+    body .ly_special_13 .compute_item_img .compute_process_img {padding-top: 0 !important;height: 800px;}
+    body .ly_special_13 .compute_item_img {height: 100%;}
+    body .ly_special_13 .pic_box {height: 100%;}
+</style>
+
+
+<style>
+    @media (max-width: 1280px) {
+        body .ly_special_13 .pic_box .compute_item_img .compute_process_img {padding-top: 0 !important;height: 800px;}   
+    }
+</style>
+
+
+<style>
+    /* 1. 移除整体容器的溢出隐藏，避免内容被截断 */
+    .ly_special_13 { 
+        /* 原样式：overflow: hidden; */
+        overflow: visible; /* 修改为visible，允许内容完整显示 */
+    }
+
+    /* 2. 调整海报容器的定位和宽度限制，增强适配性 */
+    .ly_special_13 .poster_box { 
+        position: relative; /* 原样式是absolute，改为relative避免脱离文档流导致溢出 */
+        top: auto; /* 取消原有的top定位 */
+        left: auto; /* 取消原有的left定位 */
+        transform: none; /* 取消原有的位移变换 */
+        width: 100%; /* 原样式75%，改为100%利用父容器宽度 */
+        max-width: 1200px; /* 增加最大宽度限制，避免过宽 */
+        margin: 0 auto; /* 居中显示 */
+        padding: 20px; /* 增加内边距，避免内容贴边 */
+    }
+
+    /* 3. 优化网格布局的间距和响应式适配 */
+    .ly_special_13 .poster_box .list { 
+        gap: 30px; /* 原样式60px，减小间距避免内容溢出 */
+        padding: 10px; /* 增加内边距 */
+    }
+
+    /* 4. 调整小屏幕下的网格布局，避免内容拥挤 */
+    @media screen and (max-width: 1000px) {
+        .ly_special_13 .poster_box .list { 
+            grid-template-columns: 1fr 1fr; /* 明确小屏幕下显示2列，避免自动列数导致溢出 */
+        }
+    }
+
+    /* 5. 增加项目容器的内边距，确保内容不被挤压 */
+    .ly_special_13 .poster_box .list .item { 
+        padding: 20px; /* 增加内边距，给内容足够空间 */
+    }
+</style>
+
+<style>
+    body .ly_special_13 { 
+        overflow: visible; 
+    }
+    body .ly_special_13 .poster_box { 
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    body .ly_special_13 .poster_box .list { 
+        gap: 30px;
+        padding: 10px;
+    }
+    @media screen and (max-width: 1000px) {
+        body .ly_special_13 .poster_box .list { 
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    body .ly_special_13 .poster_box .list .item { 
+        padding: 20px;
+    }
+</style>
+
+
+<style>
+    /* 1. 确保父容器能包裹住两个子元素 */
+    .ly_special_13 .poster_wrapper {
+        position: relative;
+        min-height: 600px; /* 根据实际内容高度调整，确保能容纳img_box和poster_box */
+        overflow: visible; /* 允许内部元素完整显示 */
+    }
+
+    /* 2. 恢复poster_box的绝对定位，使其叠加在img_box上方且保持在父容器内 */
+    .ly_special_13 .poster_box {
+        position: absolute; /* 恢复绝对定位，与img_box保持在同一容器 */
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%); /* 居中对齐 */
+        width: 75%; /* 恢复原有宽度比例 */
+        max-width: 1200px;
+        margin: 0; /* 取消之前的auto margin */
+        padding: 20px;
+    }
+
+    /* 3. 确保img_box能撑起父容器高度（如果是背景图则设置高度） */
+    .ly_special_13 .img_box {
+        width: 100%;
+        height: 100%; /* 与父容器高度一致 */
+        min-height: 600px; /* 与poster_wrapper的min-height保持一致 */
+    }
+</style>
+
+
+<!-- 图片背景，文本不够大，使用版本 -->
+<div class="wide">
+    <div class="section">
+        <div class="poster_wrapper">
+            <div class="img_box">
+                <div class="pic_box">
+                    <div class="compute_item_img" style="max-width:100%;margin:auto;width:750px;">
+                        <div class="compute_process_img" style="padding-top:313.87%">
+                            <img class="ok trans  lazyloaded" data-size="auto" data-srcset="//ueeshop.ly200-cdn.com/u_file/UPBG/UPBG677/2511/21/photo/c7e0b1bcce.png?x-oss-process=image/format,webp/quality,q_100/resize,m_lfit,h_0,w_750" style="top:0;left:0;right:0;bottom:0;margin:auto;width:100%;height:100%;object-fit:cover;object-position:center center" alt="" srcset="//ueeshop.ly200-cdn.com/u_file/UPBG/UPBG677/2511/21/photo/c7e0b1bcce.png?x-oss-process=image/format,webp/quality,q_100/resize,m_lfit,h_0,w_750">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="poster_box">
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .ly_special_13 .poster_wrapper {
+        position: relative;
+        min-height: 600px;
+        overflow: visible;
+    }
+    .ly_special_13 .poster_box {
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75%;
+        max-width: 1200px;
+        margin: 0;
+        padding: 20px;
+    }
+    .ly_special_13 .img_box {
+        width: 100%;
+        height: 100%;
+        min-height: 600px;
+    }
+</style>
+
+.ly_special_13 {  overflow: hidden; }
+.ly_special_13 .poster_wrapper{position: relative;}
+.ly_special_13 a { text-decoration: none; }
+.ly_special_13 .img_box::after { content: ""; position: absolute; top: 0; left: 0; z-index: 1; width: 100%; height: 100%; }
+.ly_special_13 .poster_box { position: absolute; top: 50%; left: 50%; z-index: 2; transform: translate(-50%, -50%);overflow: hidden; width: 75%;margin: 0 auto; }
+.ly_special_13 .poster_box .list { display: grid; gap: 60px; }
+.ly_special_13 .poster_box .list .item {overflow: hidden;}
+.ly_special_13 .poster_box .list .item .icon_box { max-width: 80px;}
+.ly_special_13 .poster_box .list .item .item_title_box { margin-top: 20px; line-height: 1.1; }
+.ly_special_13 .poster_box .list .item .item_title_box .item_subtitle{margin-top: 12px;}
+.ly_special_13 .poster_box .list .item .item_content { margin-top: 15px; line-height: 1.5; }
+@media screen and (max-width: 1480px) {
+    .ly_special_13 .poster_box { width: 94%; }
+}
+@media screen and (max-width: 1000px) {
+    .ly_special_13 .poster_box .list { gap: 15px; }
+    .ly_special_13 .poster_box .list .item {text-align: center;}
+    .ly_special_13 .poster_box .list .item .icon_box { max-width: 60px;margin:0 auto}
+    .ly_special_13 .poster_box .list .item .item_title_box { margin-top: 5px; }
+    .ly_special_13 .poster_box .list .item .item_content { margin-top: 5px; }
+}
+
+<div class="ly_special_13" data-visual-id="<?=$PId?>">
+    <?=HelpsVisualV2::getSpacingCss($PId,$webSettings,[
+        'mainObj'   =>  '.ly_special_13[data-visual-id="' . $PId . '"]',
+        'contentArea'   =>  '.ly_special_13[data-visual-id="' . $PId . '"] .wide',
+		'paddingArea'	=>	'.ly_special_13[data-visual-id="' . $PId . '"] .wide .section'
+    ]);?>
+	<style>
+		.ly_special_13[data-visual-id="<?=$PId?>"] .img_box::after { background-color: <?=$maskColor?>; }
+		.ly_special_13[data-visual-id="<?=$PId?>"] .list { grid-template-columns: repeat(<?=$columnsDefault?>, 1fr);}
+		<?php foreach((array)$blocksData as $k => $v) {?>
+			.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> { background-color: <?=$v['BgColor']?>; }
+			.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_title { font-size: <?=$v['TitleFontSizePc']?>; color: <?=$v['TitleColor']?>; }
+			.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_subtitle { font-size: <?=$v['SubTitleFontSizePc']?>; color: <?=$v['SubTitleColor']?>; }
+			.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_content { font-size: <?=$v['ContentFontSizePc']?>; color: <?=$v['ContentColor']?>; }
+		<?php }?>
+		@media screen and (max-width: 1000px) {
+			<?php foreach((array)$blocksData as $k => $v) {?>
+				.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_title { font-size: <?=$v['TitleFontSizeMobile']?>; }
+				.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_subtitle { font-size: <?=$v['SubTitleFontSizeMobile']?>; }
+				.ly_special_13[data-visual-id="<?=$PId?>"] .poster_box .list .item.<?=$k?> .item_content { font-size: <?=$v['ContentFontSizeMobile']?>; }
+			<?php }?>
+		}
+	</style>
+	<div class="wide">
+		<div class="section">
+			<div class="poster_wrapper">
+				<div class="img_box">
+					<div class="pic_box">
+						<div class="compute_item_img" style="<?=$computeWidth?>">
+							<div class="compute_process_img" style="<?=$computeRatio?>"><?=$computeScollImage?></div>
+						</div>
+					</div>
+				</div>
+				<div class="poster_box">
+					<div class="list">
+						<?php foreach ((array)$blocksData as $k => $v) { ?>
+							<div class="item <?=$k?>">
+								<div class="icon_box">
+									<div class="compute_item_img" style="<?=$v['Ext']['Icon']['computeWidth']?>">
+										<div class="compute_process_img" style="<?=$v['Ext']['Icon']['computeRatio']?>"><?=$v['Ext']['Icon']['computeScollImage']?></div>
+									</div>
+								</div>
+								<div class="item_title_box">
+									<a href="<?=HelpsVisualV2::getLinkUrl($v['Link'])?>" <?=$v['Ext']['LabelAttr']?> class="item_title themes_box_title" title="<?=Html::encode($v['Title'])?>">
+										<?=HelpsVisualV2::echoListHTags($v['Title'], ['key' => 'h2']);?>
+									</a>
+									<div class="item_subtitle themes_box_subtitle"><?=$v['SubTitle']?></div>
+								</div>
+								<div class="item_content themes_text_content"><?=HelpsHtml::showDescription($v['Content']);?></div>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(() => {
+			$(document).on({
+				scroll: function () {
+					$('.ly_special_13[data-visual-id="<?=$PId;?>"] .view_scroll_box').visualScrollView();
+				}
+			});
+            $('.ly_special_13[data-visual-id="<?=$PId;?>"] .view_scroll_box').visualScrollView();
+		})
+	</script>
+</div>
+
+<style>
+    body .ly_product_list_2 .products_category_wrapper .products_category_box .category_box .item_title {margin: 12px 0;}
+    body .ly_product_list_2 .products_category_wrapper .products_category_box .cate_item {line-height: 25px;}
+</style>
+
+https://upbg848.myueeshop.com/pages/uniform
+
+<style>
+    a[href="https://www.51.la/?comId=1984611"][title="51.La 网站流量统计系统"][target="_blank"] {display: none;}
+</style>
+
+<style>
+    body .ly_footer_48 .default_foot_menu_style .menu_list.menu_list_newsletter .default_newsletter_form .text {width: 100%;}
+    @media (min-width: 1000px) {
+        body .ly_footer_48 .default_foot_menu_style .menu_list.menu_list_newsletter .default_newsletter_form .subscribe {width: 55%}   
+    }
+</style>

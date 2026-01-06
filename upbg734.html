@@ -1,0 +1,152 @@
+<script>
+    // 等待DOM加载完成后执行（避免元素未渲染）
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. 定位目标元素（根据实际类名，这里假设是 .text.themes_box_title）
+  const emailContainer = document.querySelector('.text.themes_box_title');
+  if (!emailContainer) return; // 元素不存在则退出
+
+  // 2. 提取文本内容
+  let text = emailContainer.textContent;
+
+  // 3. 正则匹配邮箱（覆盖常见格式，如 xxx@xxx.com / xxx@xxx.co.uk 等）
+  const emailRegex = /(\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b)/g;
+
+  // 4. 替换为 mailto 链接
+  const newHtml = text.replace(emailRegex, function(match) {
+    return `<a href="mailto:${match}">${match}</a>`;
+  });
+
+  // 5. 替换元素内容（保留原有文本，仅邮箱部分变链接）
+  emailContainer.innerHTML = newHtml;
+});
+</script>
+
+<style>
+    /* 针对邮箱链接的样式 */
+    .text.themes_box_title a[href^="mailto:"] {
+    text-decoration: underline; /* 下划线，提示可点击 */
+    color: inherit; /* 继承父元素文字颜色，保持原有风格 */
+    cursor: pointer; /* 鼠标悬停显示手型 */
+    }
+
+    /* 悬停效果（可选，增强交互感） */
+    .text.themes_box_title a[href^="mailto:"]:hover {
+    color: #0066cc; /* 颜色变化，如蓝色 */
+    text-decoration: none; /* 可选：悬停时去掉下划线 */
+    }
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const emailContainer = document.querySelector('.text.themes_box_title');
+    if (!emailContainer) return;
+    let text = emailContainer.textContent;
+    const emailRegex = /(\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b)/g;
+    const newHtml = text.replace(emailRegex, function(match) {
+        return `<a class="text themes_box_title" href="mailto:${match}">${match}</a>`;
+    });
+    emailContainer.innerHTML = newHtml;
+    });
+</script>
+
+<style>
+    .text.themes_box_title a[href^="mailto:"] {
+        text-decoration: underline;
+        color: inherit;
+        cursor: pointer;
+    }
+    .text.themes_box_title a[href^="mailto:"]:hover {
+        color: #0066cc;
+        text-decoration: none;
+    }
+</style>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        body .ly_header_43 .wide {width: auto !important;}
+    }
+</style>
+
+
+
+<script>
+    // 等待DOM完全加载后执行（确保目标元素存在）
+    document.addEventListener('DOMContentLoaded', function() {
+    // 1. 定位目标元素：class为g_params的div
+    const gParamsDiv = document.querySelector('.g_params');
+    if (!gParamsDiv) return; // 若元素不存在，直接退出（避免报错）
+
+    // 2. 创建新div并设置内容
+    const newDiv = document.createElement('div');
+    newDiv.textContent = 'Data Sheet:'; // 设置文本内容为“Data Sheet:”
+    
+    // 可选：给新div添加样式（若需要，可通过style属性或class控制）
+    // newDiv.style.color = 'blue'; 
+    // newDiv.classList.add('custom-class');
+
+    // 3. 插入到g_params的上方（即父元素中，g_params的前面）
+    const parent = gParamsDiv.parentNode; // 获取父元素
+    parent.insertBefore(newDiv, gParamsDiv); // 将新div插入到g_params之前
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const gParamsDiv = document.querySelector('.g_params');
+    if (!gParamsDiv) return;
+    const newDiv = document.createElement('div');
+    newDiv.textContent = 'Data Sheet:';
+    const parent = gParamsDiv.parentNode;
+    parent.insertBefore(newDiv, gParamsDiv);
+    });
+</script>
+
+
+<script>
+    // 等待DOM加载完成（确保元素已渲染）
+    document.addEventListener('DOMContentLoaded', function() {
+    // 1. 获取上方邮箱的a标签的href值
+    const emailLink = document.querySelector('.item_email a');
+    if (!emailLink) {
+        console.log('未找到邮箱链接元素');
+        return; // 若邮箱元素不存在，退出避免报错
+    }
+    const emailHref = emailLink.href; // 提取邮箱的href（如 "mailto:info@slmaterial.com"）
+
+    // 2. 找到class为item_telephone下的a标签
+    const telephoneLink = document.querySelector('.item_telephone a');
+    if (!telephoneLink) {
+        console.log('未找到电话链接元素');
+        return; // 若电话元素不存在，退出
+    }
+
+    // 3. 替换电话a标签的href为邮箱的href，保持文本不变
+    telephoneLink.href = emailHref;
+
+    // 可选：验证替换结果
+    console.log('替换后电话链接的href：', telephoneLink.href);
+    });
+</script>
+
+.ly_header_11 .themes_contact_top
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const emailLink = document.querySelector('.ly_header_11 .themes_contact_top .item_email a');
+    if (!emailLink) return;
+    const emailHref = emailLink.href;
+    const telephoneLink = document.querySelector('.ly_header_11 .themes_contact_top .item_telephone a');
+    if (!telephoneLink) return;
+    telephoneLink.href = emailHref;
+    console.log('替换后电话链接的href：', telephoneLink.href);
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const telephoneLink = document.querySelector('.ly_header_11 .themes_contact_top .item_telephone a');
+        telephoneLink.href = "https://api.whatsapp.com/send?phone=8618660119297";
+    });
+</script>

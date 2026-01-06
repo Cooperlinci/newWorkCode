@@ -1,0 +1,143 @@
+【场景】
+
+plugins-copy是无法正常复制模块到新闻列表页，只有新闻列表页无法使用plugins-copy，问题出来代码里是news，传值却是info，导致$PageData为空。
+
+【测试步骤】 
+
+系统后台 -> 网站装修 -> 模块(图文橱窗-22) 复制 -> 其他页面 (选择:新闻列表 -> 默认新闻列表) -> 保存
+
+【期望结果】
+
+将首页的图文橱窗-22复制到默认新闻列表页
+
+
+【场景】
+
+新闻大纲获取编辑框内容，实体字符问题
+
+【测试步骤】 
+
+后台新闻修改或者博客修改->详细内容中->在编辑器里填入部分符号，例如(&,中文的符号“”,——)，在前台的的新闻详细页的大纲里，会出现&amp;的字符实体
+
+【期望结果】
+
+将前台的新闻详细页或者博客详细页中的大纲中，不会出现符号变成字符实体
+
+
+
+https://ueeshop-static.ly200-cdn.com/test/static/custom/UPAX/UPAX302/js/global.js
+
+
+【场景】
+
+产品列表页中，用Chrome的拓展ahrefs，这页面的第一个heading不是h1，逻辑应该是h1>h2>h3，现在是h2>h1。
+
+【测试步骤】 
+
+产品列表页中，用Chrome的拓展ahrefs查看。
+
+【期望结果】
+
+正常在ahrefs，应该是每个页面的排序应该是h1 h2 h3。
+
+
+
+
+https://a.ly200.com/oa/?m=office&a=ticket&d=view&TicketId=140215
+【标题】图文橱窗-69,叠加层设置无效
+【场景】
+后台网站装修，首页的图文橱窗-69，列表选择任意一个，设置图片中的叠加层，前后台都没有效果。
+【测试步骤】
+后台网站装修，首页的图文橱窗-69，列表里，设置图片中的叠加层，叠加层的不透明度设置， .poster_list .poster_item.Poster-1:before的背景颜色无效果。
+【期望结果】
+可以正常使用叠加层的不透明度
+
+【标题】后台关联单页的分类弹窗搜索分类，有问题
+【场景】
+在后台绑定单页，关联单页在选择单页里搜索，搜索的内容有些错误。
+【测试步骤】 
+在网址装修->单页->关联单页->选择单页的搜索搜索有误。
+【期望结果】
+搜索可以出来匹配相关的单页
+
+
+UPAG684  t155  不更新  留言位置加验证码
+
+modify 
+
+ar-vicnexus-com-sitemap.xml
+
+
+
+【标题】
+【场景】
+【测试步骤】
+【期望结果】
+
+【标题】404 链接因缓存问题重复上报
+【场景】检测网站 404 失效链接时，同一页面的 404 链接因缓存异常被重复分开上报
+【测试步骤】查看上报列表，发现同一页面 404 链接被重复分开上报；排查确认问题源于缓存异常。
+【期望结果】缓存正常时，同一页面 404 链接不重复分开上报，结果准确唯一。
+
+
+【场景】footer_47的邮箱订阅PC端按钮会掉下去
+【测试步骤】footer_47的邮箱订阅按钮，屏幕宽度为1217px的时候，就会掉下去。
+【期望结果】这个邮箱订阅在PC端的时候可以保持一行状态
+
+【场景】PC 端 footer_47 的邮箱订阅按钮在特定宽度下掉行。
+【测试步骤】将屏幕 / 浏览器视口宽度调至 1217px 时，footer_47 模块的邮箱订阅按钮出现下沉掉行。
+【期望结果】PC 端 footer_47 的邮箱订阅区域始终保持单行布局，无掉行问题。
+
+
+【场景】PC 端 footer_47 的邮箱订阅按钮在特定宽度下掉行。
+【测试步骤】将屏幕 / 浏览器视口宽度调至 1217px 时，或者是页尾是五列并且内页按钮加了圆角时，footer_47 模块的邮箱订阅按钮出现下沉掉行。
+【期望结果】PC 端 footer_47 的邮箱订阅区域始终保持单行布局，无掉行问题。
+
+
+			// 结构化数据-组织类型
+			$siteName = str::jsFormat($c['config']['global']['SiteName'] ?? '');
+			$domain = web::get_domain();
+			$logo = Ly200::check_cdn_picture($c['config']['global']['LogoPath'] ?? '');
+			$logo = img::get_small_img($logo);
+			$str .= "<script type=\"application/ld+json\">
+				{
+					\"@context\": \"https://schema.org\",
+					\"@type\": \"Organization\",
+					\"name\": \"{$siteName}\",
+					\"url\": \"{$domain}\",
+					\"logo\": \"{$logo}\"
+				}
+			</script>";
+
+
+// 结构化数据-组织类型
+$siteName = str::jsFormat($c['config']['global']['SiteName'] ?? '');
+$str .= "<script type=\"application/ld+json\">
+    {
+        \"@context\": \"https://schema.org\",
+        \"@type\": \"Organization\",
+        \"name\": \"{$siteName}\",
+        \"url\": \"{$url}\"
+    }
+</script>";
+
+            $siteName = str::jsFormat($c['config']['global']['SiteName'] ?? '');
+			$str.="<script type=\"application/ld+json\">";
+			    $str.="{";
+			        $str.="\"@context\": \"http://schema.org/\",";
+			        $str.="\"@type\": \"Organization\",";
+			        $str.="\"name\": \"".$siteName."\",";
+			        $str.="\"url\": \"{$url}\",";
+				$str.="}";
+			$str.="</script>";
+
+
+        $siteName = str::jsFormat($c['config']['global']['SiteName'] ?? '');
+		$str.="<script type=\"application/ld+json\">";
+			$str.="{";
+				$str.="\"@context\": \"http://schema.org/\",";
+				$str.="\"@type\": \"Organization\",";
+				$str.="\"name\": \"".$siteName."\",";
+				$str.="\"url\": \"{$url}\",";
+			$str.="}";
+		$str.="</script>";

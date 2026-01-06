@@ -1,0 +1,169 @@
+<script>
+    // 等待页面加载完成
+    $(document).ready(function() {
+        // 遍历每个分类项
+        $('.category-card').each(function() {
+            var $card = $(this);
+            // 获取当前分类项的链接
+            var $link = $card.find('.link');
+            var href = $link.attr('href');
+            
+            if (href) {
+                // 为图片添加点击事件
+                $card.find('.img_box').click(function() {
+                    window.location.href = href;
+                });
+                
+                // 为标题添加点击事件
+                $card.find('.category-card_title').click(function() {
+                    window.location.href = href;
+                });
+                
+                // 为图片和标题添加鼠标悬停效果，提示可点击
+                $card.find('.img_box, .category-card_title').css('cursor', 'pointer');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.ly_products_41 .categories__grid .category-card').each(function() {
+            var $card = $(this);
+            var $link = $card.find('.link');
+            var href = $link.attr('href');
+            if (href) {
+                $card.find('.img_box').click(function() {
+                    window.location.href = href;
+                });
+                $card.find('.category-card_title').click(function() {
+                    window.location.href = href;
+                });
+                $card.find('.img_box, .category-card_title').css('cursor', 'pointer');
+            }
+        });
+    });
+</script>
+
+
+<script>
+    // 等待页面DOM加载完成
+    $(document).ready(function() {
+        // 遍历每个分类卡片
+        $('.category-card').each(function() {
+            var $card = $(this);
+            // 1. 获取"Learn More"链接的href值
+            var targetHref = $card.find('.link').attr('href');
+            
+            // 2. 找到图片的上级a标签（根据之前的HTML结构，是class为compute_process的a标签）
+            var $imgParentA = $card.find('.compute_process');
+            
+            // 3. 将获取到的href赋值给图片的上级a标签
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.category-card').each(function() {
+            var $card = $(this);
+            var targetHref = $card.find('.link').attr('href');
+            var $imgParentA = $card.find('.compute_process');
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.ly_products_41 .categories__grid .category-card').each(function() {
+            var $card = $(this);
+            var targetHref = $card.find('.ly_products_41 .categories__grid .category-card .link').attr('href');
+            var $imgParentA = $card.find('.ly_products_41 .categories__grid .category-card .compute_process');
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.category-card').each(function() {
+            var $card = $(this);
+            var targetHref = $card.find('.link').attr('href');
+            var $imgParentA = $card.find('.compute_process_img a');
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.category-card').each(function() {
+            var $card = $(this);
+            // 获取目标跳转链接
+            var targetHref = $card.find('.link').attr('href');
+            
+            // 处理图片上级a标签的跳转（已有功能）
+            var $imgParentA = $card.find('.compute_process_img a');
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+            
+            // 新增：处理标题的跳转
+            var $title = $card.find('.category-card__title');
+            if (targetHref && $title.length) {
+                // 为标题添加点击事件，实现跳转
+                $title.click(function() {
+                    window.location.href = targetHref;
+                });
+                // 添加鼠标悬停效果，提示可点击
+                $title.css('cursor', 'pointer');
+            }
+        });
+    });
+</script>
+
+<!-- 使用的jq -->
+<script>
+    $(document).ready(function() {
+        $('.ly_products_41 .category-card').each(function() {
+            var $card = $(this);
+            var targetHref = $card.find('.link').attr('href');
+            var $imgParentA = $card.find('.compute_process_img a');
+            if (targetHref && $imgParentA.length) {
+                $imgParentA.attr('href', targetHref);
+            }
+            var $title = $card.find('.category-card__title');
+            if (targetHref && $title.length) {
+                $title.click(function() {
+                    window.location.href = targetHref;
+                });
+                $title.css('cursor', 'pointer');
+            }
+        });
+    });
+</script>
+
+<style>
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .g_params .param_item {justify-content: normal;}
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .g_params .param_item .cell:nth-child(1) {width: 10%;}
+</style>
+
+
+<script>
+    $(function(){
+        $('.ly_inquiry_list_1 .cart_box .cart_table .cart_item .other').append(
+            `<span style="display: block; text-align: center; font-size: 18px; margin-top: 4px;">pcs</span>`
+        );
+    });
+</script>

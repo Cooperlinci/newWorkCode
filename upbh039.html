@@ -1,0 +1,73 @@
+<style>
+    .ly_product_description_1 .desc_menu_title>ul>li:first-child .title {display: none;}
+</style>
+
+<script>
+    $(function() {
+        $('li:has(.title h2:contains("Description"))').hide();
+    });
+</script>
+
+<script>
+    $(document).ready(() => {
+        // 1. 定位包含"Description"的li（精确匹配文本）
+        const $targetLi = $('li').filter(function() {
+            const $h2 = $(this).find('.title h2');
+            return $h2.length && $h2.text().trim() === 'Description';
+        });
+
+        if ($targetLi.length) {
+            // 2. 获取下一个兄弟li
+            const $nextLi = $targetLi.next('li');
+            
+            // 3. 删除目标li
+            $targetLi.remove();
+            
+            // 4. 给下一个li添加current类（如果存在）
+            if ($nextLi.length) {
+            $nextLi.addClass('current');
+            }
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(() => {
+        const $targetLi = $('.ly_product_description_1 .desc_menu_title>ul>li').filter(function() {
+            const $h2 = $(this).find('.title h2');
+            return $h2.length && $h2.text().trim() === 'Description';
+        });
+        if ($targetLi.length) {
+            const $nextLi = $targetLi.next('li');
+            $targetLi.remove();
+            if ($nextLi.length) {
+            $nextLi.addClass('current');
+            }
+        }
+    });
+
+    $(document).ready(() => {
+        $('.ly_product_description_1 .desc_menu_list .editor_ment_list-content:first-child').remove();
+    });
+</script>
+
+<style>
+    .ly_product_description_1 .desc_menu_list .editor_ment_list-content {opacity: 1; display: block;}
+</style>
+
+<script>
+    $(document).ready(() => {
+        const $targetLi = $('.ly_product_description_1 .desc_menu_title>ul>li').filter(function() {
+            const $h2 = $(this).find('.title h2');
+            return $h2.length && $h2.text().trim() === 'Description';
+        });
+        if ($targetLi.length) {
+            const $nextLi = $targetLi.next('li');
+            $targetLi.remove();
+            if ($nextLi.length) {
+            $nextLi.addClass('current');
+            }
+        }
+        $('.ly_product_description_1 .desc_menu_list .editor_txt.ck-content:first-child').remove();
+    });
+</script>

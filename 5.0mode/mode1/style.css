@@ -1,0 +1,33 @@
+#banner .index_banner_video{width: 100%; height: 0; padding-top: 44.271%; position: relative;}
+#banner .index_banner_video .index_banner_video_box{width: 100%; height: 100%; position: absolute; left: 0; top: 0;}
+.mySwiper{width: 100%;height: 100%;}
+#banner_edit .banner_box .banner_list img{width: 100%;height: 100%;}
+#banner_edit{height: 0 !important;padding-top: 46.875%;}
+#banner_edit .ro_next_icon{
+    width: 30px;
+    height: 14px;
+    background: url(../../../../static/themes/t245/images/arrow_l_w.png) no-repeat center;
+}
+.ro_next{position: absolute;left: 0;top: 50%;z-index: 2;padding: 28px 20px;cursor: pointer;opacity: 0;}
+#banner_edit .ro_prev_icon{
+    width: 30px;
+    height: 14px;
+    background: url(../../../../static/themes/t245/images/arrow_r_w.png) no-repeat center;
+}
+.ro_prev{position: absolute;right: 0;top: 50%;z-index: 2;padding: 28px 20px;cursor: pointer;opacity: 0;}
+.banner_box:hover .ro_prev{opacity: 1;}
+.banner_box:hover .ro_next{opacity: 1;}
+.ro_next:hover{ background: #0075c2;}
+.ro_next:hover .ro_next_icon{background: url(../../../../static/themes/t245/images/arrow_l_w.png) no-repeat center;}
+.ro_prev:hover{ background: #0075c2;}
+.ro_prev:hover .ro_prev_icon{background: url(../../../../static/themes/t245/images/arrow_r_w.png) no-repeat center;}
+
+
+@media screen and (max-width: 991px){
+    #banner .index_banner_video{padding-top: 44.2667%;}
+
+}
+@media screen and (max-width: 768px){
+    #banner #banner_edit{padding-top:100%;}
+
+}

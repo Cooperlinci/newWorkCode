@@ -1,0 +1,213 @@
+<script>
+    // 等待DOM加载完成
+    $(document).ready(function() {
+        // 1. 修改原About Us分类为TWINGS并调整首页链接
+        // 修改标题文本
+        $('.ft_item:first .item_title span').text('TWINGS');
+        // 修改About Us链接为首页
+        $('.ft_item:first .item_content li:first a')
+            .attr('href', 'https://twings.cn/')
+            .attr('title', 'TWINGS Homepage');
+
+        // 2. 为TWINGS分类添加Contact us和Blog链接
+        const twingsLinks = $('.ft_item:first .item_content ul');
+        // 添加Contact Us
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/contact" title="Contact Us">Contact Us</a>
+            </li>
+        `);
+        // 添加Blog
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/blog" title="Blog">Blog</a>
+            </li>
+        `);
+
+        // 3. 修改原Contact us分类为Product
+        // 修改标题文本
+        $('.ft_item:eq(1) .item_title span').text('Product');
+
+        // 4. 替换Product分类下的链接为产品列表
+        const productLinks = $('.ft_item:eq(1) .item_content ul');
+        // 清空原有链接
+        productLinks.empty();
+        // 产品列表数据
+        const products = [
+            'Silicone badge',
+            'SILICONE PATCH',
+            'PVC /TPR PATCH',
+            'TPU patch',
+            'ZIPPER PULL',
+            'TRANSFER',
+            'GIFTS',
+            'Shoelace tips'
+        ];
+        // 循环添加产品链接
+        products.forEach(product => {
+            productLinks.append(`
+            <li class="item_content hide">
+                <a href="/products/${product.toLowerCase().replace(/\s|\/+/g, '-')}" title="${product}">${product}</a>
+            </li>
+            `);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 1. 将原About Us的span改为a标签，并设置为TWINGS首页链接
+        const $originalTitleSpan = $('.footer_item:first .item_title span');
+        // 创建新的a标签，替换原有span
+        $originalTitleSpan.replaceWith(`
+            <a href="https://twings.cn/" title="TWINGS Homepage" class="title_link">TWINGS</a>
+        `);
+
+        // 2. 调整TWINGS分类下的链接（保持之前的逻辑）
+        const twingsLinks = $('.footer_item:first .item_content ul');
+        // 确保原有About Us链接正确
+        twingsLinks.find('li:first a')
+            .attr('href', '/pages/about') // 这里改为About Us的实际页链接（非首页，首页已由标题a标签承担）
+            .attr('title', 'About Us');
+        // 添加Contact Us
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/contact" title="Contact Us">Contact Us</a>
+            </li>
+        `);
+        // 添加Blog
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/blog" title="Blog">Blog</a>
+            </li>
+        `);
+
+        // 3. 修改原Contact us分类为Product（标题仍保持a标签逻辑，若原结构是span也统一改为a）
+        const $contactTitleSpan = $('.footer_item:eq(1) .item_title span');
+        // 替换为a标签（若Product标题不需要链接可去掉href，或设为#）
+        $contactTitleSpan.replaceWith(`
+            <a href="/products" title="All Products" class="title_link">Product</a>
+        `);
+
+        // 4. 替换Product分类下的链接（保持之前的逻辑）
+        const productLinks = $('.footer_item:eq(1) .item_content ul');
+        productLinks.empty();
+        const products = [
+            'Silicone badge',
+            'SILICONE PATCH',
+            'PVC /TPR PATCH',
+            'TPU patch',
+            'ZIPPER PULL',
+            'TRANSFER',
+            'GIFTS',
+            'Shoelace tips'
+        ];
+        products.forEach(product => {
+            productLinks.append(`
+            <li class="item_content hide">
+                <a href="/products/${product.toLowerCase().replace(/\s|\/+/g, '-')}" title="${product}">${product}</a>
+            </li>
+            `);
+        });
+    });
+</script>
+
+        products.forEach(product => {
+            productLinks.append(`
+            <li class="item_content hide">
+                <a href="/collections/${product.toLowerCase().replace(/\s|\/+/g, '-')}" title="${product}" target="_blank">${product}</a>
+            </li>
+            `);
+        });
+<script>
+    $(function() {
+        const $originalTitleSpan = $('.ft_item:first .item_title span');
+        $originalTitleSpan.replaceWith(`
+            <a href="/" title="TWINGS Homepage" class="title_link" target="_blank">TWINGS</a>
+        `);
+        const twingsLinks = $('.ft_item:first ul');
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/pages/contact-us-9" title="Contact Us" target="_blank">Contact Us</a>
+            </li>
+        `);
+        twingsLinks.append(`
+            <li class="item_content hide">
+            <a href="/blog/" title="Blog" target="_blank">Blog</a>
+            </li>
+        `);
+        const $originalTitleSpan1 = $('.ft_item:eq(1) .item_title span');
+        $originalTitleSpan1.replaceWith(`
+            <a href="/products/" title="TWINGS Product" class="title_link" target="_blank">Product</a>
+        `);
+        $('.ft_item:eq(1) .item_content:first a').text('Silicone badge').attr('target', '_blank');
+        const productLinks = $('.ft_item:eq(1) ul');
+        const products = [
+            'SILICONE PATCH',
+            'PVC /TPR PATCH',
+            'TPU patch',
+            'ZIPPER PULL',
+            'TRANSFER',
+            'GIFTS',
+            'Shoelace tips'
+        ];
+        products.forEach(product => {
+            let productHref;
+            switch(product) {
+            case 'PVC /TPR PATCH':
+                productHref = 'https://twings.cn/collections/pvc-tpr-patch';
+                break;
+            case 'Shoelace tips':
+                productHref = 'https://twings.cn/collections/shoelace%C2%A0tips%C2%A0';
+                break;
+            default:
+                productHref = `/collections/${product.toLowerCase().replace(/\s|\/+/g, '-')}`;
+            }
+            
+            productLinks.append(`
+            <li class="item_content hide">
+                <a href="${productHref}" title="${product}" target="_blank">${product}</a>
+            </li>
+            `);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 通过 name 属性选择 input（精准匹配）
+        $('input[name="Submit"]').val('提交'); // 将 value 改为"提交"，可自定义替换
+    });
+</script>
+
+<script>
+    $(function() {
+        $('.ueeshop_responsive_products_detail .info .button .add_to_inquiry').text('Request A Custom Quote');
+        $('.ueeshop_responsive_products_inquiry_box form .rows label').after(`
+            <p class="custom-instruction">
+            Please provide the material, size, quantity, and intended use of your custom project to help us provide an accurate quote.
+            </p>
+        `);
+    });
+</script>
+<style>
+    .ueeshop_responsive_products_inquiry_box form .rows.textarea_rows .custom-instruction{font-size: 14px;padding-bottom: 6px;padding-left: 12px;}
+    body .ueeshop_responsive_products_detail .info .button > a{width: calc((100% - 0px) / 2 - 2%);max-width: 272px;}
+</style>
+
+5.0的Sitemap: 网站地图地址在后台的应用我的应用网站地图链接
+Sitemap: https://twings.cn/twings-cn-sitemap.xml
+
+
+Sitemap: https://www.hsrongbo.com/www-hsrongbo-com-sitemap.xml
+
+https://www.hsrongbo.com/www-hsrongbo-com-sitemap.xml
+
+
+行业规则允许自定义站点地图名称。根据国际站点地图标准（sitemaps.org）和谷歌搜索控制台（GSC）的规则：
+站点地图的文件名 可以自定义（比如我们的 www-hsrongbo-com-sitemap.xml），只要在 robots.txt 里通过 Sitemap: 声明正确地址即可。
+您提供的 robots.txt 中，Sitemap: https://www.hsrongbo.com/www-hsrongbo-com-sitemap.xml 的声明 语法和格式完全合规，GSC 能正常识别就是最好的证明。
+
+插件的检测逻辑有局限。SEOquake 作为第三方工具，默认优先检测最常见的文件名 sitemap.xml（比如假设网站根目录有 https://www.hsrongbo.com/sitemap.xml），对 “非默认命名” 的站点地图：
+虽理论上会读取 robots.txt 的 Sitemap 声明，但实际检测时 对复杂场景支持不足（比如我们的站点地图是 “索引型文件”，包含多个子地图，插件可能未完全适配这种结构的检测）。
+这是 插件自身的功能缺陷，而非我们系统的站点地图不符合规则（GSC 正常收录已反向验证规则合规）。

@@ -1,0 +1,127 @@
+<script>
+    // 等待页面加载完成
+    $(document).ready(function() {
+        // 定义要添加的联系信息HTML
+        var contactInfo = `
+            <div class="custom-contact-info" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; border-radius: 4px;">
+            <p style="margin: 5px 0; font-size: 14px;"><strong>Contact Us:</strong></p>
+            <p style="margin: 3px 0; font-size: 13px;">Mobile phone: +86 18060923929</p>
+            <p style="margin: 3px 0; font-size: 13px;">WeChat: +86 18060923929</p>
+            <p style="margin: 3px 0; font-size: 13px;">Whatsapp: +86 18059281365</p>
+            <p style="margin: 3px 0; font-size: 13px;">Email: 386353502@qq.com</p>
+            </div>
+        `;
+        
+        // 在share_toolbox clearfix元素后面添加联系信息
+        $(".share_toolbox.clearfix").after(contactInfo);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        var contactInfo = `
+            <div class="custom-contact-info" style="margin-top: 10px; padding: 10px; border: 1px solid #eee; border-radius: 4px;">
+            <p style="margin: 5px 0; font-size: 14px;"><strong>Contact Us:</strong></p>
+            <p style="margin: 3px 0; font-size: 13px;">Mobile phone: +86 18060923929</p>
+            <p style="margin: 3px 0; font-size: 13px;">WeChat: +86 18060923929</p>
+            <p style="margin: 3px 0; font-size: 13px;">Whatsapp: +86 18059281365</p>
+            <p style="margin: 3px 0; font-size: 13px;">Email: 386353502@qq.com</p>
+            </div>
+        `;
+        $(".share_toolbox.clearfix").after(contactInfo);
+    });
+</script>
+
+<script>
+    $(function() {
+        const contactHtml = `
+            <div class="custom-contact">
+            <p>Mobile phone: +86 18060923929</p>
+            <p>WeChat: +86 18060923929</p>
+            <p>Whatsapp: +86 18059281365</p>
+            <p>Email: 386353502@qq.com</p>
+            </div>
+        `;
+        if (!$('style.custom-contact-style').length) {
+            $('head').append(`<style class="custom-contact-style">${styleContent}</style>`);
+        }
+        $('.share_toolbox.clearfix').after(contactHtml);
+    });
+</script>
+
+<style>
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .custom-contact {
+        margin-top: 8px;
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+    }
+</style>
+
+<script>
+$(function() {
+  // 1. 构造联系信息 HTML（邮箱改为<a标签）
+  const contactHtml = `
+    <div class="custom-contact">
+      <p>Mobile phone: +86 18060923929</p>
+      <p>WeChat: +86 18060923929</p>
+      <p>Whatsapp: +86 18059281365</p>
+      <p>Email: <a href="mailto:386353502@qq.com">386353502@qq.com</a></p>
+    </div>
+  `;
+
+  // 2. 定义样式（新增邮箱链接的视觉优化）
+  const styleContent = `
+    .custom-contact {
+      margin-top: 8px;        /* 与上方元素间距 */
+      font-size: 14px;       /* 匹配页面字体 */
+      color: #333;           /* 深色文字更清晰 */
+      line-height: 1.6;      /* 舒适行高 */
+    }
+    .custom-contact p {
+      margin: 0;             /* 取消段落默认间距 */
+    }
+    /* 邮箱链接样式 */
+    .custom-contact a {
+      color: #007bff;        /* 蓝色，符合链接预期 */
+      text-decoration: underline; /* 下划线提示可点击 */
+    }
+    .custom-contact a:hover {
+      text-decoration: none; /* hover 时优化交互 */
+    }
+  `;
+
+  // 3. 动态注入样式（避免重复加载）
+  if (!$('style.custom-contact-style').length) {
+    $('head').append(`<style class="custom-contact-style">${styleContent}</style>`);
+  }
+
+  // 4. 插入到目标元素下方
+  $('.share_toolbox.clearfix').after(contactHtml);
+});
+</script>
+
+
+<script>
+    $(function() {
+        const contactHtml = `
+            <div class="custom-contact">
+            <p>Mobile phone: +86 18060923929</p>
+            <p>WeChat: +86 18060923929</p>
+            <p>Whatsapp: +86 18059281365</p>
+            <p>Email: <a href="mailto:386353502@qq.com">386353502@qq.com</a></p>
+            </div>
+        `;
+        $('.share_toolbox.clearfix').after(contactHtml);
+    });
+</script>
+
+<style>
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .custom-contact a {color: #007bff;text-decoration: underline;}
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .custom-contact a:hover {text-decoration: none;}
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .share_toolbox {width: 100%;}
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .custom-contact {margin-top: 29px;font-size: 14px;color: #000000;display: grid;gap: 14px;}
+</style>

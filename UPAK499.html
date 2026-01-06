@@ -1,0 +1,142 @@
+284	t255	PicPath_Url	[1920,260,1,1]	news	11	0	Banner			0	
+{"Title":[[]],"Contents":[[]],"PicPath":[{"en":"\/u_file\/1909\/photo\/573b1a2a46.jpg","cn":"\/u_file\/1909\/photo\/76e9069a22.jpg"}],"Url":[[]]}
+
+INSERT INTO `web_settings` (`WId`, `Themes`, `Type`, `Config`, `PageName`, `Position`, `PositionOld`, `PositionName`, `PositionStyle`, `Data`) VALUES (NULL, 't127', 'Title_Goods_PicPath_Url', '[1200,90,1,0]', 'index', '3', '0', '顶部', '[540,0,394,30,0]', '{\"Title\":[[]],\"Contents\":[[]],\"PicPath\":[{\"en\":\"\\/u_file\\/1909\\/photo\\/573b1a2a46.jpg\",\"cn\":\"\\/u_file\\/1909\\/photo\\/76e9069a22.jpg\"}],\"Url\":[[]]}')
+
+INSERT INTO `web_settings` (`WId`, `Themes`, `Type`, `Config`, `PageName`, `Position`, `PositionOld`, `PositionName`, `PositionStyle`, `Data`) VALUES (NULL, 't127', 'Title', NULL, 'index', '102', '0', NULL, '[575,80,40,20,0]', '{\"Title\":[[]]}')
+
+INSERT INTO `web_settings` (`WId`, `Themes`, `Type`, `Config`, `PageName`, `Position`, `PositionOld`, `PositionName`, `PositionStyle`, `Data`) VALUES (, 't127', 'Title_Goods_PicPath_Url', '[1200,90,1,0]', 'goods', '11', '0', '顶部', NULL, NULL)
+
+INSERT INTO `web_settings` (`WId`, `Themes`, `Type`, `Config`, `PageName`, `Position`, `PositionOld`, `PositionName`, `PositionStyle`, `Data`) VALUES (, 't127', 'Title_Contents_PicPath_Url', '[893,300,1,0]', 'download', '8', '0', '顶部', NULL, NULL)
+
+
+<?php
+    $small_ad = ly200::ad_custom(10);
+    $hasValidAd = false;
+    for($i = 0; $i < $small_ad['Count']; $i++) {
+        if (!empty($small_ad['PicPath'][$i])) {
+            $hasValidAd = true;
+            break;
+        }
+    }
+    if ($hasValidAd) {
+?>
+        <div class="blank15"></div>
+        <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+            <?php
+                for($i = 0; $i < $small_ad['Count']; $i++) {
+                    if (empty($small_ad['PicPath'][$i])) {
+                        continue;
+                    }
+            ?>
+            <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>>
+                <img class="delay" src="<?=$small_ad['PicPath'][$i];?>" />
+            </a>
+            <?php }?>
+        </div>
+<?php } ?>
+
+
+<?php ?>
+    <div class="blank15"></div>
+    <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+        <?php
+            $small_ad=ly200::ad_custom(10);
+            for($i=0;$i<$small_ad['Count'];$i++){
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>><img class="delay" src="<?=$small_ad['PicPath'][$i];?>" /></a>
+        <?php }?>
+    </div>
+<?php ?>
+
+
+
+<?php ?>
+    <div class="blank15"></div>
+    <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+        <?php
+            $small_ad=ly200::ad_custom(10);
+            for($i=0;$i<$small_ad['Count'];$i++){
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>><img class="delay" src="<?=$small_ad['PicPath'][$i];?>" /></a>
+        <?php }?>
+    </div>
+<?php ?>
+<?php ?>
+    <div class="blank15"></div>
+    <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+        <?php
+            $small_ad=ly200::ad_custom(11);
+            for($i=0;$i<$small_ad['Count'];$i++){
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>><img class="delay" src="<?=$small_ad['PicPath'][$i];?>" /></a>
+        <?php }?>
+    </div>
+<?php ?>
+
+
+
+<?php
+$small_ad = ly200::ad_custom(10);
+if (!empty($small_ad['PicPath']) && count(array_filter($small_ad['PicPath'])) > 0) {
+?>
+    <div class="blank15"></div>
+    <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+        <?php
+        for($i = 0; $i < $small_ad['Count']; $i++) {
+            if (empty($small_ad['PicPath'][$i])) continue;
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>>
+            <img class="delay" src="<?=$small_ad['PicPath'][$i];?>" />
+        </a>
+        <?php }?>
+    </div>
+<?php } ?>
+<?php
+$small_ad = ly200::ad_custom(11);
+if (!empty($small_ad['PicPath']) && count(array_filter($small_ad['PicPath'])) > 0) {
+?>
+    <div class="blank15"></div>
+    <div id="small_ad" style="text-align: center;margin: 0 auto;width: 1200px;">
+        <?php
+        for($i = 0; $i < $small_ad['Count']; $i++) {
+            if (empty($small_ad['PicPath'][$i])) continue;
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>>
+            <img class="delay" src="<?=$small_ad['PicPath'][$i];?>" />
+        </a>
+        <?php }?>
+    </div>
+<?php } ?>
+
+Ly200.php load_static
+if(!$type){
+    $themes=$c['is_mobile_client']==0?$c['themes']:'mobile-'.$c['mobile']['HomeTpl'];
+}else{
+    $themes=$c['themes'];
+}
+
+
+<?php ?>
+    <div class="blank15"></div>
+    <div id="small_ad">
+        <?php
+            $small_ad=ly200::ad_custom(10, '', 1);
+            for($i=0;$i<$small_ad['Count'];$i++){
+        ?>
+        <a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>><img class="delay" src="<?=$small_ad['PicPath'][$i];?>" /></a>
+        <?php }?>
+    </div>
+<?php ?>
+
+<?php ?>
+	<div class="blank15"></div>
+	<div id="small_ad">
+		<?php
+			$small_ad=ly200::ad_custom(10);
+			for($i=0;$i<$small_ad['Count'];$i++){
+		?>
+		<a href="<?=$small_ad['Url'][$i];?>" <?=$i==2 ? "class='no_mar'" : "";?>><img class="delay" src="<?=$small_ad['PicPath'][$i];?>" /></a>
+		<?php }?>
+	</div>
+<?php ?>

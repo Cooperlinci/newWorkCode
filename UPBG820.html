@@ -1,0 +1,396 @@
+<script>
+    // 等待页面加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+        // 定位包含工厂地址的元素（假设地址在带定位图标的父元素内，可根据实际调整选择器）
+        const addressElement = document.querySelector('div:contains("Factory Address 1:")');
+        // 若找不到元素，直接返回
+        if (!addressElement) return;
+
+        // 获取地址文本内容
+        let addressText = addressElement.textContent || addressElement.innerText;
+
+        // 查找"Factory Address 2:"的位置，在其前面插入换行符<br>
+        const splitPoint = 'Factory Address 2:';
+        if (addressText.includes(splitPoint)) {
+            // 替换文本，在第二个地址前添加换行
+            const newAddressText = addressText.replace(splitPoint, `<br>${splitPoint}`);
+            // 更新元素内容（保留原有结构，仅添加换行）
+            addressElement.innerHTML = newAddressText;
+        }
+    });
+</script>
+
+<script>
+    // 等待DOM加载完成
+    $(document).ready(function() {
+    // 定位包含地址的元素（根据实际文本匹配）
+    const $addressElement = $('div:contains("Factory Address 1:")');
+    if ($addressElement.length === 0) return;
+
+    // 获取地址文本
+    let addressText = $addressElement.text();
+    const splitPoint = 'Factory Address 2:';
+
+    // 插入换行分隔
+    if (addressText.includes(splitPoint)) {
+        const newAddressText = addressText.replace(splitPoint, `<br>${splitPoint}`);
+        $addressElement.html(newAddressText);
+    }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $addressElement = $('.ly_footer_8 .default_foot_menu_style .menu_list.menu_list_contact.hasIcon dd.row:nth-child(1) a');
+        if ($addressElement.length === 0) return;
+        let addressText = $addressElement.text();
+        const splitPoint = 'Factory Address 2:';
+        if (addressText.includes(splitPoint)) {
+            const newAddressText = addressText.replace(splitPoint, `<br>${splitPoint}`);
+            $addressElement.html(newAddressText);
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addressElement = document.querySelector('.ly_footer_8 .default_foot_menu_style .menu_list.menu_list_contact.hasIcon dd.row: a[title="Factory Address 1:]"');
+        if (!addressElement) return;
+        let addressText = addressElement.textContent || addressElement.innerText;
+        const splitPoint = 'Factory Address 2:';
+        if (addressText.includes(splitPoint)) {
+            const newAddressText = addressText.replace(splitPoint, `<br>${splitPoint}`);
+            addressElement.innerHTML = newAddressText;
+        }
+    });
+</script>
+
+
+<style>
+    body .ly_footer_45 .default_newsletter_style .subscribe {background-color: #CAD4EB !important;border: 1px solid #0B318F !important;}
+</style>
+
+
+<script>
+    $(document).ready(function() {
+        const $addressLink = $('a.address');
+        let addressText = $addressLink.html();
+        const splitText = 'Factory Address 2:';
+        if (addressText.includes(splitText)) {
+            const newAddressText = addressText.replace(splitText, `<br>${splitText}`);
+            $addressLink.html(newAddressText);
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // 1. 定位联系信息的容器（根据HTML结构，联系信息在class为menu-list的div内）
+        const $contactContainer = $('.menu-list.menu_list_contact.hasIcon dl');
+        if ($contactContainer.length === 0) return; // 容器不存在则退出
+
+        // 2. 定义要添加的联系信息（模仿现有结构：图标+文本）
+        const newContacts = [
+            {
+            type: 'WhatsApp',
+            value: '+8615318726236',
+            iconClass: 'icon-phone' // 复用现有电话图标（假设现有电话用该class，可根据实际调整）
+            },
+            {
+            type: 'Mail',
+            value: 'julia@greatleaptech.com',
+            iconClass: 'icon-envelope' // 复用现有邮件图标（假设现有邮件用该class）
+            }
+        ];
+
+        // 3. 循环创建新元素并插入到容器末尾
+        newContacts.forEach(contact => {
+            // 模仿现有结构：<dd class="row"><span class="icon [图标class]"></span><span>[内容]</span></dd>
+            const $newDd = $('<dd>').addClass('row'); // 复用现有dd的class "row"
+            const $iconSpan = $('<span>').addClass('icon').addClass(contact.iconClass); // 图标
+            const $textSpan = $('<span>').text(`${contact.type}: ${contact.value}`); // 文本内容
+
+            // 组装元素并添加到容器
+            $newDd.append($iconSpan).append($textSpan);
+            $contactContainer.append($newDd);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.ly_footer_45 .menu-list.menu_list_contact.hasIcon dl');
+        if ($contactContainer.length === 0) {
+            console.log(1);
+            return;
+        };
+        const newContacts = [
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                iconClass: 'icon-phone'
+            },
+            {
+                type: 'Mail',
+                value: 'julia@greatleaptech.com',
+                iconClass: 'icon-envelope'
+            }
+        ];
+        newContacts.forEach(contact => {
+            const $newDd = $('<dd>').addClass('row');
+            const $iconSpan = $('<span>').addClass('icon').addClass(contact.iconClass);
+            const $textSpan = $('<span>').text(`${contact.type}: ${contact.value}`);
+            $newDd.append($iconSpan).append($textSpan);
+            $contactContainer.append($newDd);
+        });
+    });
+</script>
+
+<style>
+    @media (max-width: 1280px) {
+        body .ly_poster_10 .item_container .item_box .content_box .box_icon{padding-top: 0px;padding-bottom: 0px;}   
+    }
+</style>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.ly_footer_45 .menu_list.menu_list_contact.hasIcon dl');
+        const newContacts = [
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                iconClass: 'icon-phone'
+            },
+            {
+                type: 'Mail',
+                value: 'julia@greatleaptech.com',
+                iconClass: 'icon-envelope'
+            }
+        ];
+        newContacts.forEach(contact => {
+            const $newDd = $('<dd>').addClass('row');
+            const $iconSpan = $('<span>').addClass('icon').addClass(contact.iconClass);
+            const $textSpan = $('<span>').text(`${contact.type}: ${contact.value}`);
+            $newDd.append($iconSpan).append($textSpan);
+            $contactContainer.append($newDd);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // 定位联系信息容器（确保选择器正确）
+        const $contactContainer = $('.menu_list.menu_list_contact.hasIcon dl');
+        
+        // 检查容器是否存在
+        if ($contactContainer.length === 0) {
+            console.log('未找到联系信息容器，请检查选择器');
+            return;
+        }
+
+        // 新增联系信息（包含对应图标i标签的class）
+        const newContacts = [
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                // 假设WhatsApp使用电话类图标（与现有电话图标保持一致）
+                iconIclass: 'iconfont icon-tool_phone' 
+            },
+            {
+                type: 'Mail',
+                value: 'julia@greatleaptech.com',
+                // 与现有邮箱图标保持一致（使用你提供的icon-tool_email2）
+                iconIclass: 'iconfont icon-tool_email2'
+            }
+        ];
+
+        newContacts.forEach(contact => {
+            // 创建外层dd元素（与原有class一致）
+            const $newDd = $('<dd>').addClass('row');
+            
+            // 创建图标容器：span.icon 内部嵌套 i 标签（与现有结构一致）
+            const $iconSpan = $('<span>').addClass('icon');
+            const $iconI = $('<i>').addClass(contact.iconIclass); // i标签添加图标class
+            $iconSpan.append($iconI); // 将i标签放入span.icon中
+            
+            // 创建文本内容（邮箱用a标签，WhatsApp用普通文本，与现有结构对齐）
+            let $textContent;
+            if (contact.type === 'Mail') {
+                // 邮箱使用mailto链接，与原有邮箱格式一致
+                $textContent = $(`<a target="_blank" class="notranslate" href="mailto:${contact.value}" title="${contact.value}">${contact.value}</a>`);
+            } else {
+                // WhatsApp显示纯文本（如需链接可改为<a>）
+                $textContent = $('<span>').text(`${contact.value}`);
+            }
+
+            // 组合元素并添加到容器
+            $newDd.append($iconSpan).append($textContent);
+            $contactContainer.append($newDd);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.menu_list.menu_list_contact.hasIcon dl');
+        if ($contactContainer.length === 0) {
+            console.log('未找到联系信息容器，请检查选择器');
+            return;
+        }
+        const newContacts = [
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                iconIclass: 'iconfont icon-tool_phone' 
+            },
+            {
+                type: 'Mail',
+                value: 'julia@greatleaptech.com',
+                iconIclass: 'iconfont icon-tool_email2'
+            }
+        ];
+        newContacts.forEach(contact => {
+            const $newDd = $('<dd>').addClass('row');
+            const $iconSpan = $('<span>').addClass('icon');
+            const $iconI = $('<i>').addClass(contact.iconIclass);
+            $iconSpan.append($iconI);
+            let $textContent;
+            if (contact.type === 'Mail') {
+                $textContent = $(`<a target="_blank" class="notranslate" href="mailto:${contact.value}" title="${contact.value}">${contact.value}</a>`);
+            } else {
+                $textContent = $('<span>').text(`${contact.value}`);
+            }
+            $newDd.append($iconSpan).append($textContent);
+            $contactContainer.append($newDd);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.menu_list.menu_list_contact.hasIcon dl');
+        const $existingEmailDd = $contactContainer.find('a[href="mailto:jane@greatleaptech.com"]').closest('dd');
+        const newContacts = [
+            {
+                type: 'Mail', 
+                value: 'julia@greatleaptech.com',
+                iconIclass: 'iconfont icon-tool_email2'
+            },
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                iconIclass: 'iconfont icon-tool_phone'
+            }
+        ];
+        const newMail = newContacts[0];
+        const $newMailDd = $('<dd>').addClass('row');
+        const $mailIconSpan = $('<span>').addClass('icon');
+        const $mailIconI = $('<i>').addClass(newMail.iconIclass);
+        $mailIconSpan.append($mailIconI);
+        const $mailText = $(`<a target="_blank" class="notranslate" href="mailto:${newMail.value}" title="${newMail.value}">${newMail.value}</a>`);
+        $newMailDd.append($mailIconSpan).append($mailText);
+        $existingEmailDd.after($newMailDd);
+        const $phoneDd = $contactContainer.find('i[class*="icon-phone"]').closest('dd');
+        const newWhatsapp = newContacts[1];
+        const $newWhatsappDd = $('<dd>').addClass('row');
+        const $whatsappIconSpan = $('<span>').addClass('icon');
+        const $whatsappIconI = $('<i>').addClass(newWhatsapp.iconIclass);
+        $whatsappIconSpan.append($whatsappIconI);
+        const $whatsappText = $('<span>').text(newWhatsapp.value);
+        $newWhatsappDd.append($whatsappIconSpan).append($whatsappText);
+        if ($phoneDd.length > 0) {
+            $phoneDd.after($newWhatsappDd);
+        } else {
+            $contactContainer.append($newWhatsappDd);
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.menu_list.menu_list_contact.hasIcon dl');
+        const $existingEmailDd = $contactContainer.find('a[href="mailto:jane@greatleaptech.com"]').closest('dd');
+        const newContacts = [
+            {
+                type: 'Mail', 
+                value: 'julia@greatleaptech.com',
+                iconIclass: 'iconfont icon-tool_email2'
+            },
+            {
+                type: 'WhatsApp',
+                value: '+8615318726236',
+                iconIclass: 'iconfont icon-tell1'
+            }
+        ];
+        const newMail = newContacts[0];
+        const $newMailDd = $('<dd>').addClass('row');
+        const $mailIconSpan = $('<span>').addClass('icon');
+        const $mailIconI = $('<i>').addClass(newMail.iconIclass);
+        $mailIconSpan.append($mailIconI);
+        const $mailText = $(`<a target="_blank" class="notranslate" href="mailto:${newMail.value}" title="${newMail.value}">${newMail.value}</a>`);
+        $newMailDd.append($mailIconSpan).append($mailText);
+        $existingEmailDd.after($newMailDd);
+        const $phoneDd = $contactContainer.find('i[class*="icon-phone"]').closest('dd');
+        const newWhatsapp = newContacts[1];
+        const $newWhatsappDd = $('<dd>').addClass('row');
+        const $whatsappIconSpan = $('<span>').addClass('icon');
+        const $whatsappIconI = $('<i>').addClass(newWhatsapp.iconIclass);
+        $whatsappIconSpan.append($whatsappIconI);
+        const $whatsappText = $('<span>').text(newWhatsapp.value);
+        $newWhatsappDd.append($whatsappIconSpan).append($whatsappText);
+        if ($phoneDd.length > 0) {
+            $phoneDd.after($newWhatsappDd);
+        } else {
+            $contactContainer.append($newWhatsappDd);
+        }
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const $contactContainer = $('.menu_list.menu_list_contact.hasIcon dl');
+        const $existingEmailDd = $contactContainer.find('a[href="mailto:jane@greatleaptech.com"]').closest('dd');
+        const newMail = {
+            value: 'julia@greatleaptech.com',
+            iconIclass: 'iconfont icon-tool_email2'
+        };
+        const $mailSeparator = $('<span>').text(' ');
+        const $newMailIconSpan = $('<span>').addClass('icon');
+        const $newMailIconI = $('<i>').addClass(newMail.iconIclass);
+        $newMailIconSpan.append($newMailIconI);
+        const $newMailText = $(`<a target="_blank" class="notranslate" href="mailto:${newMail.value}" title="${newMail.value}">${newMail.value}</a>`);
+        $existingEmailDd.append($mailSeparator).append($newMailIconSpan).append($newMailText);
+        const $existingPhoneDd = $contactContainer.find('dd:has(i[class*="icon-tell1"])');
+        const newWhatsapp = {
+            value: '+8615318726236',
+            iconIclass: 'iconfont icon-tell1'
+        };
+
+        if ($existingPhoneDd.length > 0) {
+            const $whatsappSeparator = $('<span>').text(' ');
+            const $whatsappIconSpan = $('<span>').addClass('icon');
+            const $whatsappIconI = $('<i>').addClass(newWhatsapp.iconIclass);
+            $whatsappIconSpan.append($whatsappIconI);
+            const $whatsappText = $('<span>').text(newWhatsapp.value);
+
+            $existingPhoneDd.append($whatsappSeparator).append($whatsappIconSpan).append($whatsappText);
+        } else {
+            const $newWhatsappDd = $('<dd>').addClass('row');
+            const $whatsappIconSpan = $('<span>').addClass('icon');
+            const $whatsappIconI = $('<i>').addClass(newWhatsapp.iconIclass);
+            $whatsappIconSpan.append($whatsappIconI);
+            const $whatsappText = $('<span>').text(newWhatsapp.value);
+            $newWhatsappDd.append($whatsappIconSpan).append($whatsappText);
+            $contactContainer.append($newWhatsappDd);
+        }
+    });
+</script>
