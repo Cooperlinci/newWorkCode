@@ -124,3 +124,22 @@
 <style>
     body .ly_header_26 .tool .tool_inquiry_btn {display: none;}
 </style>
+
+<script>
+    $(document).ready(function() {
+        const copyrightElement = $('.ly_footer_26 .copy .wide');
+        if (copyrightElement.length) {
+            let originalHtml = copyrightElement.html();
+            originalHtml = originalHtml.replace('法律声明', '<a href="https://upbg940.myueeshop.com/pages/法律声明" target="_blank" >法律声明</a>');
+            originalHtml = originalHtml.replace('隐私政策', '<a href="https://upbg940.myueeshop.com/pages/隐私政策" target="_blank" >隐私政策</a>');
+            copyrightElement.html(originalHtml);
+        }
+    });
+    $(function() {
+        const $container = $('.ly_footer_26 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤ICP备2020101568号-2';
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
