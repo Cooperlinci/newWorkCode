@@ -1,0 +1,26 @@
+<style>
+    @media screen and (min-width: 1000px) {
+        .ly_service_18 .text_info .service_list .item:nth-child(5n) {margin-right: 33px !important;}
+        .ly_service_18 .text_info .service_list .item.Service-6  {margin-right: 0;}
+        .ly_service_18 .text_info .service_list .item {width: calc((100% - 166px) / 6) !important;}   
+    }
+    @media screen and (max-width: 1000px) {
+        .ly_service_18 .text_info .service_list .item {width: calc((100% - 66px) / 3) !important;}
+        .ly_service_18 .text_info .service_list .item.Service-4 {margin-right: 15px !important;}
+        .ly_service_18 .text_info .service_list .item.Service-3 {margin-right: 0;}
+        .ly_service_18 .text_info .service_list .item.Service-2 {margin-right: 15px !important;}
+        .ly_service_18 .poster_box>.pic_box .compute_item_img .compute_process_img {padding-top: 62% !important;}
+    }
+    @media screen and (max-width: 768px) {
+        .ly_service_18 .poster_box>.pic_box .compute_item_img .compute_process_img {padding-top: 90% !important;}
+    }
+    @media screen and (max-width: 520px) {
+        .ly_service_18 .poster_box>.pic_box .compute_item_img .compute_process_img {padding-top: 120% !important;}
+    }
+</style>
+
+<script>
+    $(function() {
+        $('.ly_service_18 .text_info .service_list div[class*="item"]:not(.no_margin)').addClass('no_margin');
+    });
+</script>

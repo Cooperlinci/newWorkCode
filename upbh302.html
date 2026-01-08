@@ -345,3 +345,326 @@ function toggleCurSubHide() {
     .ly_product_list_2 .products_category_wrapper .products_category_box .one_title.item_title,
     .ly_product_list_2 .products_category_wrapper .products_category_box .third_box.next_box{display: none !important;}
 </style>
+
+
+<script>
+    // 等待页面DOM加载完成后执行
+$(document).ready(function() {
+  // 1. 选中wide下的原nav元素
+  const $originalNav = $('.themes_global_header .wide .nav');
+  // 2. 深复制该nav元素（true表示复制元素及绑定的事件）
+  const $clonedNav = $originalNav.clone(true);
+  // 3. 隐藏原nav元素
+  $originalNav.hide(); // 等价于 $originalNav.css('display', 'none')
+  // 4. 将复制的nav插入到wide的后面（与wide同级）
+  $('.themes_global_header .wide').after($clonedNav);
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+  const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+  const $clonedNav = $originalNav.clone(true);
+  $originalNav.hide();
+  $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+});
+</script>
+
+<style>
+    body .ly_header_5 .nav .default_nav_style {justify-content: center !important;}
+</style>
+
+<script>
+$(document).ready(function() {
+    // 1. 复制并调整nav结构（延续之前的逻辑）
+    const $originalNav = $('.themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true);
+    $originalNav.hide(); // 隐藏原nav
+    $('.themes_global_header .wide').after($clonedNav); // 插入到wide同级
+    
+    // 2. 给复制后的nav添加鼠标hover效果
+    // 精准选中复制后的nav（与wide同级的.nav）
+    const $targetNav = $('.themes_global_header > .nav');
+    
+    // 初始状态：默认隐藏（可选，根据你的需求调整）
+    $targetNav.css('display', 'none');
+    
+    // 鼠标滑入（上滑）：显示
+    $targetNav.hover(
+        function() { // 鼠标进入时
+        $(this).css('display', 'block');
+        },
+        function() { // 鼠标离开时
+        $(this).css('display', 'none');
+        }
+    );
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    // ========== 第一步：完成nav的复制和原nav隐藏 ==========
+    const $originalNav = $('.themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true); // 深复制
+    $originalNav.hide(); // 隐藏原nav
+    $('.themes_global_header .wide').after($clonedNav); // 插入到wide同级
+    
+    // ========== 第二步：绑定滚轮事件控制nav显隐 ==========
+    const $targetNav = $('.themes_global_header > .nav'); // 精准选中复制后的nav
+    $targetNav.css('display', 'none'); // 初始状态隐藏（可根据需求调整）
+    
+    // 防抖函数：避免滚轮快速滚动时频繁触发显隐
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+        const deltaY = e.originalEvent.deltaY;
+        if (deltaY < 0) {
+            // 滚轮向上：显示nav
+            $targetNav.css('display', 'block');
+        } else if (deltaY > 0) {
+            // 滚轮向下：隐藏nav
+            $targetNav.css('display', 'none');
+        }
+        }, 50); // 50ms防抖，可根据需求调整
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true);
+    $originalNav.hide();
+    $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+    $targetNav.css('display', 'none');
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+        const deltaY = e.originalEvent.deltaY;
+        if (deltaY < 0) {
+            $targetNav.css('display', 'block');
+        } else if (deltaY > 0) {
+            $targetNav.css('display', 'none');
+        }
+        }, 50);
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    // 1. 复制nav并隐藏原nav
+    const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true);
+    $originalNav.hide();
+    $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+    
+    // 2. 封装nav显隐控制函数（核心新增逻辑）
+    function controlNavDisplay() {
+        // 获取页面滚动距离（兼容不同浏览器）
+        const scrollTop = $(window).scrollTop() || document.documentElement.scrollTop;
+        
+        if (scrollTop === 0) {
+            // 页面在最顶部：强制显示nav
+            $targetNav.css('display', 'block');
+        } else {
+            // 非顶部：保持原有滚轮控制逻辑（这里不修改，仅靠wheel事件控制）
+            // 注：如果想非顶部时默认隐藏，可加 $targetNav.css('display', 'none');
+        }
+    }
+
+    // 3. 初始状态：页面加载时校验是否在顶部，决定nav是否显示
+    controlNavDisplay();
+
+    // 4. 滚轮事件：控制nav显隐
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            const deltaY = e.originalEvent.deltaY;
+            if (deltaY < 0) {
+                $targetNav.css('display', 'block');
+            } else if (deltaY > 0) {
+                // 向下滚动时，先判断是否在顶部，不在顶部才隐藏
+                const scrollTop = $(window).scrollTop();
+                if (scrollTop !== 0) {
+                    $targetNav.css('display', 'none');
+                }
+            }
+        }, 50);
+    });
+
+    // 5. 新增滚动事件：监听页面滚动到顶部，强制显示nav
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer); // 复用防抖定时器，避免频繁触发
+        scrollTimer = setTimeout(controlNavDisplay, 50);
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true);
+    $originalNav.hide();
+    $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+    function controlNavDisplay() {
+        const scrollTop = $(window).scrollTop() || document.documentElement.scrollTop;
+        if (scrollTop === 0) {
+            $targetNav.css('display', 'block');
+        } else {
+            $targetNav.css('display', 'none');
+        }
+    }
+    controlNavDisplay();
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            const deltaY = e.originalEvent.deltaY;
+            if (deltaY < 0) {
+                $targetNav.css('display', 'block');
+            } else if (deltaY > 0) {
+                const scrollTop = $(window).scrollTop();
+                if (scrollTop !== 0) {
+                    $targetNav.css('display', 'none');
+                }
+            }
+        }, 50);
+    });
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(controlNavDisplay, 50);
+    });
+});
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    // 1. 复制nav并隐藏原nav
+    const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+    const $clonedNav = $originalNav.clone(true);
+    $originalNav.hide();
+    $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+
+    // 2. 封装nav显隐控制函数（仅处理顶部逻辑）
+    function controlNavByScrollTop() {
+        const scrollTop = $(window).scrollTop();
+        if (scrollTop === 0) {
+            // 顶部强制显示
+            $targetNav.css('display', 'block');
+        }
+        // 非顶部不主动修改，交给滚轮逻辑控制
+    }
+
+    // 3. 初始化：页面加载时校验顶部状态
+    controlNavByScrollTop();
+
+    // ========== 关键修复：给滚轮和滚动事件分配独立的防抖定时器 ==========
+    let wheelTimer = null; // 滚轮专属定时器
+    let scrollTimer = null; // 滚动专属定时器
+
+    // 4. 滚轮事件：优先级最高，控制nav显隐
+    $(window).on('wheel', function(e) {
+        // 清除滚轮定时器，避免频繁触发
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function() {
+            const deltaY = e.originalEvent.deltaY;
+            const scrollTop = $(window).scrollTop();
+            
+            if (scrollTop === 0) {
+                // 顶部时无论滚轮方向，都保持显示
+                $targetNav.css('display', 'block');
+            } else {
+                // 非顶部时，按滚轮方向控制
+                if (deltaY < 0) { // 向上滚：显示
+                    $targetNav.css('display', 'block');
+                } else if (deltaY > 0) { // 向下滚：隐藏
+                    $targetNav.css('display', 'none');
+                }
+            }
+        }, 50);
+    });
+
+    // 5. 滚动事件：仅处理“滚动到顶部”的场景，不干扰滚轮逻辑
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            controlNavByScrollTop();
+        }, 50);
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    // const $originalNav = $('.ly_header_5 .headerFixed .themes_global_header .wide .nav');
+    // const $clonedNav = $originalNav.clone(true);
+    // $originalNav.hide();
+    // $('.ly_header_5 .themes_global_header > .wide').after($clonedNav);
+    //上面内容是因为停更，改到到了代码里
+
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+    function controlNavByScrollTop() {
+        const scrollTop = $(window).scrollTop();
+        if (scrollTop === 0) {
+            $targetNav.css('display', 'block');
+        }
+    }
+    controlNavByScrollTop();
+    let wheelTimer = null;
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function() {
+            const deltaY = e.originalEvent.deltaY;
+            const scrollTop = $(window).scrollTop();
+            if (scrollTop === 0) {
+                $targetNav.css('display', 'block');
+            } else {
+                if (deltaY < 0) {
+                    $targetNav.css('display', 'block');
+                } else if (deltaY > 0) {
+                    $targetNav.css('display', 'none');
+                }
+            }
+        }, 50);
+    });
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            controlNavByScrollTop();
+        }, 50);
+    });
+});
+</script>
+
+<style>
+    .ly_header_5 .logo {grid-column: 2 / 3;}
+    .ly_header_5 .tool {grid-column: 3 / 3;}
+    .ly_header_5 .logo .compute_item_img .compute_process_img img {left: 50px !important;}
+    @media screen and (max-width: 1100px) {
+        .ly_header_5 .nav li>a {padding: 0 14px !important;}
+    }
+</style>
+
+UPBH302  t277  不更新  修改头部导航栏布局
+
+<style>
+    .ly_news_detail_2 .wrapper .right_side .share,
+    .ly_news_detail_2 .wrapper .right_side .news_box,
+    .ly_news_detail_2 .wrapper .right_side .right_news_info {display: none;}
+</style>
