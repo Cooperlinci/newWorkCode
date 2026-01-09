@@ -167,3 +167,19 @@
         );
     });
 </script>
+
+
+<style>
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .g_params .param_item {justify-content: normal;}
+    body .ly_product_purchase_2 .goods_wrapper .goods_info .g_params .param_item .cell:nth-child(1) {width: auto;}
+    .ly_product_purchase_2 .goods_wrapper .goods_info .g_params .param_item .cell:nth-child(2) {margin-left: 20px;}
+</style>
+
+不是系统故障，
+
+行业规则允许自定义站点地图名称。根据国际站点地图标准（sitemaps.org）和谷歌搜索控制台（GSC）的规则：
+站点地图的文件名 可以自定义（比如我们的 voxrealfixture-com-sitemap.xml），只要在 robots.txt 里通过 Sitemap: 声明正确地址即可。
+您提供的 robots.txt 中，Sitemap: https://voxrealfixture.com/voxrealfixture-com-sitemap.xml 的声明 语法和格式完全合规，GSC 能正常识别就是最好的证明。
+第三方检测工具检测逻辑有局限，默认优先检测最常见的文件名 sitemap.xml（比如假设网站根目录有 https://voxrealfixture.com/sitemap.xml），对 “非默认命名” 的站点地图：
+虽理论上会读取 robots.txt 的 Sitemap 声明，但实际检测时 对复杂场景支持不足（比如我们的站点地图是 “索引型文件”，包含多个子地图，第三方检测工具可能未完全适配这种结构的检测）。
+这是 第三方检测工具自身的功能缺陷，而非我们系统的站点地图不符合规则（GSC 正常收录已反向验证规则合规）。

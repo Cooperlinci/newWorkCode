@@ -1,0 +1,67 @@
+<style>
+    /* 1. 基础样式：给箭头添加白色圆形底色 + 调整布局 */
+    .iconfont.icon-arrow4 {
+        display: inline-block !important; /* 确保宽高生效 */
+        width: 36px !important;          /* 圆形大小，可按需调整 */
+        height: 36px !important;
+        border-radius: 50% !important;   /* 圆形底色核心 */
+        background-color: #ffffff !important; /* 白色圆底 */
+        text-align: center !important;
+        line-height: 36px !important;    /* 箭头垂直居中 */
+        position: relative !important;
+        cursor: pointer !important;      /* 鼠标指针提示可点击 */
+    }
+
+    /* 2. 修改箭头本身颜色为#4DB9F9（覆盖伪元素原有样式） */
+    .iconfont.icon-arrow4::before {
+        color: #4DB9F9 !important;       /* 箭头颜色，!important覆盖原有样式 */
+        font-size: 16px !important;      /* 保持原箭头尺寸，可调整 */
+    }
+
+    /* 3. 点击按住时样式：圆底透明 + 箭头保持#4DB9F9 */
+    .iconfont.icon-arrow4:active {
+        background-color: transparent !important; /* 圆底透明 */
+        border: 1px solid #4DB9F9 !important;     /* 可选：加边框保证视觉边界 */
+    }
+
+    /* 点击时箭头颜色仍保持#4DB9F9 */
+    .iconfont.icon-arrow4:active::before {
+        color: #4DB9F9 !important;
+    }
+</style>
+
+<style>
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4 {
+        display: inline-block !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        background-color: #ffffff !important;
+        /* text-align: center !important; 可以不用 */
+        line-height: 36px !important;
+    }
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4::before {
+        color: #4DB9F9 !important;
+        font-size: 16px !important;
+    }
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:active {
+        background-color: transparent !important;
+        border: 1px solid #4DB9F9 !important;
+    }
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:active::before {
+        color: #4DB9F9 !important;
+    }
+</style>
+
+<style>
+    body .ly_carousel_5 .carousel_wrapper .text_position_left {top: 35% !important;left: 15% !important;transform: translateY(0%) !important;}
+</style>
+
+<style>
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4 {display: inline-block;width: 36px;height: 36px;border-radius: 50%;background-color: #ffffff;line-height: 36px;}
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4::before {color: #4DB9F9;font-size: 16px;}
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:hover,
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:active {background-color: transparent ;border: 1px solid #ffffff;}
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:hover::before,
+    .ly_poster_60 .poster_list .item .text_info .button .iconfont.icon-arrow4:active::before {color: #ffffff;}
+</style>
