@@ -73,3 +73,8 @@ https://www.wellselevator.com/products/--101      --->        https://www.wellse
 
 
 UPAP664  t264  不更新  产品链接301重定向
+
+
+<style>
+    .ly_service_18 .text_info .service_list .item .compute_item_img .compute_process_img {padding-top: 100% !important;}
+</style>

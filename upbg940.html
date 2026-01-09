@@ -131,7 +131,7 @@
         if (copyrightElement.length) {
             let originalHtml = copyrightElement.html();
             originalHtml = originalHtml.replace('法律声明', '<a href="https://upbg940.myueeshop.com/pages/法律声明" target="_blank" >法律声明</a>');
-            originalHtml = originalHtml.replace('隐私政策', '<a href="https://upbg940.myueeshop.com/pages/隐私政策" target="_blank" >隐私政策</a>');
+            originalHtml = originalHtml.replace('隐私政策', '<a href="https://upbg940.myueeshop.com/pages/隐私政策" rel="noreferrer" target="_blank" >隐私政策</a>');
             copyrightElement.html(originalHtml);
         }
     });
@@ -139,7 +139,87 @@
         const $container = $('.ly_footer_26 .copy > .wide');
         const originalContent = $container.html();
         const icpCode = '粤ICP备2020101568号-2';
-        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank">${icpCode}</a>`;
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" rel="noreferrer" target="_blank">${icpCode}</a>`;
         $container.html(originalContent.replace(icpCode, linkContent));
+    });
+        $(function() {
+        const $container = $('.ly_footer_26 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤公网安备44195202000271号';
+        const linkContent = `<a href=" " rel="noreferrer" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        const copyrightElement = $('.ly_footer_26 .copy .wide');
+        if (copyrightElement.length) {
+            let originalHtml = copyrightElement.html();
+            originalHtml = originalHtml.replace('法律声明', '<a href="https://upbg940.myueeshop.com/pages/法律声明" rel="noreferrer" target="_blank" >法律声明</a>');
+            originalHtml = originalHtml.replace('隐私政策', '<a href="https://upbg940.myueeshop.com/pages/隐私政策" rel="noreferrer" target="_blank" >隐私政策</a>');
+            copyrightElement.html(originalHtml);
+        }
+    });
+    $(function() {
+        const $container = $('.ly_footer_26 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤ICP备2020101568号-2';
+        const linkContent = `<a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" rel="noreferrer" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+    $(function() {
+        const $container = $('.ly_footer_26 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤公网安备44195202000271号';
+        const linkContent = `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44195202000271" rel="noreferrer" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+<!-- 备案号添加跳转a标签规范，网安备规范 -->
+<script>
+$(function() {
+    // 统一获取容器，只获取一次DOM提升性能
+    const $container = $('.ly_footer_26 .copy > .wide');
+    // 先获取原始内容，避免多次替换导致的嵌套问题
+    let content = $container.html();
+
+    // 1. ICP备案号配置（符合工信部规范）
+    const icpCode = '粤ICP备2020101568号-2';
+    // 工信部ICP备案官方核验主链接（规范要求的标准链接）
+    const icpLink = 'https://beian.miit.gov.cn/';
+    const icpLinkContent = `<a href="${icpLink}" rel="noreferrer" target="_blank">${icpCode}</a>`;
+    content = content.replace(icpCode, icpLinkContent);
+
+    // 2. 公安网安备案号配置（符合网安备案规范）
+    const securityCode = '粤公网安备44195202000271号';
+    const securityRecordCode = '44195202000271'; // 提取纯数字备案码
+    // 公安网安备案官方核验链接（带备案号参数，便于用户核验）
+    const securityLink = `http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${securityRecordCode}`;
+    const securityLinkContent = `<a href="${securityLink}" rel="noreferrer" target="_blank">${securityCode}</a>`;
+    content = content.replace(securityCode, securityLinkContent);
+
+    // 最后统一更新容器内容
+    $container.html(content);
+});
+</script>
+
+<!-- 备案号添加跳转a标签规范，网安备规范 -->
+<script>
+    $(function() {
+        const $container = $('.ly_footer_26 .copy > .wide');
+        let content = $container.html();
+        const icpCode = '粤ICP备2020101568号-2';
+        const icpLink = 'https://beian.miit.gov.cn/';
+        const icpLinkContent = `<a href="${icpLink}" rel="noreferrer" target="_blank">${icpCode}</a>`;
+        content = content.replace(icpCode, icpLinkContent);
+        const securityCode = '粤公网安备44195202000271号';
+        const securityRecordCode = '44195202000271';
+        const securityLink = `http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${securityRecordCode}`;
+        const securityLinkContent = `<a href="${securityLink}" rel="noreferrer" target="_blank">${securityCode}</a>`;
+        content = content.replace(securityCode, securityLinkContent);
+        $container.html(content);
     });
 </script>

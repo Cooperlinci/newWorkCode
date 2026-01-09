@@ -572,7 +572,7 @@ $(document).ready(function() {
     // 3. 初始化：页面加载时校验顶部状态
     controlNavByScrollTop();
 
-    // ========== 关键修复：给滚轮和滚动事件分配独立的防抖定时器 ==========
+    // ========== 给滚轮和滚动事件分配独立的防抖定时器 ==========
     let wheelTimer = null; // 滚轮专属定时器
     let scrollTimer = null; // 滚动专属定时器
 
@@ -667,4 +667,11 @@ UPBH302  t277  不更新  修改头部导航栏布局
     .ly_news_detail_2 .wrapper .right_side .share,
     .ly_news_detail_2 .wrapper .right_side .news_box,
     .ly_news_detail_2 .wrapper .right_side .right_news_info {display: none;}
+</style>
+
+<style>
+    body .ly_carousel_24 .carousel_wrapper .text_position_left {top: 0% !important;transform: translateY(0%) !important;}
+    @media (min-width: 1000px) {
+        .ly_carousel_24 .carousel_wrapper .carousel_box .carousel_item .carousel_info {padding: 40px 80px 80px 80px !important;}   
+    }
 </style>
