@@ -961,3 +961,37 @@ document.addEventListener('DOMContentLoaded', function() {
         body .ly_form_10 .flex_box .s_left .qrcode {justify-content: center !important;}
     }
 </style>
+
+
+<style>
+    body .ly_form_10 .flex_box {align-items: flex-start;}
+    body .ly_form_10 .flex_box .s_left .qrcode {margin-top: 0;}
+    body .ly_form_10 .flex_box .s_left .qrcode .item {width: 80%;}
+    body .ly_form_10 .top_info .top_title {text-align: center;}
+    body .ly_form_10 .top_info .top_title {margin-bottom: 95px;}
+    body .ly_form_10 .flex_box .s_left .list .item.Form-5 .img {display: none;}
+    /* body .ly_form_10 .flex_box .s_left .list .item.Form-5 .text.themes_box_title {display: -webkit-box;-webkit-line-clamp: 10;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;} */
+    body .ly_form_10 .flex_box .s_right {position: relative;padding-top: 70px;}
+    body .ly_form_10 .flex_box .s_right .share_toolbox {position: absolute;top: 2.5%;right: 30px;}
+    body .ly_form_10 .flex_box .s_right .share_toolbox li {margin-right: 15px;}
+    @media screen and (min-width: 1280px) {
+        body .ly_form_10 .flex_box .s_left .list .item {margin-top: 45px !important;}
+        body .ly_form_10 .flex_box .s_left .list .item .text.themes_box_title {line-height: 1.8;}
+    }
+    @media screen and (max-width: 1280px) {
+        body .ly_form_10 .flex_box .s_left .list .item {margin-top: 35px !important;}
+        body .ly_form_10 .flex_box .s_left .list .item .text.themes_box_title {line-height: 1.5;}
+        body .ly_form_10 .flex_box .s_right .share_toolbox {right: 0px;width: 94%;}
+        body .ly_form_10 .flex_box .s_right .share_toolbox li {margin-right: 10px;}
+    }
+    @media screen and (max-width: 1000px) {
+        body .ly_form_10 .top_info .top_title {margin-bottom: 30px;}
+        body .ly_form_10 .flex_box .s_right {padding-top: 55px;}
+        body .ly_form_10 .flex_box .s_right .share_toolbox {right: 0px;width: 98%;}
+        body .ly_form_10 .flex_box .s_left .qrcode .item {max-width: 360px;}
+        body .ly_form_10 .flex_box .s_left .qrcode {justify-content: center !important;}
+    }
+    @media screen and (max-width: 768px) {
+        body .ly_form_10 .flex_box .s_right {padding-top: 40px;}
+    }
+</style>
