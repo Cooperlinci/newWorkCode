@@ -1,3 +1,47 @@
+robots.txt:
+
+User-agent: AhrefsBot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: Uptimebot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: MegaIndex.ru
+Disallow: /
+User-agent: ZoominfoBot
+Disallow: /
+User-agent: Mail.Ru
+Disallow: /
+User-agent: SeznamBot
+Disallow: /
+User-agent: BLEXBot
+Disallow: /
+User-agent: ExtLinksBot
+Disallow: /
+User-agent: aiHitBot
+Disallow: /
+User-agent: Researchscan
+Disallow: /
+User-agent: DnyzBot
+Disallow: /
+User-agent: spbot
+Disallow: /
+
+User-agent: *
+Disallow: 
+Disallow: /inc/
+Allow: /static/mobile/
+Allow: /static/themes/
+Allow: /static/blog/
+Allow: /static/css/
+Allow: /static/js/
+Disallow: /static/
+Disallow: /tmp/
+
 【场景】
 
 plugins-copy是无法正常复制模块到新闻列表页，只有新闻列表页无法使用plugins-copy，问题出来代码里是news，传值却是info，导致$PageData为空。
@@ -92,3 +136,8 @@ ar-vicnexus-com-sitemap.xml
 【场景】PC 端 footer_47 的邮箱订阅按钮在特定宽度下掉行。
 【测试步骤】将屏幕 / 浏览器视口宽度调至 1217px 时，或者是页尾是五列并且内页按钮加了圆角时，footer_47 模块的邮箱订阅按钮出现下沉掉行。
 【期望结果】PC 端 footer_47 的邮箱订阅区域始终保持单行布局，无掉行问题。
+
+
+<style>
+	.ly_footer_20 .default_foot_menu_style .menu_list .follow_us_list > ul {display: grid;grid-template-columns: repeat(3, 1fr);width: 50%;}
+</style>

@@ -536,3 +536,47 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+
+<script>
+// 等待页面DOM加载完成后执行
+$(document).ready(function() {
+    $('.ly_about_14').each(function() {
+        var h2Text = $(this).find('h2').text().trim();
+        // 判断文本是否匹配（注意：HTML里的&amp;对应实际文本是&）
+        if (h2Text === 'ODM & OEM PROCESS') {
+            // 为符合条件的元素添加指定样式
+            $(this).find('.text_box .r_content').css('margin-top', '15px');
+            $(this).find('.text_box').css({
+                'border': '2px solid #ffffff',
+                'padding': '20px 8%',
+                'display': 'flex',
+                'justify-content': 'center'
+            });
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('body .ly_about_14').each(function() {
+        var h2Text = $(this).find('h2').text().trim();
+        if (h2Text === 'ODM & OEM PROCESS') {
+            $(this).find('.text_box .r_content').css('margin-top', '15px');
+            $(this).find('.text_box').css({
+                'border': '2px solid #ffffff',
+                'padding': '20px 8%',
+                'display': 'flex',
+                'justify-content': 'center'
+            });
+        }
+    });
+});
+</script>
+
+<style>
+    body .ly_about_14 .text_box .r_content {margin-top: 15px;}
+    body .ly_about_14 .text_box {border: 2px solid #ffffff;padding: 20px 8%;}
+    body .ly_about_14 .text_box {display: flex;justify-content: center;}
+</style>
