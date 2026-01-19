@@ -30,3 +30,46 @@ sinodisplaystand.com
 <style>
     .ly_footer_10 .menu_list.menu_list_custom_content .logo .compute_process_img {padding-top: 70% !important;}
 </style>
+
+<style>
+    .ly_product_list_2 .products_category_wrapper .products_category_box .one_title .cate_item h2{font-weight: bold !important;}
+</style>
+
+<style>
+    .ly_products_6 .products_box .themes_prod {}
+</style>
+
+<script>
+// 等待页面DOM加载完成后执行
+$(document).ready(function() {
+    // 遍历所有产品模块，确保多个产品都生效
+    $('.themes_prod').each(function() {
+        // 1. 获取当前模块内的产品名和型号元素
+        const $nameEle = $(this).find('.name');    // 产品名元素
+        const $numberEle = $(this).find('.number');// 型号元素
+
+        // 2. 替换型号文本：把No.改成Model#:
+        if ($numberEle.text()) {
+        const newText = $numberEle.text().replace('No.', 'Model#:');
+        $numberEle.text(newText);
+        }
+
+        // 3. 调换位置：将型号元素移到产品名元素前面（实现上下对调）
+        $numberEle.insertBefore($nameEle);
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.ly_products_6 .products_box .themes_prod').each(function() {
+        const $nameEle = $(this).find('.name');
+        const $numberEle = $(this).find('.number');
+        if ($numberEle.text()) {
+        const newText = $numberEle.text().replace('No.', 'Model#:');
+        $numberEle.text(newText);
+        }
+        $numberEle.insertBefore($nameEle);
+    });
+});
+</script>

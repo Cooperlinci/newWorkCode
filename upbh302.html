@@ -675,3 +675,18 @@ UPBH302  t277  不更新  修改头部导航栏布局
         .ly_carousel_24 .carousel_wrapper .carousel_box .carousel_item .carousel_info {padding: 40px 80px 80px 80px !important;}   
     }
 </style>
+
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_5 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '京ICP备2021003641号-3';
+        const linkContent = `<a href="https://beian.miit.gov.cn" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+<style>
+    .ly_blog_detail_1 .blog_detail .blog_img .compute_process_img {padding-top: 40% !important;}
+</style>

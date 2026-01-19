@@ -469,3 +469,279 @@ modify
         body .ly_inquiry_list_1 .wide .list_container {padding: 20px 0;}
     }
 </style>
+
+<style>
+    @media (min-width:1000px) {
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} /* padding-top 和 padding-bottom 都改成0 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 24px;color: #000000;}/* 字号 24px，颜色 #000000 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 120px;height: 46px;line-height: 45px;font-size: 20px;border-radius: 5px;}/* min-width: 120px; height: 46px; line-height: 45px; font-size: 20px;border-radius: 5px; */
+    }
+    @media (max-width:1000px) {
+
+    }
+</style>
+
+<script>
+    // 等待页面加载完成
+    $(document).ready(function() {
+        // ========== 需求1：点击 whatsapp 文字跳转 ==========
+        const $noticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+        if ($noticeContent.length) {
+            // 替换文本为可点击元素
+            $noticeContent.html($noticeContent.html().replace(
+            /whatsapp/g,
+            '<span class="whatsapp-link">whatsapp</span>'
+            ));
+            // 绑定点击事件
+            $('.whatsapp-link').on('click', function() {
+                window.open('https://wa.me/8618832810569', '_blank');
+            });
+        }
+
+        // ========== 需求2：点击 Back 按钮跳转 ==========
+        $('.ly_inquiry_list_1 .notice_box .notice_button').on('click', function(e) {
+            e.preventDefault(); // 阻止默认行为
+            window.location.href = 'https://www.chinarubberhose.com/products/';
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(() => {
+            const $lateNoticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+            if ($lateNoticeContent.length > 0 && !$lateNoticeContent.find('.whatsapp-link').length) {
+                $lateNoticeContent.each(function() {
+                    const originalHtml = $(this).html();
+                    const newHtml = originalHtml.replace(/whatsapp/gi, '<span class="whatsapp-link" >whatsapp</span>');
+                    $(this).html(newHtml);
+                });
+            }
+        }, 500);
+        $(document).on('click', '.ly_inquiry_list_1 .notice_box .whatsapp-link', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); 
+            window.open('https://wa.me/8618832810569', '_blank');
+        });
+        $('.ly_inquiry_list_1 .notice_box .notice_button').on('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://www.chinarubberhose.com/products/';
+        });
+    });
+</script>
+
+
+<script>
+    // 等待页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+  // ========== 需求1：点击 whatsapp 文字跳转到指定链接 ==========
+  // 找到包含 whatsapp 文本的 notice_content 容器
+  const noticeContent = document.querySelector('.ly_inquiry_list_1 .notice_box .notice_content');
+  if (noticeContent) {
+    // 把文本中的 "whatsapp" 替换成可点击的元素（保留原有样式）
+    noticeContent.innerHTML = noticeContent.innerHTML.replace(
+      /whatsapp/g, 
+      '<span style="color: green; cursor: pointer; text-decoration: underline;" class="whatsapp-link">whatsapp</span>'
+    );
+    // 给替换后的 whatsapp 文字绑定点击事件
+    const whatsappLink = document.querySelector('.whatsapp-link');
+    if (whatsappLink) {
+      whatsappLink.addEventListener('click', function() {
+        window.open('https://wa.me/8618832810569', '_blank'); // 新窗口打开，也可改用 window.location.href 本窗口打开
+      });
+    }
+  }
+
+  // ========== 需求2：点击 Back 按钮跳转到产品页面 ==========
+  // 找到 notice_button 类的 Back 按钮
+  const backButton = document.querySelector('.ly_inquiry_list_1 .notice_box .notice_button');
+  if (backButton) {
+    // 绑定点击事件（阻止默认行为，避免原有 href 干扰）
+    backButton.addEventListener('click', function(e) {
+      e.preventDefault(); // 阻止按钮原有跳转（如果有）
+      window.location.href = 'https://www.chinarubberhose.com/products/'; // 本窗口跳转到产品页
+    });
+  }
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    // ========== 调试：先确认核心元素是否能找到（打开浏览器控制台看输出） ==========
+    console.log("检测 .ly_inquiry_list_1 .notice_box .notice_content 元素数量：", $('.ly_inquiry_list_1 .notice_box .notice_content').length);
+    console.log("检测 .ly_inquiry_list_1 .notice_box .notice_button 元素数量：", $('.ly_inquiry_list_1 .notice_box .notice_button').length);
+
+    // ========== 优化1：解决动态元素事件绑定失效（用事件委托） + 确保文本替换生效 ==========
+    const $noticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+    if ($noticeContent.length > 0) {
+        // 替换文本（保留原有HTML，仅替换whatsapp文字）
+        $noticeContent.each(function() {
+            const originalHtml = $(this).html();
+            const newHtml = originalHtml.replace(/whatsapp/gi, '<span class="whatsapp-link" style=" cursor: pointer; text-decoration: underline;">whatsapp</span>');
+            $(this).html(newHtml);
+        });
+    }
+
+    // 事件委托：绑定到父元素，兼容动态生成的 .whatsapp-link
+    $(document).on('click', '.ly_inquiry_list_1 .notice_box .whatsapp-link', function(e) {
+        e.preventDefault(); // 阻止默认行为
+        e.stopPropagation(); // 阻止事件冒泡
+        console.log("点击了whatsapp链接，开始跳转...");
+        window.open('https://wa.me/8618832810569', '_blank');
+    });
+
+    // ========== 优化2：按钮跳转（增强容错，强制覆盖跳转） ==========
+    $(document).on('click', '.ly_inquiry_list_1 .notice_box .notice_button', function(e) {
+        e.preventDefault(); // 阻止默认跳转/刷新
+        e.stopPropagation(); // 阻止事件冒泡
+        console.log("点击了Back按钮，开始跳转产品页...");
+        // 强制跳转（兼容各种场景）
+        setTimeout(() => {
+            window.location.href = 'https://www.chinarubberhose.com/products/';
+        }, 100);
+    });
+
+    // ========== 兜底：如果ready事件太早，延迟再检测一次（兼容动态加载的元素） ==========
+    setTimeout(() => {
+        const $lateNoticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+        if ($lateNoticeContent.length > 0 && !$lateNoticeContent.find('.whatsapp-link').length) {
+            console.log("延迟检测到元素，补充替换whatsapp文字");
+            $lateNoticeContent.each(function() {
+                const originalHtml = $(this).html();
+                const newHtml = originalHtml.replace(/whatsapp/gi, '<span class="whatsapp-link" style=" cursor: pointer; text-decoration: underline;">whatsapp</span>');
+                $(this).html(newHtml);
+            });
+        }
+    }, 1000);
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    setTimeout(() => {
+        const $lateNoticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+        if ($lateNoticeContent.length > 0 && !$lateNoticeContent.find('.whatsapp-link').length) {
+            $lateNoticeContent.each(function() {
+                const originalHtml = $(this).html();
+                const newHtml = originalHtml.replace(
+                    /whatsapp/gi,
+                    '<a href="https://wa.me/8618832810569" target="_blank" style="font-size: 24px;color: #000000;text-decoration: none;" class="whatsapp-link">whatsapp</a>'
+                );
+                $(this).html(newHtml);
+            });
+        }
+    }, 500);
+    $('.ly_inquiry_list_1 .notice_box .notice_button').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'https://www.chinarubberhose.com/products/';
+    });
+});
+</script>
+
+<style>
+    @media (min-width:1000px) {
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content a {font-size: 24px;color: #000000;text-decoration: none;}
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} /* padding-top 和 padding-bottom 都改成0 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 24px;color: #000000;}/* 字号 24px，颜色 #000000 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 120px;height: 46px;line-height: 45px;font-size: 20px;border-radius: 5px;}/* min-width: 120px; height: 46px; line-height: 45px; font-size: 20px;border-radius: 5px; */
+    }
+    @media (max-width:1000px) {
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} /* padding-top 和 padding-bottom 都改成0 */
+        .ly_inquiry_list_1 .list_container .notice_box {padding: 90px 0;}/* padding-top 和 padding-bottom 都改成90px */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 18px;color: #000000;}/* 字号 18px，颜色 #000000 */
+    }
+</style>
+
+
+<script>
+$(document).ready(function() {
+    setTimeout(() => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return;
+        function splitTextFixSymbol($element) {
+            if ($element.length === 0) return;
+            let text = $element.text().trim();
+            const sentenceRegex = /([A-Za-z\s]+[!.])/g;
+            const sentences = text.match(sentenceRegex) || [];
+            const remainingText = text.replace(sentenceRegex, '').trim();
+            if (remainingText) sentences.push(remainingText);
+            const newText = sentences.filter(item => item.trim() !== '').join('<br>');
+            $element.html(newText);
+        }
+        splitTextFixSymbol($('.list_container .notice_box .notice_subtitle'));
+        splitTextFixSymbol($('.list_container .notice_box .notice_content'));
+    }, 600);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    setTimeout(() => {
+        const $lateNoticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+        if ($lateNoticeContent.length > 0 && !$lateNoticeContent.find('.whatsapp-link').length) {
+            $lateNoticeContent.each(function() {
+                const originalHtml = $(this).html();
+                const newHtml = originalHtml.replace(
+                    /whatsapp/gi,
+                    '<a href="https://wa.me/8618832810569" target="_blank" class="whatsapp-link">whatsapp</a>'
+                );
+                $(this).html(newHtml);
+            });
+        }
+    }, 100);
+    $('.ly_inquiry_list_1 .notice_box .notice_button').on('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'https://www.chinarubberhose.com/products/';
+    });
+});
+$(document).ready(function() {
+    setTimeout(() => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return;
+        function splitTextFixSymbol($element) {
+            if ($element.length === 0) return;
+            let text = $element.text().trim();
+            const sentenceRegex = /([A-Z][A-Za-z0-9\s,]+[!.])/g;
+            const sentences = text.match(sentenceRegex) || [];
+            const remainingText = text.replace(sentenceRegex, '').trim();
+            if (remainingText) sentences.push(remainingText);
+            const newText = sentences.filter(item => item.trim() !== '').join('<br>');
+            $element.html(newText);
+        }
+        splitTextFixSymbol($('.list_container .notice_box .notice_subtitle'));
+        splitTextFixSymbol($('.list_container .notice_box .notice_content'));
+    }, 100);
+});
+</script>
+
+<style>
+    @media (min-width:1000px) {
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content a {font-size: 24px;color: #000000;text-decoration: none;}
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} /* padding-top 和 padding-bottom 都改成0 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 24px;color: #000000;}/* 字号 24px，颜色 #000000 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 120px;height: 46px;line-height: 45px;font-size: 20px;border-radius: 5px;}/* min-width: 120px; height: 46px; line-height: 45px; font-size: 20px;border-radius: 5px; */
+    }
+    @media (max-width:1000px) {
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} /* padding-top 和 padding-bottom 都改成0 */
+        .ly_inquiry_list_1 .list_container .notice_box {padding: 90px 0;}/* padding-top 和 padding-bottom 都改成90px */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 18px;color: #000000;}/* 字号 18px，颜色 #000000 */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {line-height: 2;margin-top: 30px;}/* margin-top: 30px; */
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 100px;font-size: 17px;border-radius: 5px;margin-top: 30px;}/* min-width: 100pxfont-size: 17px;border-radius: 5px;margin-top: 30px; */
+    }
+</style>
+
+<style>
+    @media (min-width:1000px) {
+        body .ly_footer_11 .nav {padding-top: 50px;padding-bottom: 0px;}
+    }
+    @media (max-width:1000px) {
+        .ly_footer_11 .default_foot_menu_style .menu_list:last-of-type dl {border-bottom: unset;}
+    }
+</style>

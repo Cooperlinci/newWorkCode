@@ -1,0 +1,19 @@
+<style>
+    body .video_252_1 .area_1 .cont .left_area .subTitle {font-size: 30px;}
+</style>
+<script>
+$(document).ready(function() {
+    $('.video_252_1 .area_1 .cont .left_area .brief').contents().each(function() {
+        if (this.nodeType === 3) {
+            const text = $.trim(this.textContent);
+            if (text === 'OUR MISSION' || text === 'OUR CORE VALUES') {
+                $(this).replaceWith(`<span style="color: #f5ae00;">${text}</span>`);
+            }
+        }
+    });
+});
+</script>
+
+<style>
+    .ly_product_list_2 .list_box .themes_prod .name {display: none;}
+</style>

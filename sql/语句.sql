@@ -53,3 +53,7 @@ SELECT * FROM manage_operation_log WHERE Data LIKE '%b9fb84800d%' ORDER BY AccTi
 SELECT * FROM manage_operation_log WHERE Log LIKE '%图片%' AND Data LIKE '%b9fb84800d.jpg%' ORDER BY AccTime DESC;
 
 SELECT * FROM manage_operation_log WHERE Log LIKE '%图片%' AND Data LIKE '%164%' ORDER BY AccTime DESC;
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('blogApp', '2', '', NULL, NULL, '1757928081', '1757928081', '0')
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('blockAccessApp', '2', '', NULL, NULL, '1757928081', '1757928081', '0')
