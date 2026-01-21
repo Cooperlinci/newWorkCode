@@ -745,3 +745,147 @@ $(document).ready(function() {
         .ly_footer_11 .default_foot_menu_style .menu_list:last-of-type dl {border-bottom: unset;}
     }
 </style>
+
+
+<style>
+    @media (min-width:1000px) {
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content a {font-size: 24px;color: #000000;text-decoration: none;}
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 24px;color: #000000;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 120px;height: 46px;line-height: 45px;font-size: 20px;border-radius: 5px;}
+    }
+    @media (max-width:1000px) {
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} 
+        .ly_inquiry_list_1 .list_container .notice_box {padding: 90px 0;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 18px;color: #000000;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {line-height: 2;margin-top: 30px;padding-bottom: 6px;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 100px;font-size: 17px;border-radius: 5px;margin-top: 30px;}
+    }
+</style>
+
+修改完毕，附件最后一页是涉及费用和后台可以修改的内容。
+
+
+<script>
+    $(document).ready(function() {
+    setTimeout(() => {
+        const isMobile = window.innerWidth <= 1000;
+        if (!isMobile) return;
+        function splitTextFixSymbol($element) {
+            if ($element.length === 0) return; 
+            let text = $element.text().trim();
+            const sentenceRegex = /([A-Z][A-Za-z0-9\s,]+[!.])/g;
+            const sentences = text.match(sentenceRegex) || [];
+            const remainingText = text.replace(sentenceRegex, '').trim();
+            if (remainingText) sentences.push(remainingText);
+            const newText = sentences
+                .filter(item => item.trim() !== '')
+                .map(sentence => `<div>${sentence}</div>`)
+                .join(''); 
+            $element.html(newText);
+        }
+        splitTextFixSymbol($('.list_container .notice_box .notice_subtitle'));
+        splitTextFixSymbol($('.list_container .notice_box .notice_content'));
+    }, 100);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    setTimeout(() => {
+        const isMobile = window.innerWidth <= 1000;
+        if (!isMobile) return;
+        
+        function splitTextFixSymbol($element) {
+            if ($element.length === 0) return; 
+            let text = $element.text().trim();
+            const sentenceRegex = /Successfully sent!/g;
+            
+            const sentences = text.match(sentenceRegex) || [];
+            const remainingText = text.replace(sentenceRegex, '').trim();
+            if (remainingText) sentences.push(remainingText);
+            
+            const newText = sentences
+                .filter(item => item.trim() !== '')
+                .map(sentence => `<div>${sentence}</div>`)
+                .join(''); 
+            $element.html(newText);
+        }
+        splitTextFixSymbol($('.list_container .notice_box .notice_subtitle'));
+        splitTextFixSymbol($('.list_container .notice_box .notice_content'));
+    }, 100);
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    setTimeout(() => {
+        const $lateNoticeContent = $('.ly_inquiry_list_1 .notice_box .notice_content');
+        if ($lateNoticeContent.length > 0 && !$lateNoticeContent.find('.whatsapp-link').length) {
+            $lateNoticeContent.each(function() {
+                const originalHtml = $(this).html();
+                const newHtml = originalHtml.replace(
+                    /whatsapp/gi,
+                    '<a href="https://wa.me/8618832810569" target="_blank" class="whatsapp-link">whatsapp</a>'
+                );
+                $(this).html(newHtml);
+            });
+        }
+    }, 500);
+    const $noticeButton = $('.ly_inquiry_list_1 .notice_box .notice_button');
+    if ($noticeButton.length > 0) {
+        $noticeButton.attr('href', 'https://www.chinarubberhose.com/products/');
+    }
+});
+$(document).ready(function() {
+    setTimeout(() => {
+        const isMobile = window.innerWidth <= 1000;
+        if (!isMobile) return;
+        function splitTextFixSymbol($element) {
+            if ($element.length === 0) return; 
+            let text = $element.text().trim();
+            const sentenceRegex = /Successfully sent!/g;
+            const sentences = text.match(sentenceRegex) || [];
+            const remainingText = text.replace(sentenceRegex, '').trim();
+            if (remainingText) sentences.push(remainingText);
+            const newText = sentences
+                .filter(item => item.trim() !== '')
+                .map(sentence => `<div>${sentence}</div>`)
+                .join(''); 
+            $element.html(newText);
+        }
+        splitTextFixSymbol($('.list_container .notice_box .notice_subtitle'));
+        splitTextFixSymbol($('.list_container .notice_box .notice_content'));
+    }, 100);
+});
+</script>
+
+<style>
+    @media (min-width:1000px) {
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content a {font-size: 24px;color: #000000;text-decoration: none;}
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 24px;color: #000000;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 120px;height: 46px;line-height: 45px;font-size: 20px;border-radius: 5px;}
+    }
+    @media (max-width:1000px) {
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content a {font-size: 18px;color: #000000;text-decoration: none;}
+        body .ly_inquiry_list_1 .wide .list_container:has(.notice_box) {padding: 0;} 
+        .ly_inquiry_list_1 .list_container .notice_box {padding: 90px 0;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_content,
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {font-size: 18px;color: #000000;line-height: 2;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_subtitle {margin-top: 30px;padding-bottom: 0px;}
+        .ly_inquiry_list_1 .list_container .notice_box .notice_button {min-width: 100px;font-size: 17px;border-radius: 5px;margin-top: 30px;}
+    }
+</style>
+
+<style>
+    #chat_window .chat_box .menu #go_top {background-image: url(https://ueeshop.ly200-cdn.com/u_file/UPBA/UPBA565/2601/20/photo/topback.jpg);background-position: center !important;background-size: 60px auto;}
+    @media screen and (max-width: 1000px) {
+        #chat_window .chat_box .menu #go_top {background-size: 40px auto;}
+    }
+</style>
+

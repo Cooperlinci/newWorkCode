@@ -1,0 +1,59 @@
+<script>
+// 等待页面DOM加载完成后执行（避免元素未加载导致操作失败）
+$(document).ready(function() {
+    // ========== 配置项（易维护：后续修改仅需调整这里） ==========
+    const newLiConfig = {
+        // 新li中a标签的href属性
+        href: "https://www.linkedin.com/company/your-new-company/",
+        // a标签的class属性（和原有li保持一致）
+        linkClass: "icon_follow_linkedin",
+        // a标签的target属性（新窗口打开）
+        target: "_blank",
+        // a标签的title属性
+        title: "linkedin-new",
+        // i标签的class属性（和原有li保持一致）
+        iconClass: "iconfont icon-linkedinl"
+    };
+
+    // ========== 核心逻辑（目标精准） ==========
+    // 1. 精准定位目标ul（仅选择follow_us_list clearfix下的ul）
+    const targetUl = $('.follow_us_list.clearfix ul');
+    
+    // 2. 构建和原有li结构一致的新li元素
+    const newLi = $(`<li>
+        <a href="${newLiConfig.href}" rel="nofollow" class="${newLiConfig.linkClass}" target="${newLiConfig.target}" title="${newLiConfig.title}">
+            <i class="${newLiConfig.iconClass}"></i>
+        </a>
+    </li>`);
+
+    // 3. 将新li添加到ul的最后（append：追加到子元素末尾）
+    targetUl.append(newLi);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const newLiConfig = {
+        href: "https://www.alibaba.com/",
+        linkClass: "icon_follow_alibaba",
+        target: "_blank",
+        title: "alibaba",
+        iconClass: "iconfont icon-alibaba1"
+    };
+    const targetUl = $('.follow_us_list.clearfix ul');
+    const newLi = $(`<li>
+        <a href="${newLiConfig.href}" rel="nofollow" class="${newLiConfig.linkClass}" target="${newLiConfig.target}" title="${newLiConfig.title}">
+            <i class="${newLiConfig.iconClass}"></i>
+        </a>
+    </li>`);
+    targetUl.append(newLi);
+});
+</script>
+<style>
+    .ly_footer_48 .follow_us_list .icon-alibaba1 {
+        background-image: url(https://ueeshop.ly200-cdn.com/u_file/UPBH/UPBH515/2601/21/photo/alibaba.png);
+        background-color: var(--ThemesFooterBgColor);
+        background-size: 36px auto;
+        background-position: center;
+    }
+</style>

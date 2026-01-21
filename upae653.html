@@ -1,0 +1,21 @@
+系统的文章内容编辑器添加字体 http://help.shop.ly200.net/i-5.html
+4.0用的是ckeditor 5.0用的是tinyme
+
+
+4.0 /static/js/plugin/ckeditor/content.css
+@charset "UTF-8";
+
+@font-face {
+  font-family: "ARSMaquette-Regular";
+  src: url("https://ueeshop-static.ly200-cdn.com/static/font/ARSMaquette-Regular/font.woff2") format("woff2"),
+       url("https://ueeshop-static.ly200-cdn.com/static/font/ARSMaquette-Regular/font.woff") format("woff"),
+       url("https://ueeshop-static.ly200-cdn.com/static/font/ARSMaquette-Regular/font.eot") format("embedded-opentype"),
+       url("https://ueeshop-static.ly200-cdn.com/static/font/ARSMaquette-Regular/font.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+4.0 /static/js/plugin/ckeditor/config.js
+	config.font_names='Arial;Arial Black/arial black,Arial;Andale Mono/andale mono,Arial;Comic Sans Ms/comic sans ms,Arial;Times New Roman/Times New Roman,Arial;Cambria/Cambria,Arial;Calibri/Calibri,Arial;Courier New/Courier New,Arial;Verdana/Verdana,Arial;Georgia/Georgia,Arial;Tahoma/Tahoma,Arial;Times/Times,Arial;serif/serif,Arial;黑体/黑体,Arial;隶书/隶书,Arial;宋体/宋体,Arial;新宋体/新宋体,Arial;微软雅黑/微软雅黑,Arial;楷体_GB2312/楷体_GB2312,Arial;Montserrat-Light/Montserrat-Light,Arial;GreyGoose-Bold/GreyGoose-Bold,Arial;WorkSans-Regular/WorkSans-Regular,Arial;WorkSans-Medium/WorkSans-Medium,Arial;ARSMaquette-Regular/ARSMaquette-Regular,Arial';
+	在后面加";ARSMaquette-Regular/ARSMaquette-Regular,Arial"
