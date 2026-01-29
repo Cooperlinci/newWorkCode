@@ -57,3 +57,50 @@ SELECT * FROM manage_operation_log WHERE Log LIKE '%图片%' AND Data LIKE '%164
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('blogApp', '2', '', NULL, NULL, '1757928081', '1757928081', '0')
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('blockAccessApp', '2', '', NULL, NULL, '1757928081', '1757928081', '0')
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('downloadApp', '2', '', NULL, NULL, '', '', '0')
+
+UPDATE products SET Description_en = REPLACE(Description_en, 'upbd226.myueeshop.com', 'ifillingmachine.com') WHERE Description_en LIKE '%upbd226.myueeshop.com%';
+
+UPDATE products_description_en SET Description_en = REPLACE(Description_en, 'upbd226.myueeshop.com', 'ifillingmachine.com') WHERE Description_en LIKE '%upbd226.myueeshop.com%';
+
+-- 仅查询，不修改数据，验证替换效果
+SELECT BriefDescription_en AS 替换前内容, REPLACE(BriefDescription_en, '•', '<br>•') AS 替换后内容 FROM products_en WHERE BriefDescription_en LIKE '%•%';
+
+-- 精准更新products_en表的BriefDescription_en字段
+UPDATE products_en SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_cn SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_de SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_es SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_fr SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_jp SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_pt SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_ru SET BriefDescription_en = REPLACE(BriefDescription_en, '•', '<br>•') WHERE BriefDescription_en LIKE '%•%';
+
+UPDATE products_description_cn SET Description_en = REPLACE(Description_en, 'width: 1200px;', ' ') WHERE Description_en LIKE '%width: 1200px;%';
+
+
+SELECT Description_en AS 替换前内容, REPLACE(Description_en, 'width: 1200px;', ' ') AS 替换后内容 FROM products_description_cn WHERE Description_en LIKE '%width: 1200px;%';
+
+UPDATE products_description_ru SET Description_en = REPLACE(Description_en, 'width: 1200px;', ' ') WHERE Description_en LIKE '%width: 1200px;%';
+
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`, `ModifyTime`) VALUES ('blogApp', '2', '', NULL, NULL, '1757928081', '1757928081', '0')
+
+-- 复制info表为faq表
+CREATE TABLE `faq` LIKE `info`;
+ALTER TABLE `faq` CHANGE `InfoId` `FaqId` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'FAQ主键';
+
+-- 复制info_category表为faq_category表
+CREATE TABLE `faq_category` LIKE `info_category`;
+
+-- 复制info_content表为faq_content表
+CREATE TABLE `faq_content` LIKE `info_content`;
+ALTER TABLE `faq_content` CHANGE `InfoId` `FaqId` INT(10) NOT NULL COMMENT '关联FAQ主键';

@@ -1,0 +1,716 @@
+<script>
+// 等待页面DOM加载完成后初始化lightbox
+$(document).ready(function() {
+  // 初始化lightbox插件，绑定rel为product-gallery的a标签
+  $('a[rel=product-gallery]').lightBox({
+    // 可选配置项（根据需求调整）
+    overlayBgColor: '#000',       // 弹窗遮罩背景色
+    overlayOpacity: 0.8,          // 遮罩透明度
+    imageLoading: 'static/js/plugin/lightbox/images/loading.gif', // 加载动画地址
+    imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',   // 关闭按钮地址
+    imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',     // 上一张按钮地址
+    imageBtnNext: 'static/js/plugin/lightbox/images/next.gif',     // 下一张按钮地址
+    containerResizeSpeed: 300     // 弹窗尺寸调整动画速度
+  });
+});
+</script>
+
+
+<script>
+// 等待页面DOM完全加载后执行
+$(document).ready(function() {
+  /**************************
+   * 1. 配置区（易维护：修改这里的选择器/属性值即可适配需求变更）
+   **************************/
+  // 目标a标签的精准选择器（根据你的HTML层级定位，仅匹配产品展示区的a标签）
+  const targetATagSelector = '.item_list .cate_item .pic_box .compute_item_img .compute.process_img a';
+  // 要添加的rel属性名称和值
+  const relAttrName = 'rel';
+  const relAttrValue = 'product-gallery';
+
+  /**************************
+   * 2. 核心逻辑：精准添加rel属性
+   **************************/
+  // 1) 定位目标a标签并添加rel属性（仅作用于匹配的元素）
+  $(targetATagSelector)
+    .attr(relAttrName, relAttrValue) // 添加rel属性
+    .each(function(index, element) { // 可选：控制台打印日志，验证是否精准匹配（上线可注释）
+      console.log(`已为第${index+1}个产品a标签添加rel属性：`, element);
+    });
+
+  /**************************
+   * 3. 初始化lightbox（添加属性后执行，确保生效）
+   **************************/
+  $('a[rel=product-gallery]').lightBox({
+    overlayBgColor: '#000',         // 遮罩背景色
+    overlayOpacity: 0.8,            // 遮罩透明度
+    containerResizeSpeed: 300,      // 弹窗尺寸调整速度
+    // 以下路径替换为你实际的lightbox插件资源路径（保持和插件文件一致）
+    imageLoading: 'static/js/plugin/lightbox/images/loading.gif',
+    imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',
+    imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',
+    imageBtnNext: 'static/js/plugin/lightbox/images/next.gif'
+  });
+});
+</script>
+
+<link rel="stylesheet" href="static/js/plugin/lightbox/css/lightbox.min.css" />
+<script src="static/js/plugin/lightbox/js/lightbox.min.js"></script>
+<script>
+$(document).ready(function() {
+  const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+  const relAttrName = 'rel';
+  const relAttrValue = 'product-gallery';
+  $(targetATagSelector)
+    .attr(relAttrName, relAttrValue)
+  $('a[rel=product-gallery]').lightBox({
+    overlayBgColor: '#000',
+    overlayOpacity: 0.8,
+    containerResizeSpeed: 300,
+    imageLoading: 'static/js/plugin/lightbox/images/loading.gif',
+    imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',
+    imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',
+    imageBtnNext: 'static/js/plugin/lightbox/images/next.gif'
+  });
+});
+</script>
+
+.ly_poster_33 .item_container .cate_item
+
+<script>
+$(document).ready(function() {
+    /**************************
+     * 配置区（易维护）
+     **************************/
+    // 精准定位目标a标签
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box .compute_item_img .compute_process_img a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+
+    /**************************
+     * 核心逻辑：替换a标签href为内部img的图片URL
+     **************************/
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl && imgUrl !== '') {
+            $a.attr('href', imgUrl);
+            console.log('替换a标签href成功：', imgUrl);
+        } else {
+            console.warn('未提取到图片URL，跳过该a标签：', $a);
+        }
+        $a.attr(relAttrName, relAttrValue);
+    });
+
+    /**************************
+     * 初始化lightbox插件
+     **************************/
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: 'static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',
+        imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',
+        imageBtnNext: 'static/js/plugin/lightbox/images/next.gif'
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl && imgUrl !== '') {
+            $a.attr('href', imgUrl);
+            console.log('替换a标签href成功：', imgUrl); 
+        } else {
+            console.warn('未提取到图片URL，跳过该a标签：', $a);
+        }
+        $a.attr(relAttrName, relAttrValue);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: 'static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',
+        imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',
+        imageBtnNext: 'static/js/plugin/lightbox/images/next.gif'
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    const urlStartFlag = '/2601/22/';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl && imgUrl.includes(urlStartFlag)) {
+            imgUrl = imgUrl.substring(imgUrl.indexOf(urlStartFlag));
+            $a.attr('href', imgUrl);
+            console.log('替换后a标签href：', imgUrl);
+        } else if (imgUrl) {
+            $a.attr('href', imgUrl);
+            console.warn('未找到标识' + urlStartFlag + '，保留原URL：', imgUrl);
+        } else {
+            console.warn('未提取到图片URL，跳过该a标签：', $a);
+            return;
+        }
+        $a.attr(relAttrName, relAttrValue);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: 'static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: 'static/js/plugin/lightbox/images/close.gif',
+        imageBtnPrev: 'static/js/plugin/lightbox/images/prev.gif',
+        imageBtnNext: 'static/js/plugin/lightbox/images/next.gif'
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl) {
+            const urlParts = imgUrl.split('/');
+            if (urlParts.length >= 7) {
+                const newHref = urlParts.slice(6).join('/');
+                $a.attr('href', newHref);
+                console.log('替换后a标签href：', newHref);
+            } else {
+                $a.attr('href', imgUrl);
+                console.warn('图片URL的/数量不足6个，保留原URL：', imgUrl);
+            }
+        } else {
+            console.warn('未提取到图片URL，跳过该a标签：', $a);
+            return;
+        }
+        $a.attr(relAttrName, relAttrValue);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        setTimeout(function() {
+            let imgUrl = '';
+            if ($img.attr('srcset')) {
+                imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+            } else if ($img.attr('src')) {
+                imgUrl = $img.attr('src');
+            }
+            if (imgUrl && imgUrl !== '') {
+                const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+                $a.attr('href', imgUrlTrimmed);
+                console.log('延迟替换a标签href成功：', imgUrlTrimmed);
+            }
+            $a.attr(relAttrName, relAttrValue);
+        }, 500);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+<script>
+$(window).on('load', function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    const maxRetry = 3;
+    function replaceATagHref($a) {
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl && imgUrl !== '') {
+            const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+            $a.attr('href', imgUrlTrimmed);
+            $a.attr(relAttrName, relAttrValue);
+            return true; 
+        }
+        return false; 
+    }
+    function processAllATags(retryCount = 0) {
+        const $allATags = $(targetATagSelector);
+        const unprocessedTags = [];
+
+        $allATags.each(function() {
+            const $a = $(this);
+            if (!$a.attr('href').match(/\.(jpg|png)$/i)) {
+                const isSuccess = replaceATagHref($a);
+                if (!isSuccess) {
+                    unprocessedTags.push($a);
+                }
+            }
+        });
+    }
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+<script>
+    // 改用window.load（等待所有资源：图片、动态DOM、懒加载属性都加载完成）
+$(window).on('load', function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    // 最大重试次数（防止无限重试）
+    const maxRetry = 3;
+    // 重试间隔（ms）
+    const retryInterval = 200;
+
+    // 核心替换函数（仅修改此函数内的替换逻辑，其余不变）
+    function replaceATagHref($a) {
+        const $img = $a.find('img');
+        let imgUrl = '';
+        
+        // 【优化1】增强URL提取逻辑：兼容空值、多空格分隔的情况
+        const dataSrcset = $img.attr('data-srcset') || '';
+        const srcset = $img.attr('srcset') || '';
+        const src = $img.attr('src') || '';
+
+        // 优先级：data-srcset（懒加载）→ srcset → src，兼容各种分隔符
+        if (dataSrcset.trim()) {
+            // 兼容逗号/空格/制表符分隔的srcset格式
+            imgUrl = dataSrcset.split(/[, \t]+/)[0].trim();
+        } else if (srcset.trim()) {
+            imgUrl = srcset.split(/[, \t]+/)[0].trim();
+        } else if (src.trim()) {
+            imgUrl = src.trim();
+        }
+
+        // 【优化2】增强URL截取逻辑：兼容无后缀、大小写、多后缀的情况
+        if (imgUrl) {
+            // 匹配.jpg/.png/.jpeg（扩展常见图片后缀），确保截取准确
+            const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png|\.jpeg).*$/i, '$1');
+            // 强制替换href，确保覆盖原有值
+            $a.attr('href', imgUrlTrimmed);
+            // 强制设置rel属性，避免遗漏
+            $a.attr(relAttrName, relAttrValue);
+            console.log('替换成功：', $a[0], '→', imgUrlTrimmed);
+            return true; // 替换成功，返回true
+        }
+        console.warn('单次替换失败（无有效URL）：', $a[0]);
+        return false; // 替换失败，返回false
+    }
+
+    // 遍历+重试逻辑（完全保留，未改动）
+    function processAllATags(retryCount = 0) {
+        // 每次执行都重新查询最新的DOM（避免动态插入的元素漏抓）
+        const $allATags = $(targetATagSelector);
+        console.log(`第${retryCount+1}次处理，找到${$allATags.length}个目标a标签`);
+
+        // 记录未替换成功的标签
+        const unprocessedTags = [];
+
+        $allATags.each(function() {
+            const $a = $(this);
+            // 只有还没替换过的标签才处理（避免重复替换）
+            if (!$a.attr('href').match(/\.(jpg|png|jpeg)$/i)) {
+                const isSuccess = replaceATagHref($a);
+                if (!isSuccess) {
+                    unprocessedTags.push($a);
+                }
+            }
+        });
+
+        // 重试逻辑：还有未处理的标签，且没到最大重试次数
+        if (unprocessedTags.length > 0 && retryCount < maxRetry) {
+            console.log(`还有${unprocessedTags.length}个标签未替换，${retryInterval}ms后重试`);
+            setTimeout(() => {
+                processAllATags(retryCount + 1);
+            }, retryInterval);
+        } else {
+            // 所有标签处理完成（或重试结束），再初始化lightbox
+            initLightbox();
+        }
+    }
+
+    // 初始化lightbox（完全保留你指定的配置，未做任何改动）
+    function initLightbox() {
+        setTimeout(() => { 
+            const $processedTags = $('a[rel=product-gallery]');
+            console.log('初始化lightbox，已处理的标签数：', $processedTags.length);
+            
+            // 👇👇 你指定的lightbox配置块，完全未改动 👇👇
+            $processedTags.lightBox({
+                overlayBgColor: '#000',
+                overlayOpacity: 0.8,
+                containerResizeSpeed: 300,
+                imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+                imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+                imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+                imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+            });
+            // 👆👆 你指定的lightbox配置块，完全未改动 👆👆
+        }, 300);
+    }
+
+    // 启动处理流程
+    processAllATags();
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    setTimeout(() => {
+        $(targetATagSelector).each(function() {
+            const $a = $(this);
+            const $img = $a.find('img');
+            let imgUrl = '';
+            if ($img.attr('srcset')) {
+                imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+            } else if ($img.attr('src')) {
+                imgUrl = $img.attr('src');
+            }
+            if (imgUrl && imgUrl !== '') {
+                const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+                $a.attr('href', imgUrlTrimmed);
+            }
+            $a.attr(relAttrName, relAttrValue);
+        });
+    }, 500)
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        }
+        if (imgUrl && imgUrl !== '') {
+            const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+            $a.attr('href', imgUrlTrimmed);
+        }
+        $a.attr(relAttrName, relAttrValue);
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const CONFIG = {
+        targetATagSelector: '.ly_poster_33 .item_container .cate_item .pic_box a',
+        relAttr: {
+            name: 'rel',
+            value: 'product-gallery'
+        },
+        validImageExt: /(\.jpg|\.png).*$/i
+    };
+    $(CONFIG.targetATagSelector).each(function(index) {
+        const $currentA = $(this);
+        const $imgInA = $currentA.find('img');
+        if (!$imgInA.length) {
+            $currentA.attr(CONFIG.relAttr.name, CONFIG.relAttr.value);
+            return true;
+        }
+        let imgUrl = '';
+        if ($imgInA.attr('srcset')) {
+            const srcsetFirstPart = $imgInA.attr('srcset').split(',')[0]?.trim() || '';
+            imgUrl = srcsetFirstPart.split(/\s+/)[0]?.trim() || '';
+        } 
+        else if ($imgInA.attr('src')) {
+            imgUrl = $imgInA.attr('src').trim();
+        }
+        if (imgUrl) {
+            const cleanedImgUrl = imgUrl.replace(CONFIG.validImageExt, '$1');
+            $currentA.attr('href', cleanedImgUrl);
+        }
+        $currentA.attr(CONFIG.relAttr.name, CONFIG.relAttr.value);
+    });
+});
+</script>
+
+
+<link rel="stylesheet" href="/static/js/plugin/lightbox/css/lightbox.min.css" />
+<script src="/static/js/plugin/lightbox/js/lightbox.min.js"></script>
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_33 .item_container .cate_item .pic_box a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        } else if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset');
+        }
+        console.log(imgUrl);
+        if (imgUrl && imgUrl !== '') {
+            const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+            console.log(imgUrlTrimmed);
+            $a.attr('href', imgUrlTrimmed);
+        }
+        console.log(relAttrName,relAttrValue);
+        $a.attr(relAttrName, relAttrValue);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+<style>
+    .ly_product_description_1 .wide>.section .description_box {border-bottom: 1px solid #333333;}
+</style>
+
+<img src="//ueeshop.ly200-cdn.com/u_file/UPBH/UPBH341/2601/26/photo/a952e015d0.png" width="624" /> 
+<img src="//ueeshop.ly200-cdn.com/u_file/UPBH/UPBH341/2601/26/photo/346b6b05b2.png" width="624" />
+<br />
+<br />
+<div class="img-container">
+    <div class="img-left">
+        <img src="//ueeshop.ly200-cdn.com/u_file/UPBH/UPBH341/2601/26/photo/04801d0586.png" width="624" />
+    </div>
+    <div class="img-right-group">
+        <img src="//ueeshop.ly200-cdn.com/u_file/UPBH/UPBH341/2601/26/photo/3a24b93e27.png" width="624" />
+        <img src="//ueeshop.ly200-cdn.com/u_file/UPBH/UPBH341/2601/26/photo/df6e05cae9.png" width="624" />
+    </div>
+</div>
+<style>
+    .img-container {margin: 0 auto;display: flex;align-items: flex-start;justify-content: flex-start;gap: 10px; }
+    .img-left {flex: 0 0 auto;}
+    .img-right-group {flex: 0 0 auto;display: flex;flex-direction: column;gap: 10px;}
+    .img-container img {width: 624px;height: auto;object-fit: contain;border: none;}
+</style>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        .ly_service_18 .text_info .service_list .item:nth-child(5n) {margin-right: 33px !important;}
+        .ly_service_18 .text_info .service_list .item:last-child  {margin-right: 0;}
+        .ly_service_18 .text_info .service_list .item {width: calc((100% - 166px) / 6) !important;}   
+    }
+    @media screen and (max-width: 1000px) {
+        .ly_service_18 .text_info .service_list .item {width: calc((100% - 66px) / 3) !important;}
+        .ly_service_18 .text_info .service_list .item:nth-child(4) {margin-right: 15px !important;}
+        .ly_service_18 .text_info .service_list .item:nth-child(3) {margin-right: 0;}
+        .ly_service_18 .text_info .service_list .item:nth-child(2) {margin-right: 15px !important;}
+    }
+</style>
+
+<script>
+    $(function() {
+        $('.ly_service_18 .text_info .service_list div[class*="item"]:not(.no_margin)').addClass('no_margin');
+    });
+</script>
+
+<script>
+    $(function() {
+        function setNoMarginForPC() {
+            var windowWidth = $(window).width();
+            var targetItems = $('.ly_service_18 .text_info .service_list div[class*="item"]:not(.no_margin)');
+            if (windowWidth >= 1001) {
+                targetItems.addClass('no_margin');
+            } else {
+                targetItems.removeClass('no_margin');
+            }
+        }
+        setNoMarginForPC();
+        $(window).on('resize', setNoMarginForPC);
+    });
+</script>
+
+
+<script>
+    $(function() {
+        // 封装核心逻辑为函数，方便复用
+        function setNoMarginForPC() {
+            // 获取当前窗口宽度
+            var windowWidth = $(window).width();
+            // 定位目标元素
+            var targetItems = $('.ly_service_18 .text_info .service_list div[class*="item"]:not(.no_margin)');
+            
+            // 仅当屏幕宽度≥1001px（PC端）时添加类，否则移除（避免样式错乱）
+            if (windowWidth >= 1001) {
+                targetItems.addClass('no_margin');
+            } else {
+                targetItems.removeClass('no_margin');
+            }
+        }
+
+        // 页面首次加载时执行一次
+        setNoMarginForPC();
+
+        // 监听窗口大小变化，实时调整（可选但推荐，提升体验）
+        $(window).on('resize', setNoMarginForPC);
+    });
+</script>
+
+一行展示六个 service_18
+最终使用
+<style>
+    @media screen and (min-width: 1000px) {
+        .ly_service_18 .text_info .service_list .item:nth-child(5n) {margin-right: 33px !important;}
+        .ly_service_18 .text_info .service_list .item:last-child  {margin-right: 0;}
+        .ly_service_18 .text_info .service_list .item {width: calc((100% - 166px) / 6) !important;}   
+    }
+</style>
+
+
+<link rel="stylesheet" href="/static/js/plugin/lightbox/css/lightbox.min.css" />
+<script src="/static/js/plugin/lightbox/js/lightbox.min.js"></script>
+<script>
+$(document).ready(function() {
+    const targetATagSelector = '.ly_poster_6 .section .item_box .item .image a';
+    const relAttrName = 'rel';
+    const relAttrValue = 'product-gallery';
+    $(targetATagSelector).each(function() {
+        const $a = $(this);
+        const $img = $a.find('img');
+        let imgUrl = '';
+        if ($img.attr('srcset')) {
+            imgUrl = $img.attr('srcset').split(/[, ]/)[0].trim();
+        } else if ($img.attr('src')) {
+            imgUrl = $img.attr('src');
+        } else if ($img.attr('data-srcset')) {
+            imgUrl = $img.attr('data-srcset');
+        }
+        console.log(imgUrl);
+        if (imgUrl && imgUrl !== '') {
+            const imgUrlTrimmed = imgUrl.replace(/(\.jpg|\.png).*$/i, '$1');
+            console.log(imgUrlTrimmed);
+            $a.attr('href', imgUrlTrimmed);
+        }
+        console.log(relAttrName,relAttrValue);
+        $a.attr(relAttrName, relAttrValue);
+    });
+    $('a[rel=product-gallery]').lightBox({
+        overlayBgColor: '#000',
+        overlayOpacity: 0.8,
+        containerResizeSpeed: 300,
+        imageLoading: '/static/js/plugin/lightbox/images/loading.gif',
+        imageBtnClose: '/static/js/plugin/lightbox/images/close.png',
+        imageBtnPrev: '/static/js/plugin/lightbox/images/prev.png',
+        imageBtnNext: '/static/js/plugin/lightbox/images/next.png'
+    });
+});
+</script>
+
+<style>
+    .header .default_nav .has_sec:has(a[title*="Products"]) .small_nav_sec {width: 601px;}
+</style>

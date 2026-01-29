@@ -889,3 +889,90 @@ $(document).ready(function() {
     }
 </style>
 
+<script>
+//014.js
+
+(function() {
+    const l = {
+        init() {
+            this.childrenToggle(),
+            this.scrollToAnchor()
+        },
+        childrenToggle: () => {
+            $(".visual_plugins_container").off("click", ".global_article_outline .haschildren").on("click", ".global_article_outline .haschildren", function() {
+                let l = $(this).next(".outline_sublist");
+                $(this).toggleClass("current"),
+                l.length && l.slideToggle()
+            }).off("click", ".global_article_outline .outline_title").on("click", ".global_article_outline .outline_title", function() {
+                $(this).toggleClass("current"),
+                $(this).siblings(".outline_list").slideToggle()
+            })
+        }
+        ,
+        scrollToAnchor: () => {
+            $(".visual_plugins_container").off("click", ".global_article_outline .outline_link").on("click", ".global_article_outline .outline_link", function(l) {
+                l.preventDefault();
+                let i = $(this).attr("href");
+                return $(i).length && $("html, body").animate({
+                    scrollTop: $(i).offset().top
+                }, 300, "linear"),
+                !1
+            })
+        }
+    };
+    l.init()
+}
+)();
+
+
+// modified
+
+(function() {
+    const l = {
+        init() {
+            this.childrenToggle(),
+            this.scrollToAnchor()
+        },
+        childrenToggle: () => {
+            $(".visual_plugins_container").off("click", ".global_article_outline .haschildren").on("click", ".global_article_outline .haschildren", function() {
+                let l = $(this).next(".outline_sublist");
+                $(this).toggleClass("current"),
+                l.length && l.slideToggle()
+            }).off("click", ".global_article_outline .outline_title").on("click", ".global_article_outline .outline_title", function() {
+                $(this).toggleClass("current"),
+                $(this).siblings(".outline_list").slideToggle()
+            })
+        }
+        ,
+        scrollToAnchor:()=>{
+        $(".visual_plugins_container")
+            .off("click",".global_article_outline .outline_link")
+            .on("click",".global_article_outline .outline_link",function(l){
+                l.preventDefault();
+                let i=$(this).attr("href");
+                const navHeight = $("#header").outerHeight();
+                return $(i).length&&$("html, body").animate({
+                    scrollTop: $(i).offset().top - navHeight
+                },300,"linear"),!1
+            })
+        }
+    };
+    l.init()
+}
+)();
+
+(function(){
+    $(".visual_plugins_container").off("click",".global_article_outline .outline_link");
+    $(".visual_plugins_container").on("click",".global_article_outline .outline_link",function(e){
+        e.preventDefault();
+        let href = $(this).attr("href");
+        if (!$(href).length) return false;
+        const hei = $("#header").outerHeight();
+        const targetTop = $(href).offset().top - hei;
+        $("html, body").animate({
+        scrollTop: targetTop
+        }, 300, "linear");
+        return false;
+    });
+})();
+</script>

@@ -73,3 +73,47 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+<style>
+.ly_login .right_bar .third_login_box {background-image: url('https://ueeshop.ly200-cdn.com/u_file/UPBE/UPBE497/2601/14/photo/logo.png');background-size: contain;background-repeat: no-repeat;background-position: center;width: 200px; height: 80px;padding: 0;margin: 0;}
+</style>
+<script>
+// 提前定义图片链接，便于维护
+const logoImgUrl = 'https://ueeshop.ly200-cdn.com/u_file/UPBE/UPBE497/2601/21/photo/logo.png';
+
+// 等待页面加载完成后执行（避免元素未渲染导致选择失败）
+$(document).ready(function() {
+  // 精准选中third_login_box元素
+  const $thirdLoginBox = $('.third_login_box');
+  
+  // 方式1：追加图片（保留原有内容）
+  $thirdLoginBox.append(`<img src="${logoImgUrl}" alt="logo" style="width:200px;height:auto;">`);
+  
+  // 方式2：覆盖原有内容（如需清空div后插入图片，取消下面注释）
+  // $thirdLoginBox.html(`<img src="${logoImgUrl}" alt="logo" style="width:200px;height:auto;">`);
+});
+</script>
+
+
+<script>
+const logoImgUrl = 'https://ueeshop.ly200-cdn.com/u_file/UPBE/UPBE497/2601/21/photo/logo.png';
+$(document).ready(function() {
+  const $thirdLoginBox = $('.ly_login .right_bar .third_login_box');
+  $thirdLoginBox.append(`<img src="${logoImgUrl}" alt="logo" style="width:200px;height:auto;">`);
+});
+$(document).ready(function () {
+    const imgElements = document.querySelectorAll('.ly_login .right_bar .third_login_box img');
+    const cleanImageUrl = (url) => {
+        if (!url) return url;
+        return url.replace(/(\.\d+x\d+\.\w+)?(\?x-oss-process=.*)?$/g, '');
+    };
+    Array.from(imgElements).forEach(img => {
+        const $img = $(img);
+        ['data-srcset', 'srcset', 'src'].forEach(attr => {
+            const value = $img.attr(attr);
+            if (value) $img.attr(attr, cleanImageUrl(value));
+        });
+    });
+});
+</script>

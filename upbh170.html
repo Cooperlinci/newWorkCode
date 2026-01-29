@@ -24,3 +24,136 @@
         .ly_news_3 {margin-top: -35px;}
     }
 </style>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        .default_foot_menu_style .menu_list.menu_list_menu {width: 11%;}
+        .default_foot_menu_style .menu_list.menu_list_contact.hasIcon {width: 39%;}
+        .ly_footer_27 .default_foot_menu_style .menu_list.menu_list_contact dl {padding-right: 15%;}
+    }
+</style>
+
+
+<script>
+$(function() {
+    // -------------------------- 1. 处理谷歌地图跳转 --------------------------
+    // 找到第一个地址链接（特征：title包含地址，href为javascript:）
+    const $addressLink = $("a[href='javascript:'][title*='Add.:']").first();
+    if ($addressLink.length) {
+        // 提取title中的纯地址（去掉前缀"Add.: "）
+        const rawAddress = $addressLink.attr("title");
+        const cleanAddress = rawAddress.replace(/^Add.:\s*/, ""); // 正则去掉前缀
+        
+        // 绑定点击事件：跳转到谷歌地图搜索该地址
+        $addressLink.on("click", function(e) {
+            e.preventDefault(); // 阻止原javascript:空跳转
+            // 谷歌地图搜索URL（编码地址避免特殊字符问题）
+            const googleMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cleanAddress)}`;
+            window.open(googleMapUrl, "_blank"); // 新窗口打开
+        });
+        
+        // 可选：给链接加样式，提示可点击（视觉优化）
+        $addressLink.css({
+            "color": "#1a73e8",
+            "cursor": "pointer",
+            "text-decoration": "underline"
+        });
+    }
+
+    // -------------------------- 2. 处理WhatsApp跳转 --------------------------
+    // 找到第二个WhatsApp链接（特征：title/href包含whatsapp&WeChat）
+    const $whatsappLink = $("a[href='javascript:'][title*='whatsapp&WeChat']").first();
+    if ($whatsappLink.length) {
+        // 提取手机号（匹配+86开头的数字，去掉空格/符号）
+        const rawText = $whatsappLink.attr("title") || $whatsappLink.text();
+        const phoneMatch = rawText.match(/\+86\s*(\d{11})/); // 匹配+86 15361061694格式
+        if (phoneMatch && phoneMatch[1]) {
+            const phoneNumber = `86${phoneMatch[1]}`; // WhatsApp需要86开头（无+号）
+            const whatsappUrl = `https://wa.me/${phoneNumber}`; // WhatsApp官方跳转URL
+            
+            // 绑定点击事件：跳转到WhatsApp
+            $whatsappLink.on("click", function(e) {
+                e.preventDefault();
+                window.open(whatsappUrl, "_blank");
+            });
+            
+            // 可选：样式优化
+            $whatsappLink.css({
+                "color": "#25D366",
+                "cursor": "pointer",
+                "text-decoration": "underline"
+            });
+        }
+    }
+});
+</script>
+
+
+<script>
+$(function() {
+    const $addressLink = $(".ly_footer_27 .default_foot_menu_style .menu_list dd  a[title*='Add.:']").first();
+    if ($addressLink.length) {
+        const rawAddress = $addressLink.attr("title");
+        $addressLink.on("click", function(e) {
+            e.preventDefault();
+            const googleMapUrl = `https://www.google.com/maps/place/%E5%90%8C%E5%AF%8C%E8%A3%95%E5%B7%A5%E4%B8%9A%E5%8C%BA/@22.6523082,113.9129084,13z/data=!4m10!1m2!2m1!1sBuilding+1-4,+Tongfuyu+Industrial+Zone,+Aiqun+Road,+Shiyan,+Baoan+District,+Shenzhen+City,+China!3m6!1s0x34039269d52653f9:0x543789d372dda24d!8m2!3d22.695849!4d113.930028!15sCmBCdWlsZGluZyAxLTQsIFRvbmdmdXl1IEluZHVzdHJpYWwgWm9uZSwgQWlxdW4gUm9hZCwgU2hpeWFuLCBCYW9hbiBEaXN0cmljdCwgU2hlbnpoZW4gQ2l0eSwgQ2hpbmHgAQA!16s%2Fg%2F1tdw5myw?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D`;
+            window.open(googleMapUrl, "_blank");
+        });
+    }
+    const $whatsappLink = $(".ly_footer_27 .default_foot_menu_style .menu_list dd a[title*='whatsapp']").first();
+    if ($whatsappLink.length) {
+        const rawText = $whatsappLink.attr("title") || $whatsappLink.text();
+        const phoneMatch = rawText.match(/\+86\s*(\d{11})/);
+        if (phoneMatch && phoneMatch[1]) {
+            const phoneNumber = `86${phoneMatch[1]}`;
+            const whatsappUrl = `https://wa.me/+${phoneNumber}`;
+            $whatsappLink.on("click", function(e) {
+                e.preventDefault();
+                window.open(whatsappUrl, "_blank");
+            });
+        }
+    }
+});
+</script>
+
+
+<script>
+$(function() {
+    const $addrLink = $(".ly_footer_27 .default_foot_menu_style .menu_list dd a[title*='Add.:']").first();
+    if ($addrLink.length) {
+        const addr = $addrLink.attr("title").replace(/^Add.:\s*/, "");
+        $addrLink.attr("href", `https://www.google.com/maps/place/%E5%90%8C%E5%AF%8C%E8%A3%95%E5%B7%A5%E4%B8%9A%E5%8C%BA/@22.6523082,113.9129084,13z/data=!4m10!1m2!2m1!1sBuilding+1-4,+Tongfuyu+Industrial+Zone,+Aiqun+Road,+Shiyan,+Baoan+District,+Shenzhen+City,+China!3m6!1s0x34039269d52653f9:0x543789d372dda24d!8m2!3d22.695849!4d113.930028!15sCmBCdWlsZGluZyAxLTQsIFRvbmdmdXl1IEluZHVzdHJpYWwgWm9uZSwgQWlxdW4gUm9hZCwgU2hpeWFuLCBCYW9hbiBEaXN0cmljdCwgU2hlbnpoZW4gQ2l0eSwgQ2hpbmHgAQA!16s%2Fg%2F1tdw5myw?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D`);
+        $addrLink.attr("target", '_blank');
+    }
+    const $waLink = $(".ly_footer_27 .default_foot_menu_style .menu_list dd a[title*='whatsapp']").first();
+    if ($waLink.length) {
+        const phone = ($waLink.attr("title") || $waLink.text()).match(/\+86\s*(\d{11})/);
+        if (phone) $waLink.attr("href", `https://wa.me/86${phone[1]}`);
+        $waLink.attr("target", '_blank');
+    }
+});
+</script>
+
+
+<script>
+$(function() {
+    const $waLink = $(".ly_footer_43 .default_foot_menu_style .menu_list.menu_list_contact.hasIcon dd.row a[title*=' + 86 18124280467']").first();
+    if ($waLink.length) {
+        const phone = ($waLink.attr("title") || $waLink.text()).match(/\+86\s*(\d{11})/);
+        $waLink.attr("href", `https://wa.me/8618124280467`);
+        $waLink.attr("target", '_blank');
+    }
+});
+</script>
+
+<script>
+$(function() {
+    const $targetLink = $(".ly_footer_43 .default_foot_menu_style .menu_list.menu_list_contact.hasIcon dd.row a[title*=' + 86 18124280467']");
+    const phoneNumber = $targetLink.attr('title').replace(/[^0-9]/g, '');
+    const whatsappLink = `https://wa.me/${phoneNumber}`;
+    $targetLink.attr('href', whatsappLink);
+    $targetLink.attr("target", "_blank");
+});
+</script>
+
+.ly_footer_43 .default_foot_menu_style .menu_list.menu_list_contact.hasIcon dd.row title=" + 86 18124280467"

@@ -1,0 +1,43 @@
+<script>
+$(document).ready(function() {
+    const $chatBox = $('#chat_box');
+    const $newDiv = $('<div>')
+        .addClass('menu')
+        .text('填写');
+    $chatBox.append($newDiv);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const $chatBox = $('#chat_box');
+    const $newMenuDiv = $('<div>')
+        .addClass('menu fill')
+    const $newATag = $('<a>')
+        .attr({
+            'href': 'javascript:;',
+            'id': 'fill_in',
+            'class': 'fill_in',
+            'title': 'fill_in'
+        });
+    $newMenuDiv.append($newATag);
+    $chatBox.append($newMenuDiv);
+});
+</script>
+
+<script>
+$(function() {
+    $('#trigger_message_click').click(function(e) {
+        e.preventDefault();
+        $('#float_message .message_title').click();
+    });
+});
+</script>
+
+<style>
+    .ly_header_7 .wide .nav {padding: 5px 0;}
+</style>
+
+<style>
+    #chat_window .chat_box .menu a {background: #07bb8a url(https://ueeshop.ly200-cdn.com/u_file/UPBE/UPBE968/2601/28/photo/fillin.png) no-repeat 0 0;background-size: 65%;background-position: center;}
+</style>

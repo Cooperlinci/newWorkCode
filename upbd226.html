@@ -1,0 +1,76 @@
+<script>
+    // 核心配置项 - 集中管理，后续改号码/链接只需改这里
+const whatsappConfig = {
+  phoneNumber: '8618305555006', // WhatsApp要求的号码格式（去掉+和空格）
+  baseUrl: 'https://api.whatsapp.com/send?phone=' // 固定链接模板
+};
+
+// 等待DOM完全加载后执行（避免元素未加载导致找不到）
+$(document).ready(function() {
+  // 精准选择目标a标签：匹配class为"text notranslate"的span下、href以tel:+86开头的a标签
+  const targetLink = $('span.text.notranslate a[href^="tel:+86"]');
+  
+  // 校验元素是否存在，避免报错
+  if (targetLink.length > 0) {
+    // 拼接完整的WhatsApp链接
+    const finalWhatsappLink = whatsappConfig.baseUrl + whatsappConfig.phoneNumber;
+    
+    // 修改href为WhatsApp链接（核心操作）
+    targetLink.attr('href', finalWhatsappLink);
+    
+    // 可选：更新title属性（提升用户体验，也可以保留原title）
+    targetLink.attr('title', '通过WhatsApp联系：' + whatsappConfig.phoneNumber);
+    
+    console.log('链接替换成功，新链接：', finalWhatsappLink);
+  } else {
+    console.warn('未找到目标链接，请检查HTML结构或选择器是否匹配');
+  }
+});
+</script>
+
+<script>
+const whatsappConfig = {
+    phoneNumber: '8618305555006',
+    baseUrl: 'https://api.whatsapp.com/send?phone='
+};
+$(document).ready(function() {
+    const targetLink = $('#themes_header_board .borardFixedBox .contactInfoBox .text.notranslate a[href^="tel:+86"]');
+    if (targetLink.length > 0) {
+        const finalWhatsappLink = whatsappConfig.baseUrl + whatsappConfig.phoneNumber;
+        targetLink.attr('href', finalWhatsappLink);
+    }   
+});
+</script>
+
+// 排查临时域名的
+<script>
+const config = {
+  tempDomain: 'upbd226.myueeshop.com',
+  officialDomain: 'ifillingmachine.com'
+};
+
+const aLinks = document.querySelectorAll('a[href*="' + config.tempDomain + '"]');
+const resourceLinks = document.querySelectorAll('img[src*="' + config.tempDomain + '"], script[src*="' + config.tempDomain + '"], link[href*="' + config.tempDomain + '"], iframe[src*="' + config.tempDomain + '"]');
+
+console.log('含临时域名的a标签链接');
+aLinks.forEach((link, index) => {
+  console.log(`第${index+1}个：`, link.href, '（元素位置：', link, '）');
+});
+
+console.log('\n含临时域名的资源链接');
+resourceLinks.forEach((link, index) => {
+  const url = link.href || link.src;
+  console.log(`第${index+1}个：`, url, '（元素类型：', link.tagName, '）');
+});
+
+console.log('\n检查页面JS中是否有临时域名跳转');
+const scripts = document.querySelectorAll('script');
+scripts.forEach((script, index) => {
+  const content = script.innerHTML || script.src;
+  if (content.includes(config.tempDomain)) {
+    console.log(`第${index+1}个脚本包含临时域名：`, script.src || '内联脚本');
+  }
+});
+</script>
+
+<script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/987764049/?random=1769050913037&amp;cv=11&amp;fst=1769050913037&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45be61k2v9103519797z89103517342za20gzb9103517342zd9103517342xec&amp;gcd=13v3v3v3v5l1&amp;dma=0&amp;tag_exp=103116026~103200004~104527907~104528500~104684208~104684211~105391253~115938466~115938469~116682876~116744867~117041588&amp;u_w=1920&amp;u_h=1080&amp;url=https%3A%2F%2Fifillingmachine.com%2F&amp;ref=https%3A%2F%2Fupbd226.myueeshop.com%2F&amp;frm=0&amp;tiba=LANGHUI%20-%20liquid%20filling%20machine%20sealing%20machine%20capping%20machine&amp;did=dNGFkYj&amp;gdid=dNGFkYj&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=1632449292.1769049547&amp;uaa=x86&amp;uab=64&amp;uafvl=Google%2520Chrome%3B143.0.7499.170%7CChromium%3B143.0.7499.170%7CNot%2520A(Brand%3B24.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=19.0.0&amp;uaw=0&amp;_tu=CA&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script>

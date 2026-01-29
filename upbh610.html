@@ -1,0 +1,64 @@
+<script>
+    // 等待DOM加载完成后执行（避免元素未加载导致操作失效）
+$(document).ready(function() {
+    // 1. 精准定位目标元素（class组合选择器，确保只操作目标div）
+    const targetElement = $('.details_um_box_sub.editortext');
+    
+    // 2. 安全校验：确保元素存在再执行操作（提升代码健壮性）
+    if (targetElement.length > 0) {
+        // 3. 获取原HTML内容
+        let originalHtml = targetElement.html();
+        
+        // 4. 正则替换：将所有的"•"替换为"<br>•"（全局替换，只匹配独立的•符号）
+        // 正则/\•/g 表示全局匹配所有•，避免遗漏
+        let newHtml = originalHtml.replace(/•/g, '<br>•');
+        
+        // 5. 重新赋值HTML，完成添加<br>的操作
+        targetElement.html(newHtml);
+    } else {
+        console.warn('未找到目标元素：.details_um_box_sub.editortext');
+    }
+});
+</script>
+
+
+.ly_product_purchase_2 .goods_wrapper .goods_info .g_desc
+
+<script>
+$(document).ready(function() {
+    const targetElement = $('.ly_product_purchase_2 .goods_wrapper .goods_info .g_desc.editor_txt');
+    if (targetElement.length > 0) {
+        let originalHtml = targetElement.html();
+        let newHtml = originalHtml.replace(/•/g, '<br>•');
+        targetElement.html(newHtml);
+    }
+});
+</script>
+
+<style>
+    .header_258_1 #nav .nav_box .r_nav ul li .inq_btn {display: none;}
+    .ueeshop_responsive_info_detail .ext_mes div:first-child {display: none;}
+</style>
+
+<style>
+    body .ueeshop_responsive_info_detail>.title {font-size: 24px;font-weight: bold !important;}
+</style>
+
+<style>
+    .ly_product_description_1 .editor_txt {max-width: 750px;margin: 0 auto;}
+    @media screen and (max-width: 1000px) {
+        .ly_product_description_1 .richtext-detail {
+            margin: unset;
+        }
+    }
+</style>
+
+<style>
+    @media (max-width: 1000px) {
+        .ly_footer_5 .wide {padding-top: 20px;}
+    }
+</style>
+
+<style>
+    .ly_footer_10 .menu_list.menu_list_custom_content .logo .compute_process_img {padding-top: 24% !important;}
+</style>

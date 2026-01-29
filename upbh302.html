@@ -709,3 +709,145 @@ https://upbh302.myueeshop.com/products/https-isocofficialcom-collections-%E7%AE%
 </div>
 在class为editor_txt加多一个分类内容。
 所以添加的内容可以参考product_list的模块
+
+
+<?php
+
+use common\helps\HelpsHtml;
+use common\helps\HelpsVisualV2;
+use common\helps\Ly200;
+use yii\helpers\Html;
+
+?>
+<div id="header" class="ly_header_5 header <?=$headerClass;?>" data-visual-id="<?=$PId;?>">
+	<?php 
+    echo HelpsVisualV2::getButtonCss('Custom', [
+        'class' => '.ly_header_5[data-visual-id="' . $PId . '"] .tool .tool_inquiry_btn a, .nav_center_fixed .box_center .tool_inquiry_btn',
+        'padding' => '12px 18px',
+    ], $inquiryBtnStyle);
+    ?>
+	<style>
+        <?=$rootStyle;?>
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .logo{ width: <?=$c['web_pack'][$PId]['Blocks']['Logo']['LogoWidth'];?>; }
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .nav li>a { font-family: <?=$c['web_pack'][$PId]['Blocks']['Menu']['ThemesNavFont'];?>;font-size: <?=$c['web_pack'][$PId]['Blocks']['Menu']['NavFontSizePc'];?>;padding:0 <?=(int)$c['web_pack'][$PId]['Blocks']['Menu']['ColumnSpacing'] / 2;?>px; }
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .nav li a.nav_sec_a{ font-size: <?=$c['web_pack'][$PId]['Blocks']['Menu']['SecondLevelNavFontSizePc'];?>; }
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .nav li a.nav_third_a{ font-size: <?=$c['web_pack'][$PId]['Blocks']['Menu']['ThirdLevelNavFontSizePc'];?>; }
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .nav li a.nav_fourth_a{ font-size: <?=$c['web_pack'][$PId]['Blocks']['Menu']['FourthLevelNavFontSizePc'];?>; }
+        .ly_header_5[data-visual-id="<?=$PId;?>"] .nav .default_nav_style{justify-content: <?=$c['web_pack'][$PId]['Blocks']['Menu']['NavTextAlign'];?>;}
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .tool_inquiry .list_numner{background-color:<?=$c['web_pack'][$PId]['Settings']['InquiryListQuantityBgColor']?>; color:<?=$c['web_pack'][$PId]['Settings']['InquiryListQuantityColor']?>}
+        .ly_header_5[data-visual-id="<?=$PId;?>"] .tool_language .default_language_currency_style dt .current_language_abbreviation{ font-size: <?=$c['web_pack'][$PId]['Blocks']['Language']['LanguageNameFontSize'];?>; color: <?=$c['web_pack'][$PId]['Blocks']['Language']['LanguageNameColor'];?>; }
+		.ly_header_5[data-visual-id="<?=$PId;?>"] .tool_language .default_language_currency_style dt .iconfont{ color: <?=$c['web_pack'][$PId]['Blocks']['Language']['LanguageIconColor'];?>; }
+		@media screen and (max-width: 1000px) {
+			.ly_header_5[data-visual-id="<?=$PId;?>"] .logo{ width: <?=$c['web_pack'][$PId]['Blocks']['Logo']['MobileLogoWidth'];?>; }
+		}
+	</style>
+    <div class="headerFixed">
+        <?=$this->render('@frontend/views/common/operation_activities');?>
+        <div class="themes_global_header">
+            <?=HelpsHtml::getHeaderBoardHtml($PId);?>
+            <div class="wide">
+                <div class="logo">
+                    <div class="compute_item_img" style="<?=$logoComputeWidth;?>">
+                        <div class="compute_process_img" style="<?=$logoComputeRatio;?>">
+                            <?=$logoPath;?>
+                        </div>
+                    </div>
+                </div>
+                <div class="tool">
+                    <div class="tool_search">
+                        <?php
+                        echo $this->render('@frontend/views/common/search', [
+                            'PId' => $PId,
+                            'searchType' => 1,
+                            'RecentlySearch' => $c['web_pack'][$PId]['Settings']['RecentlySearch'],
+                            'HotSearch' => $c['web_pack'][$PId]['Settings']['HotSearch'],
+                            'SearchEffect' => $c['web_pack'][$PId]['Settings']['SearchEffect']
+                        ]);
+                        ?>
+                    </div>
+                    <div class="tool_language">
+                        <?php
+                        echo $this->render('@frontend/views/common/language', [
+                            'languageRow' => $languageRow,
+                            'languageType' => 'icon',
+							'languageIcon' => 'icon-language1',
+                            'Data' =>  $c['web_pack'][$PId]['Blocks']['Language'],
+                        ]);
+                        ?>
+                    </div>
+                    <?php 
+                        $UserEntrance = $c['web_pack'][$PId]['Settings']['UserEntrance'];
+                    if ($UserEntrance && in_array('memberUser', (array)Yii::$app->params['rules'])) { ?>
+                        <div class="tool_user">
+                            <?php
+                            echo $this->render('@frontend/views/common/sign_in', [
+                                'PId' => $PId,
+                                'signInIcon' => 'icon-member2'
+                            ]);
+                            ?>
+                        </div>
+                    <?php } ?>
+                    <div class="tool_inquiry">
+                        <?php
+                        echo $this->render('@frontend/views/common/inquiry_icon', [
+                            'inquiryIcon' => 'icon-inquiry1',
+                            'inquiryListNumber' => $inquirylistNumber
+                        ]);
+                        ?>
+                    </div>
+                    <div class="tool_inquiry_btn"><a <?=$FormFields ? 'data-fields="' . $FormFields . '"' : '';?> href="<?=$inquiryInfo['Link'];?>" class="<?=$inquiryInfo['Class'];?> themes_box_button trans3" <?=$labelAttrInfo?> data-id="<?=$inquiryInfo['Id'];?>" title="<?=Html::encode($inquiryInfo['Text']);?>"><?=$inquiryInfo['Text']?></a></div>
+                    <div class="tool_menu global_menu"><i class="iconfont icon-mb_menu2"></i></div>
+                </div>
+            </div>
+            <div class="nav">
+                <?php
+                    echo $this->render('@frontend/views/common/nav', [
+                        'navData' => $navData,
+                        'navConfigData' => $navConfigData,
+                        'cateidCateAry' => $cateidCateAry,
+                        'defaultNavSwitch' => $defaultNavSwitch,
+                        'menuSetting' => $c['web_pack'][$PId]['Blocks']['Menu']
+                    ]);
+                ?>
+            </div>
+        </div>
+        <?=Ly200::setMobileHeader($PId, '', $c['web_pack'][$PId]);?>
+    </div>
+    <div class="header_content_height"></div>
+</div>
+<script>
+$(document).ready(function() {
+    const $targetNav = $('.ly_header_5 .themes_global_header > .nav');
+    function controlNavByScrollTop() {
+        const scrollTop = $(window).scrollTop();
+        if (scrollTop === 0) {
+            $targetNav.css('display', 'block');
+        }
+    }
+    controlNavByScrollTop();
+    let wheelTimer = null;
+    let scrollTimer = null;
+    $(window).on('wheel', function(e) {
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function() {
+            const deltaY = e.originalEvent.deltaY;
+            const scrollTop = $(window).scrollTop();
+            if (scrollTop === 0) {
+                $targetNav.css('display', 'block');
+            } else {
+                if (deltaY < 0) {
+                    $targetNav.css('display', 'block');
+                } else if (deltaY > 0) {
+                    $targetNav.css('display', 'none');
+                }
+            }
+        }, 50);
+    });
+    $(window).on('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            controlNavByScrollTop();
+        }, 50);
+    });
+});
+</script>

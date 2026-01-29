@@ -1,0 +1,9 @@
+<script>
+    $(function() {
+        const $container = $('.ly_footer_20 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤ICP备2026008837号';
+        const linkContent = `<a href="https://beian.miit.gov.cn" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>

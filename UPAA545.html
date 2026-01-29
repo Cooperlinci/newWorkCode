@@ -1,0 +1,78 @@
+<script>
+    // 等待DOM完全加载后执行（避免元素未渲染导致选择器失效）
+$(document).ready(function() {
+    // ========== 配置项（修改这里即可，无需动下方逻辑） ==========
+    const newLinkHref = "https://your-new-link.com"; // 替换为你需要的新链接
+    const newLinkTitle = "New Blog"; // 可选：修改a标签的title属性
+    const newLinkText = "New Blog";  // 可选：修改a标签显示的文字
+    
+    // ========== 核心逻辑（无需修改） ==========
+    // 1. 精准定位「About Us」对应的dl元素（避免误操作其他dl）
+    const aboutUsDl = $('div#footer div.help dl:has(dt:contains("About Us"))');
+    
+    // 2. 构建和Blog结构一致的dd元素（仅替换链接相关属性）
+    const newDd = $(`
+        <dd>
+            <i></i>
+            <a href="${newLinkHref}" title="${newLinkTitle}">${newLinkText}</a>
+        </dd>
+    `);
+    aboutUsDl.append(newDd);
+    
+    // 3. 将新dd添加到About Us的dl中（追加到最后，和Blog的位置逻辑一致）
+    if (aboutUsDl.length > 0) { // 容错：仅当找到目标dl时才执行添加
+        aboutUsDl.append(newDd);
+        console.log("新dd元素已成功添加到About Us的dl中");
+    } else {
+        console.warn("未找到About Us对应的dl元素，请检查HTML结构或选择器");
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const newLinkHref = "/blogs/";
+    const newLinkTitle = "New Blog";
+    const newLinkText = "New Blog";
+    const aboutUsDl = $('div#footer div.help dl:has(dt:contains("About Us"))');
+    const newDd = $(`
+        <dd>
+            <i></i>
+            <a href="${newLinkHref}" title="${newLinkTitle}">${newLinkText}</a>
+        </dd>
+    `);
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const newLinkHref = "/blogs/";
+    const newLinkTitle = "New Blog";
+    const newLinkText = "New Blog";
+    const aboutUsDl = $('div#footer div.help dl:has(dt:contains("About Us"))');
+    const newDd = $(`
+        <dd>
+            <i></i>
+            <a href="${newLinkHref}" title="${newLinkTitle}">${newLinkText}</a>
+        </dd>
+    `);
+    aboutUsDl.append(newDd);
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const newLinkHref = "/blogs/";
+    const newLinkTitle = "Blog";
+    const newLinkText = "Blog";
+    const aboutUsDl = $('div#footer div.help dl:has(dt:contains("About Us"))');
+    const newDd = $(`
+        <dd>
+            <i></i>
+            <a href="${newLinkHref}" title="${newLinkTitle}" target="_blank" >${newLinkText}</a>
+        </dd>
+    `);
+    aboutUsDl.append(newDd);
+});
+</script>

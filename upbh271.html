@@ -1,0 +1,160 @@
+<script>
+// 确保DOM加载完成后执行
+$(document).ready(function() {
+  // ========== 核心配置：通用选择器（适配多一级分类） ==========
+  const FIRST_CATE_A_SELECTOR = '.one_title.item_title a'; // 所有一级分类的a标签
+  const FIRST_CATE_WRAPPER = '.one_title.item_title';      // 所有一级分类容器
+  const SEC_CATE_BOX = '.sec_box.next_box';                 // 二级菜单容器
+
+  // ========== 步骤1：批量修改所有一级分类a标签的href为javascript:; 取消跳转 ==========
+  $(FIRST_CATE_A_SELECTOR).each(function() {
+    // 可选：保存原始href，方便后续恢复（不需要可删除这行）
+    $(this).data('original-href', $(this).attr('href'));
+    // 核心：修改href为javascript:; 彻底取消跳转
+    $(this).attr('href', 'javascript:;');
+  });
+
+  // ========== 步骤2：多一级分类下拉菜单核心交互（仅控制显示/隐藏） ==========
+  // 点击一级分类容器，切换自身二级菜单显示/隐藏，关闭其他分类的菜单
+  $(FIRST_CATE_WRAPPER).on('click', function(e) {
+    e.stopPropagation(); // 阻止事件冒泡到document
+    
+    // 1. 关闭所有其他一级分类的二级菜单
+    $(FIRST_CATE_WRAPPER).not(this).find(SEC_CATE_BOX).hide();
+    // 2. 切换当前一级分类的二级菜单显示/隐藏
+    $(this).find(SEC_CATE_BOX).toggle();
+  });
+
+  // 点击页面其他区域，关闭所有二级菜单
+  $(document).on('click', function() {
+    $(SEC_CATE_BOX).hide();
+  });
+
+  // ========== 可选：阻止二级菜单点击时关闭（如需保留可启用，不需要可删除） ==========
+  // $(SEC_CATE_BOX).on('click', function(e) {
+  //   e.stopPropagation();
+  // });
+
+  // ========== 可选：恢复原始href的方法（调试/回滚用，不需要可删除） ==========
+  // function restoreFirstCateHref() {
+  //   $(FIRST_CATE_A_SELECTOR).each(function() {
+  //     const originalHref = $(this).data('original-href');
+  //     if (originalHref) $(this).attr('href', originalHref);
+  //   });
+  // }
+});
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        const FIRST_CATE_A_SELECTOR = '.ly_product_list_2 .one_title.item_title a';
+        const FIRST_CATE_WRAPPER = '.ly_product_list_2 .one_title.item_title';
+        const SEC_CATE_BOX = '.ly_product_list_2 .sec_box.next_box';
+        $(FIRST_CATE_A_SELECTOR).each(function() {
+            $(this).data('original-href', $(this).attr('href'));
+            $(this).attr('href', 'javascript:;');
+        });
+        $(FIRST_CATE_WRAPPER).on('click', function(e) {
+            e.stopPropagation();
+            $(FIRST_CATE_WRAPPER).not(this).find(SEC_CATE_BOX).hide();
+            $(this).find(SEC_CATE_BOX).toggle();
+        });
+        $(document).on('click', function() {
+            $(SEC_CATE_BOX).hide();
+        });
+    });
+</script>
+
+
+<script>
+$(document).ready(function() {
+    // 核心选择器配置
+    const FIRST_CATE_A_SELECTOR = '.ly_product_list_2 .one_title.item_title a';
+    const FIRST_CATE_WRAPPER = '.ly_product_list_2 .one_title.item_title';
+    const SEC_CATE_BOX = '.ly_product_list_2 .sec_box.next_box';
+    const ICONFONT_SELECTOR = '.iconfont'; // iconfont元素选择器
+
+    // 步骤1：批量修改a标签href为javascript:; 取消跳转
+    $(FIRST_CATE_A_SELECTOR).each(function() {
+        $(this).data('original-href', $(this).attr('href'));
+        $(this).attr('href', 'javascript:;');
+    });
+
+    // 步骤2：核心关联逻辑 - 点击a标签等同于点击对应的iconfont元素
+    $(FIRST_CATE_A_SELECTOR).on('click', function(e) {
+        e.stopPropagation(); // 避免触发外层的document点击事件
+        // 找到当前a标签同层级（父元素下）的iconfont元素
+        const $targetIcon = $(this).siblings(ICONFONT_SELECTOR);
+        // 触发iconfont元素的点击事件（等同于手动点击iconfont）
+        if ($targetIcon.length) {
+            $targetIcon.trigger('click');
+        }
+    });
+
+    // 步骤3：一级分类容器点击 - 控制二级菜单显示/隐藏
+    $(FIRST_CATE_WRAPPER).on('click', function(e) {
+        e.stopPropagation();
+        // 关闭其他分类的二级菜单
+        $(FIRST_CATE_WRAPPER).not(this).find(SEC_CATE_BOX).hide();
+        // 切换当前分类的二级菜单
+        $(this).find(SEC_CATE_BOX).toggle();
+    });
+
+    // 步骤4：点击页面空白处关闭所有二级菜单
+    $(document).on('click', function() {
+        $(SEC_CATE_BOX).hide();
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const FIRST_CATE_A_SELECTOR = '.ly_product_list_2 .one_title.item_title a';
+    const FIRST_CATE_WRAPPER = '.ly_product_list_2 .one_title.item_title';
+    const SEC_CATE_BOX = '.ly_product_list_2 .sec_box.next_box';
+    const ICONFONT_SELECTOR = '.ly_product_list_2 .one_title.item_title .iconfont';
+    $(FIRST_CATE_A_SELECTOR).each(function() {
+        $(this).data('original-href', $(this).attr('href'));
+        $(this).attr('href', 'javascript:;');
+    });
+    $(FIRST_CATE_A_SELECTOR).on('click', function(e) {
+        e.stopPropagation();
+        const $targetIcon = $(this).siblings(ICONFONT_SELECTOR);
+        if ($targetIcon.length) {
+            $targetIcon.trigger('click');
+        }
+    });
+    $(FIRST_CATE_WRAPPER).on('click', function(e) {
+        e.stopPropagation();
+        $(FIRST_CATE_WRAPPER).not(this).find(SEC_CATE_BOX).hide();
+        $(this).find(SEC_CATE_BOX).toggle();
+    });
+    $(document).on('click', function() {
+        $(SEC_CATE_BOX).hide();
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const FIRST_CATE_A_SELECTOR = '.ly_product_list_2 .one_title.item_title a';
+    const FIRST_CATE_WRAPPER = '.ly_product_list_2 .one_title.item_title';
+    const SEC_CATE_BOX = '.ly_product_list_2 .sec_box.next_box';
+    const ICONFONT_SELECTOR = '.ly_product_list_2 .one_title.item_title .iconfont';
+    $(FIRST_CATE_A_SELECTOR).each(function() {
+        $(this).data('original-href', $(this).attr('href'));
+        $(this).attr('href', 'javascript:;');
+    });
+    $(FIRST_CATE_A_SELECTOR).on('click', function(e) {
+        e.stopPropagation();
+        const $targetIcon = $(this).siblings(ICONFONT_SELECTOR);
+        if ($targetIcon.length) {
+            $targetIcon.trigger('click');
+        }
+    });
+});
+</script>

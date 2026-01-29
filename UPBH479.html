@@ -1,0 +1,124 @@
+<script>
+$(document).ready(function() {
+  // 核心配置：把选择器、协议规则、内容匹配规则集中管理，方便后续维护
+  const contactLinkConfigs = [
+    {
+      // Tel/WeChat 元素选择器
+      selector: '.item.Form-2 .text_themes_box_title',
+      // 匹配号码的正则（提取数字+空格组合）
+      contentRegex: /(\+?\d[\d\s]+)/,
+      // 生成超链接的逻辑（tel协议，移动端唤起拨号）
+      getHref: (match) => `tel:${match.replace(/\s/g, '')}`
+    },
+    {
+      // E-mail 元素选择器
+      selector: '.item.Form-3 .text_themes_box_title',
+      // 匹配邮箱的正则
+      contentRegex: /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/,
+      // mailto协议，唤起邮箱客户端
+      getHref: (match) => `mailto:${match}`
+    },
+    {
+      // Whatsapp 元素选择器
+      selector: '.item.Form-4 .text_themes_box_title',
+      // 匹配号码的正则
+      contentRegex: /(\+?\d+)/,
+      // WhatsApp官方链接协议（wa.me），自动补全+86前缀
+      getHref: (match) => {
+        const cleanNum = match.replace(/\s/g, '');
+        const waNum = cleanNum.startsWith('86') ? `+${cleanNum}` : cleanNum;
+        return `https://wa.me/${waNum}`;
+      }
+    }
+  ];
+
+  // 遍历配置，批量为联系方式添加超链接
+  contactLinkConfigs.forEach(config => {
+    const $targetEle = $(config.selector);
+    // 容错：元素不存在时给出提示，不中断执行
+    if ($targetEle.length === 0) {
+      console.warn(`未找到目标元素，请检查选择器：${config.selector}`);
+      return;
+    }
+
+    const originalText = $targetEle.text().trim();
+    // 匹配文本中的联系方式（号码/邮箱）
+    const matchResult = originalText.match(config.contentRegex);
+    if (!matchResult) {
+      console.warn(`未匹配到联系方式，原文本：${originalText}`);
+      return;
+    }
+
+    // 生成超链接并替换原元素内容
+    const contactValue = matchResult[1];
+    const $link = $('<a>')
+      .attr('href', config.getHref(contactValue))
+      .attr('target', '_blank') // 新窗口打开，提升体验
+      .text(originalText); // 保留原文本样式
+
+    $targetEle.empty().append($link);
+  });
+});
+</script>
+
+<!-- 可选：添加CSS样式，让链接更醒目（和原图红色圈呼应） -->
+<style>
+/* 联系方式链接样式 */
+.item [class*="text_themes_box_title"] a {
+  color: #d9534f; /* 红色系，和原图圈圈颜色匹配 */
+  text-decoration: underline; /* 下划线标识可点击 */
+  cursor: pointer; /* 鼠标悬浮显示手型 */
+}
+/* 悬浮效果 */
+.item [class*="text_themes_box_title"] a:hover {
+  color: #c9302c;
+  text-decoration: none;
+}
+</style>
+
+
+.ly_form_10 .flex_box .s_left .list
+
+<script>
+$(document).ready(function() {
+  const contactLinkConfigs = [
+    {
+      selector: '.ly_form_10 .flex_box .s_left .list .item.Form-2 .text.themes_box_title',
+      contentRegex: /(\+?\d[\d\s]+)/,
+      getHref: (match) => `tel:${match.replace(/\s/g, '')}`
+    },
+    {
+      selector: '.ly_form_10 .flex_box .s_left .list .item.Form-3 .text.themes_box_title',
+      contentRegex: /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/,
+      getHref: (match) => `mailto:${match}`
+    },
+    {
+      selector: '.ly_form_10 .flex_box .s_left .list .item.Form-4 .text.themes_box_title',
+      contentRegex: /(\+?\d+)/,
+      getHref: (match) => {
+        const cleanNum = match.replace(/\s/g, '');
+        const waNum = cleanNum.startsWith('86') ? `+${cleanNum}` : cleanNum;
+        return `https://wa.me/${waNum}`;
+      }
+    }
+  ];
+  contactLinkConfigs.forEach(config => {
+    const $targetEle = $(config.selector);
+    if ($targetEle.length === 0) {
+      return;
+    }
+    const originalText = $targetEle.text().trim();
+    const matchResult = originalText.match(config.contentRegex);
+    if (!matchResult) {
+      return;
+    }
+    const contactValue = matchResult[1];
+    const $link = $('<a>')
+      .attr('href', config.getHref(contactValue))
+      .attr('target', '_blank')
+      .text(originalText);
+
+    $targetEle.empty().append($link);
+  });
+});
+</script>
