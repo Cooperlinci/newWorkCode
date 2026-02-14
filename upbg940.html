@@ -223,3 +223,17 @@ $(function() {
         $container.html(content);
     });
 </script>
+
+<script>
+    $(function() {
+        // 定位目标容器，仅替换指定备案号为超链接
+        const $container = $('.wlde');
+        const originalContent = $container.html();
+        // 要替换的备案号
+        const icpCode = '皖ICP备2023024476号-4';
+        // 替换为超链接（链接地址可自行修改，这里默认指向工信部备案查询）
+        const linkContent = `<a href="https://beian.miit.gov.cn/" target="_blank">${icpCode}</a>`;
+        // 仅替换匹配的备案号，其他内容原样保留
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>

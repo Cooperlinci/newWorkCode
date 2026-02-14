@@ -1,0 +1,24 @@
+<!-- Event snippet for 提交潜在客户表单 conversion -->
+<script>
+    window.addEventListener('load', function (event) {
+        document.addEventListener('mouseup', function (e) {
+            var dom = e.target.closest('button[type="button"]');
+            if (dom === null) return;
+
+            var form = dom.closest('form');
+            if (form.checkValidity() === false) return;
+            var email = form.querySelector('input[name="Field[9]"]').value.trim().toLowerCase();
+            if (email != "") {
+                gtag('event', 'conversion', { 'send_to': 'AW-17768730311/wYXNCIe-xdUbEMed5ZhC' });
+            }
+        });
+    });
+</script>
+<!-- Event snippet for whatsapp点击 conversion -->
+<script>
+    document.addEventListener('click', function (e) {
+        const dom = e.target.closest('[href*="whatsapp"]');
+        if (dom === null) return;
+        gtag('event', 'conversion', { 'send_to': 'AW-17768730311/JSFpCIDc1fEbEMed5ZhC' });
+    });
+</script>

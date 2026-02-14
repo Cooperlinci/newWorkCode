@@ -1,3 +1,4 @@
+备案号 规范
 <script>
     $(function() {
         const $container = $('.ly_footer_20 .copy > .wide');
@@ -7,3 +8,39 @@
         $container.html(originalContent.replace(icpCode, linkContent));
     });
 </script>
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_20 .copy > .wide');
+        const originalContent = $container.html();
+        const icpCode = '粤ICP备2026008837号';
+        const linkContent = `<a href="https://beian.miit.gov.cn" target="_blank">${icpCode}</a>`;
+        $container.html(originalContent.replace(icpCode, linkContent));
+    });
+</script>
+
+
+<script>
+    $(function() {
+        const $container = $('.ly_footer_20 .copy > .wide');
+        let content = $container.html();
+        const icpCode = '粤ICP备2026008837号';
+        const icpLink = 'https://beian.miit.gov.cn/';
+        const icpLinkContent = `<a href="${icpLink}" rel="noreferrer" target="_blank">${icpCode}</a>`;
+        content = content.replace(icpCode, icpLinkContent);
+        const securityCode = '粤公网安备44030002010670号';
+        const securityRecordCode = '44195202000271';
+        const securityLink = `http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${securityRecordCode}`;
+        const securityLinkContent = `<a href="${securityLink}" rel="noreferrer" target="_blank"><img class="securityicon" src="https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF029/2602/13/photo/logo01.png" alt="粤公网安备图标">${securityCode}</a>`;
+        content = content.replace(securityCode, securityLinkContent);
+        $container.html(content);
+    });
+</script>
+<style>
+    .ly_footer_20 .copy > .wide .securityicon { width: 14px;height: 14px;object-fit: cover; }
+</style>
+
+
+<div>
+    <img class="Securityicon" src="" alt="">
+</div>

@@ -484,3 +484,318 @@ content.js
 		frame_obj.del_bat($('.list_menu .del'), $('#faq .r_con_table input[name=select]'), 'content.faq_del');
 	},
 </script>
+
+
+<style>
+	.banner .absolute .title:has(> ::-moz-text-node(FAQ)) {display: none;}
+</style>
+
+<style>
+	.banner .title {display: none;}
+</style>
+
+
+<?php !isset($c) && exit();?>
+<div class="themes_global_point"></div>
+<?php
+$footer_set_time=@filemtime(web::get_cache_path($c['themes']).'/footer.html');//文件生成时间
+!$footer_set_time && $footer_set_time=0;
+$set_cache=$c['time']-$footer_set_time-$c['cache_timeout'];	//当前时间 - 文件生成时间 - 自动生成静态文件时间间隔
+
+$swap_chain=web::swap_chain(array('pb','free_wrap'));
+if($set_cache>0 || !is_file(web::get_cache_path($c['themes']).'/footer.html') || $_SESSION['Visual']['DraftsId']){
+	ob_start();
+	$plugins_config = $c['web_pack'][$WId];
+	$plugins_data = $plugins_config['Data'];
+	if(!$c['web_pack']['IsVisual']){
+		$plugins_data = $visual_data['Data'];
+		$plugins_data[0]['Pic'] = $plugins_data[0]['Pic']?$plugins_data[0]['Pic']:$c['config']['global']['LogoPath'];
+	}
+		
+?>
+<div class="<?=$plugins_config['CssName']?> <?=$plugins_config['CssExt']?>" visualWId="<?=$plugins_config['WId']?>" style="<?=$plugins_config['PluginStyle'];?>">
+	<div id="footer" class="wrap">
+		<div class="link">
+			<ul>
+				<li class="tit"><span><?=$c['lang_pack']['products']['products'];?></span></li>
+				<?php 
+				$foot_pro_cate = db::get_limit('products_category','UId="0,"','*',$c['my_order'].'CateId asc',0,4); 
+				foreach((array)$foot_pro_cate as $v){
+					$name = $v['Category'.$c['lang']];
+					$url = web::get_url($v,'products_category');
+					?>
+					<li><a href="<?=$url; ?>" title="<?=$name; ?>"><?=$name; ?></a></li>
+				<?php } ?>
+			</ul>
+			<?php 
+			$foot_art_cate = db::get_limit('article_category','UId="0,"','*',$c['my_order'].'CateId asc',0,2); 
+			foreach((array)$foot_art_cate as $v){
+				$name = $v['Category'.$c['lang']];
+				?>
+				<ul>
+					<li class="tit"><span><?=$name; ?></span></li>
+					<?php 
+					$foot_art_row = db::get_limit('article',"CateId={$v['CateId']}",'*',$c['my_order'].'CateId asc',0,4); 
+					foreach((array)$foot_art_row as $v1){
+						$name1 = $v1['Title'.$c['lang']];
+						$url1 = web::get_url($v1,'article');
+						?>
+						<li><a href="<?=$url1; ?>" title="<?=$name1; ?>"><?=$name1; ?></a></li>
+					<?php } ?>
+				</ul>
+			<?php } ?>
+			<ul>
+				<!-- <li class="tit"><?//=$c['lang_pack']['news'];?></li>
+				<?php 
+				$foot_new_cate = db::get_limit('info_category','UId="0,"','*',$c['my_order'].'CateId asc',0,4); 
+				foreach((array)$foot_new_cate as $v){
+					$name = $v['Category'.$c['lang']];
+					$url = web::get_url($v,'info_category');
+					?>
+					<li><a href="<?//=$url; ?>" title="<?//=$name; ?>"><?//=$name; ?></a></li>
+				<?php } ?> -->
+			</ul>
+			<span class="br"></span>
+		</div>
+		<?=html::partners();?>
+	   <?=$swap_chain;?>
+		<div class="copyright wrap">
+			<div class="c">
+				<div class="logo" plugins_pos="0"><div class="logo fl pic_box"><a href="/"><img plugins_mod="Pic" src="<?=$plugins_data[0]['Pic']?>" alt="<?=$c['config']['global']['SiteName']?>"><em></em></a></div></div>
+				<div class="fl">
+					<?php if($plugins_data[1]['Switch']){ ?>
+						<div class="nav">
+							<?php
+							$nav_value = db::get_value('config', 'GroupId="nav" and Variable="Footnav"', 'Value');
+							$nav_row = str::json_data($nav_value, 'decode');
+							foreach ($nav_row as $key=>$value){
+								if ($value['Custom']){//自定义
+									$url = $value['Url'];
+									$name = $value['Name'.$c['lang']];
+									$target = $value['CusNewTarget']?'target="_blank"':'';
+								}else{
+									if($value['Nav']==6){//信息页
+										$page_row = db::get_one('article_category', "CateId='{$value['Page']}'", '*');
+										$temp_row = db::get_one('article', "CateId='{$value['Page']}'", "AId,CateId,Title{$c['lang']},Url,PageUrl", $c['my_order']."AId asc");//查询一条用于显示连接
+										$temp_row && $url = web::get_url($temp_row, 'article');
+										$name = $page_row['Category'.$c['lang']];
+									}else{
+										$url = $c['nav_cfg'][$value['Nav']]['url'];
+										$name = $c['nav_cfg'][$value['Nav']]['name'.$c['lang']];
+									}
+									$target = $value['NewTarget']?'target="_blank"':'';
+								}//if 结束
+								if(!$name) continue;
+								?>
+								<div><a href="<?=$url; ?>" <?=$target; ?> title="<?=$name; ?>"><?=$name; ?></a></div>
+							<?php }?>
+						</div>
+					<?php } ?>
+					<div class="b">
+						<span><?=$c['config']['global']['Contact']['copyright'.$c['lang']].($c['config']['global']['powered_by']!=''?'&nbsp;&nbsp;&nbsp;&nbsp;'.$c['config']['global']['powered_by']:'');?></span>
+						<?=$plugins_data[2]['Switch']?web::foot_share():''; ?>
+						<div clas="clear"></div>
+						<div>
+							<?php $email_url = $c['config']['global']['Contact']['email'.$c['lang']]?$c['config']['global']['Contact']['email'.$c['lang']]:$c['config']['global']['Contact']['email_'.$c['config']['global']['LanguageDefault']]; ?>
+							<a href="mailto:<?=$email_url?>" class="footer_mail_mta"><?=$c['lang_pack']['email']?>: <?=$email_url?></a>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<?=web::output_third_code();?>
+<?php 
+	$cache_contents=ob_get_contents();
+	ob_end_clean();
+	if(!$_SESSION['Visual']['DraftsId']){
+		file::write_file(web::get_cache_path($c['themes'], 0), 'footer.html', $cache_contents);
+	}
+	echo $cache_contents;
+	unset($cache_contents);
+}else{
+	include(web::get_cache_path($c['themes']).'/footer.html');
+}
+?>
+<?php include($c['static_path']."/inc/global/online_chat.php");?>
+<?php include($c['static_path']."/inc/global/chat.php");?>
+
+modify
+
+<?php !isset($c) && exit();?>
+<div class="themes_global_point"></div>
+<?php
+$footer_set_time=@filemtime(web::get_cache_path($c['themes']).'/footer.html');//文件生成时间
+!$footer_set_time && $footer_set_time=0;
+$set_cache=$c['time']-$footer_set_time-$c['cache_timeout'];	//当前时间 - 文件生成时间 - 自动生成静态文件时间间隔
+
+$swap_chain=web::swap_chain(array('pb','free_wrap'));
+if($set_cache>0 || !is_file(web::get_cache_path($c['themes']).'/footer.html') || $_SESSION['Visual']['DraftsId']){
+	ob_start();
+	$plugins_config = $c['web_pack'][$WId];
+	$plugins_data = $plugins_config['Data'];
+	if(!$c['web_pack']['IsVisual']){
+		$plugins_data = $visual_data['Data'];
+		$plugins_data[0]['Pic'] = $plugins_data[0]['Pic']?$plugins_data[0]['Pic']:$c['config']['global']['LogoPath'];
+	}
+		
+?>
+<div class="<?=$plugins_config['CssName']?> <?=$plugins_config['CssExt']?>" visualWId="<?=$plugins_config['WId']?>" style="<?=$plugins_config['PluginStyle'];?>">
+	<div id="footer" class="wrap">
+		<div class="link">
+			<?php 
+			// 1. 先获取2个文章分类数据（原逻辑不变）
+			$foot_art_cate = db::get_limit('article_category','UId="0,"','*',$c['my_order'].'CateId asc',0,2); 
+			// 2. 输出第一个文章分类
+			if(!empty($foot_art_cate[0])){
+				$v = $foot_art_cate[0];
+				$name = $v['Category'.$c['lang']];
+			?>
+				<ul>
+					<li class="tit"><span><?=$name; ?></span></li>
+					<?php 
+					$foot_art_row = db::get_limit('article',"CateId={$v['CateId']}",'*',$c['my_order'].'CateId asc',0,4); 
+					foreach((array)$foot_art_row as $v1){
+						$name1 = $v1['Title'.$c['lang']];
+						$url1 = web::get_url($v1,'article');
+						?>
+						<li><a href="<?=$url1; ?>" title="<?=$name1; ?>"><?=$name1; ?></a></li>
+					<?php } ?>
+				</ul>
+			<?php } ?>
+
+			<!-- 3. 输出产品分类（原products逻辑，移到两个文章分类中间） -->
+			<ul>
+				<li class="tit"><span><?=$c['lang_pack']['products']['products'];?></span></li>
+				<?php 
+				$foot_pro_cate = db::get_limit('products_category','UId="0,"','*',$c['my_order'].'CateId asc',0,4); 
+				foreach((array)$foot_pro_cate as $v){
+					$name = $v['Category'.$c['lang']];
+					$url = web::get_url($v,'products_category');
+					?>
+					<li><a href="<?=$url; ?>" title="<?=$name; ?>"><?=$name; ?></a></li>
+				<?php } ?>
+			</ul>
+
+			<?php 
+			// 4. 输出第二个文章分类
+			if(!empty($foot_art_cate[1])){
+				$v = $foot_art_cate[1];
+				$name = $v['Category'.$c['lang']];
+				?>
+				<ul>
+					<li class="tit"><span><?=$name; ?></span></li>
+					<?php 
+					$foot_art_row = db::get_limit('article',"CateId={$v['CateId']}",'*',$c['my_order'].'CateId asc',0,4); 
+					foreach((array)$foot_art_row as $v1){
+						$name1 = $v1['Title'.$c['lang']];
+						$url1 = web::get_url($v1,'article');
+						?>
+						<li><a href="<?=$url1; ?>" title="<?=$name1; ?>"><?=$name1; ?></a></li>
+					<?php } ?>
+				</ul>
+			<?php } ?>
+
+			<ul>
+			</ul>
+			<span class="br"></span>
+		</div>
+		<?=html::partners();?>
+	   <?=$swap_chain;?>
+		<div class="copyright wrap">
+			<div class="c">
+				<div class="logo" plugins_pos="0"><div class="logo fl pic_box"><a href="/"><img plugins_mod="Pic" src="<?=$plugins_data[0]['Pic']?>" alt="<?=$c['config']['global']['SiteName']?>"><em></em></a></div></div>
+				<div class="fl">
+					<?php if($plugins_data[1]['Switch']){ ?>
+						<div class="nav">
+							<?php
+							$nav_value = db::get_value('config', 'GroupId="nav" and Variable="Footnav"', 'Value');
+							$nav_row = str::json_data($nav_value, 'decode');
+							foreach ($nav_row as $key=>$value){
+								if ($value['Custom']){//自定义
+									$url = $value['Url'];
+									$name = $value['Name'.$c['lang']];
+									$target = $value['CusNewTarget']?'target="_blank"':'';
+								}else{
+									if($value['Nav']==6){//信息页
+										$page_row = db::get_one('article_category', "CateId='{$value['Page']}'", '*');
+										$temp_row = db::get_one('article', "CateId='{$value['Page']}'", "AId,CateId,Title{$c['lang']},Url,PageUrl", $c['my_order']."AId asc");//查询一条用于显示连接
+										$temp_row && $url = web::get_url($temp_row, 'article');
+										$name = $page_row['Category'.$c['lang']];
+									}else{
+										$url = $c['nav_cfg'][$value['Nav']]['url'];
+										$name = $c['nav_cfg'][$value['Nav']]['name'.$c['lang']];
+									}
+									$target = $value['NewTarget']?'target="_blank"':'';
+								}//if 结束
+								if(!$name) continue;
+								?>
+								<div><a href="<?=$url; ?>" <?=$target; ?> title="<?=$name; ?>"><?=$name; ?></a></div>
+							<?php }?>
+						</div>
+					<?php } ?>
+					<div class="b">
+						<span><?=$c['config']['global']['Contact']['copyright'.$c['lang']].($c['config']['global']['powered_by']!=''?'&nbsp;&nbsp;&nbsp;&nbsp;'.$c['config']['global']['powered_by']:'');?></span>
+						<?=$plugins_data[2]['Switch']?web::foot_share():''; ?>
+						<div clas="clear"></div>
+						<div>
+							<?php $email_url = $c['config']['global']['Contact']['email'.$c['lang']]?$c['config']['global']['Contact']['email'.$c['lang']]:$c['config']['global']['Contact']['email_'.$c['config']['global']['LanguageDefault']]; ?>
+							<a href="mailto:<?=$email_url?>" class="footer_mail_mta"><?=$c['lang_pack']['email']?>: <?=$email_url?></a>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<?=web::output_third_code();?>
+<?php 
+	$cache_contents=ob_get_contents();
+	ob_end_clean();
+	if(!$_SESSION['Visual']['DraftsId']){
+		file::write_file(web::get_cache_path($c['themes'], 0), 'footer.html', $cache_contents);
+	}
+	echo $cache_contents;
+	unset($cache_contents);
+}else{
+	include(web::get_cache_path($c['themes']).'/footer.html');
+}
+?>
+<?php include($c['static_path']."/inc/global/online_chat.php");?>
+<?php include($c['static_path']."/inc/global/chat.php");?>
+
+
+
+
+
+<script>
+$(document).ready(function() {
+	const TARGET_EMAIL = 'info@gonawell.com';
+	const MAILTO_HREF = `mailto:${TARGET_EMAIL}`;
+	const MATCH_TEXT_KEY = `Email: ${TARGET_EMAIL}`;
+	const $emailLink = $('a').filter(function() {
+		const $this = $(this);
+		return $this.text().trim() === MATCH_TEXT_KEY || $this.attr('title')?.trim() === MATCH_TEXT_KEY;
+	});
+	if ($emailLink.length) {
+		$emailLink.attr('href', MAILTO_HREF);
+	}
+});
+</script>
+
+
+<style>
+	.share_toolbox li a[data*="instagram"] {background-size: 32px auto;}
+</style>
+
+<style>
+	.header_213_1 #header .rheader .nav .item .a0[href*="/"] {display: none !important;}
+	.header_213_1 #header .rheader .search .ico {display: none !important;}
+	.header_213_1 #header .rheader .search .formdiv {display: block !important; width: 227px !important;}
+	.header_213_1 #header .rheader .search .formdiv .close {display: none;}
+	.header_213_1 #header .rheader .search .formdiv .text {width: 155px !important;}
+	.header_213_1 #header .rheader .search .formdiv .sub_btn {width: 43px !important;}
+</style>

@@ -962,7 +962,7 @@ $(document).ready(function() {
 )();
 
 (function(){
-    $(".visual_plugins_container").off("click",".global_article_outline .outline_link");
+$(".visual_plugins_container").off("click",".global_article_outline .outline_link");
     $(".visual_plugins_container").on("click",".global_article_outline .outline_link",function(e){
         e.preventDefault();
         let href = $(this).attr("href");
@@ -975,4 +975,269 @@ $(document).ready(function() {
         return false;
     });
 })();
+</script>
+
+<style>
+    .ly_product_list_2 .list_wrapper  #turn_page {margin-bottom: 0px;}
+    .ly_product_list_2 .list_category_description {margin-bottom: 100px;}
+</style>
+
+
+<script>
+    var y = $("#float_message")
+      , x = y.find(".message_title");
+    if (y.length) {
+        var C = 0
+          , j = $("#mobile_footer_nav_box").length > 0 ? $("#mobile_footer_nav_box").height() : 0
+          , I = -1 * (y.height() - x.height() - j);
+        y.hasClass("up") && (C = I);
+        let e = ueeshop_config.isGaInsights || 0;
+        e || y.animate({
+            bottom: C
+        }, function() {
+            y.animate({
+                bottom: C - 20
+            }, function() {
+                y.animate({
+                    bottom: C
+                })
+            })
+        }),
+        x.off().click(function() {
+            x.find("i").removeClass("icon-arrow8").removeClass("icon-arrow7");
+            var e = "up" == $(this).parent().attr("class") ? "icon-arrow7" : "icon-arrow8";
+            if ("up" == $(this).parent().attr("class") ? ($(this).parent().stop(!1, !0).animate({
+                bottom: j
+            }, "fast"),
+            $(this).parent().removeClass("up")) : ($(this).parent().stop(!1, !0).animate({
+                bottom: I
+            }, "fast"),
+            $(this).parent().addClass("up")),
+            x.find("i").addClass(e),
+            "function" == typeof $("html").gtag_inquiry_click) {
+                let e = y.find("input[name=FId]").val();
+                $("html").gtag_inquiry_click(e)
+            }
+        })
+    }
+</script>
+
+<style>
+    #float_message {bottom: calc(var(--original-bottom) - 40px) !important;}
+</style>
+
+<script>
+    // 保存jQuery原始的animate方法，避免全局影响
+const originalAnimate = $.fn.animate;
+
+// 重写animate方法，仅拦截#float_message的bottom动画值
+$.fn.animate = function(props, ...args) {
+    // 只处理#float_message元素的bottom属性调整
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        // 核心逻辑：将原bottom值C减去40px
+        props.bottom = Number(props.bottom) - 40;
+    }
+    // 调用原始animate方法执行动画
+    return originalAnimate.call(this, props, ...args);
+};
+
+// 可选：动画完成后恢复原始animate方法（避免长期覆盖）
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
+</script>
+
+<script>
+const originalAnimate = $.fn.animate;
+$.fn.animate = function(props, ...args) {
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        props.bottom = Number(props.bottom) - 40;
+    }
+    return originalAnimate.call(this, props, ...args);
+};
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
+</script>
+
+<script>
+const originalAnimate = $.fn.animate;
+$.fn.animate = function(props, ...args) {
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        const isRisen = this.hasClass('up');
+        if (!isRisen) {
+            props.bottom = Number(props.bottom) - 40;
+        }
+    }
+    return originalAnimate.call(this, props, ...args);
+};
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
+</script>
+
+<script>
+const originalAnimate = $.fn.animate;
+$.fn.animate = function(props, ...args) {
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        const isRisen = this.hasClass('up');
+        if (!isRisen) {
+            props.bottom = Number(props.bottom) - 40;
+        }
+    }
+    return originalAnimate.call(this, props, ...args);
+};
+$(function() {
+    const floatMsg = $('#float_message');
+    if (floatMsg.length && !floatMsg.hasClass('up')) {
+        const currentBottom = parseFloat(floatMsg.css('bottom')) || 0;
+        floatMsg.css('bottom', currentBottom - 40 + 'px');
+    }
+});
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
+</script>
+
+<script>
+    $(function() {
+    // 1. 保存原始animate方法（全程不恢复，仅精准拦截）
+    const originalAnimate = $.fn.animate;
+    let floatMsgFinalBottom = 0; // 存储最终要设置的bottom值
+
+    // 2. 重写animate方法，拦截所有#float_message的bottom动画（包括初始加载）
+    $.fn.animate = function(props, ...args) {
+        if (this.is('#float_message') && props.bottom !== undefined) {
+            const isRisen = this.hasClass('up');
+            // 核心：仅下降/初始状态减40px
+            floatMsgFinalBottom = isRisen ? props.bottom : (Number(props.bottom) - 40);
+            // 替换动画的bottom值
+            props.bottom = floatMsgFinalBottom;
+        }
+        // 执行原始动画
+        return originalAnimate.call(this, props, ...args);
+    };
+
+    // 3. 延迟强制修正（确保原动画执行完后，值仍正确）
+    setTimeout(() => {
+        const floatMsg = $('#float_message');
+        if (floatMsg.length && !floatMsg.hasClass('up')) {
+            // 强制设置最终值，覆盖所有中间状态
+            floatMsg.css('bottom', floatMsgFinalBottom + 'px');
+        }
+    }, 500); // 延迟500ms，适配不同页面的加载速度（可根据实际调整）
+});
+</script>
+
+<script>
+const originalAnimate = $.fn.animate;
+$.fn.animate = function(props, ...args) {
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        const isRisen = this.hasClass('up');
+        if (!isRisen) {
+            props.bottom = Number(props.bottom) - 40;
+        }
+    }
+    return originalAnimate.call(this, props, ...args);
+};
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
+</script>
+
+
+<script>
+    $(function() {
+    // ===== 1. 元素获取与初始配置 =====
+    const floatMsg = $('#float_message');
+    const titleEl = floatMsg.find('.message_title');
+    const OFFSET = 40; // 要减去的40px，抽成变量更易维护
+
+    // ===== 2. 初始状态处理 =====
+    if (floatMsg.length && titleEl.length) {
+        // 2.1 初始隐藏message_title
+        titleEl.css('display', 'none');
+        
+        // 2.2 初始（无up类）时bottom减40px
+        if (!floatMsg.hasClass('up')) {
+            adjustBottom(floatMsg, OFFSET);
+        }
+    }
+
+    // ===== 3. 监听up类变化，处理显隐和bottom值 =====
+    if (floatMsg[0]) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    const hasUpClass = floatMsg.hasClass('up');
+                    
+                    // 3.1 处理message_title显隐
+                    titleEl.css('display', hasUpClass ? 'block' : 'none');
+                    
+                    // 3.2 处理bottom值：有up类恢复原值，无up类减40px
+                    adjustBottom(floatMsg, hasUpClass ? 0 : OFFSET);
+                }
+            });
+        });
+
+        // 启动监听（仅监听class属性）
+        observer.observe(floatMsg[0], {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+
+    // ===== 4. 延迟修正bottom（防止原代码覆盖） =====
+    setTimeout(() => {
+        if (floatMsg.length && !floatMsg.hasClass('up')) {
+            adjustBottom(floatMsg, OFFSET);
+        }
+    }, 500);
+
+    // ===== 工具函数：统一处理bottom值调整 =====
+    function adjustBottom(el, offset) {
+        const currentBottom = parseFloat(el.css('bottom')) || 0;
+        // 计算目标值：原值 - 偏移量（offset为0时就是恢复原值）
+        const targetBottom = currentBottom - offset;
+        el.css('bottom', targetBottom + 'px');
+    }
+});
+</script>
+
+<script>
+const originalAnimate = $.fn.animate;
+$.fn.animate = function(props, ...args) {
+    if (this.is('#float_message') && props.bottom !== undefined) {
+        const isRisen = this.hasClass('up');
+        if (!isRisen) {
+            props.bottom = Number(props.bottom) - 40;
+        }
+    }
+    return originalAnimate.call(this, props, ...args);
+};
+$(function() {
+    const floatMsg = $('#float_message');
+    const titleEl = floatMsg.find('.message_title');
+    if (titleEl.length) {
+        const hasUpClass = floatMsg.hasClass('up');
+        titleEl.css('display', hasUpClass ? 'none' : 'block');
+    }
+    if (floatMsg[0] && titleEl.length) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const hasUpClass = floatMsg.hasClass('up');
+                    titleEl.css('display', hasUpClass ? 'none' : 'block');
+                }
+            });
+        });
+        observer.observe(floatMsg[0], {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+});
+$(document).on('animationcomplete', '#float_message', function() {
+    $.fn.animate = originalAnimate;
+});
 </script>

@@ -94,3 +94,76 @@ UPAK822 底部留言加验证码
 	.ly_product_description_1 .i_overview_table {width: 100%;}
 	.ly_product_description_1 .editor_txt .i_content .editor_table_wrap {width: 100%;}
 </style>
+
+4.0 chat验证码询盘验证码添加
+
+/static/css/themes.css
+<style>
+#footer_feedback{ width:298px; position:fixed; height:360px; bottom:-400px; right:0px; background:#fff; border-radius:5px 5px 0 0; overflow:hidden; z-index:10001;}
+#footer_feedback .demo .vcode_box {display: flex;gap: 5%;}
+</style>
+
+/static/js/themes.js
+<script>
+	$("#footer_feedback").animate({bottom:-320},function(){
+		$("#footer_feedback").animate({bottom:-340},function(){
+			$("#footer_feedback").animate({bottom:-320});
+		});
+	});
+	$("#footer_feedback .title .close").click(function(){$("#footer_feedback").remove();});
+
+	$('#footer_feedback .title').click(function(){//底部留言js
+		if($(this).parent('#footer_feedback').attr('class')=='up'){
+			$(this).parent('#footer_feedback').stop(false,true).animate({bottom:"0px"},'fast');
+			$(this).parent('#footer_feedback').removeClass('up');
+		}else{
+			$(this).parent('#footer_feedback').stop(false,true).animate({bottom:"-320px"},'fast');
+			$(this).parent('#footer_feedback').addClass('up');
+		}
+	});
+</script>
+
+/static/static/inc/global/chat.php
+
+<?php !isset($c) && exit();?>
+<?php
+	$IsFooter = db::get_value('config',"Variable='Is_footer_feedback'","Value");
+	$footer_bg = db::get_value('config',"Variable='FooterColor'","Value");
+	$_SESSION['feedback_time'] = md5(microtime());
+	if($IsFooter){
+?>
+<div id="footer_feedback" class="up">
+	<div class="title" style=" background:#<?=$footer_bg?>;">
+    	<?=$c['lang_pack']['chat']['title']?>
+        <a class="close" href="javascript:void(0);"></a>
+    </div>
+	<div id="lib_feedback_form">
+        <form method="post" name="feedback">
+            <div class="demo">
+                <div class="blank6"></div>
+                <div class="tips_title"><?=$c['lang_pack']['chat']['name']?><font color="red">*</font>:</div>
+                <div class="blank6"></div>
+                <input type="text" class="text" name="Name" placeholder="<?=$c['lang_pack']['chat']['name_tips']?>" notnull />
+                <div class="blank15"></div>
+                <div class="tips_title"><?=$c['lang_pack']['chat']['email']?><font color="red">*</font>:</div>
+                <div class="blank6"></div>
+                <input type="text" class="text" name="Email" placeholder="<?=$c['lang_pack']['chat']['email_tips']?>" notnull />
+                <div class="blank15"></div>
+                <div class="tips_title"><?=$c['lang_pack']['chat']['got']?><font color="red">*</font>:</div>
+                <div class="blank6"></div>
+                <textarea class="text" name="Message" placeholder="<?=$c['lang_pack']['chat']['got_tips']?>" notnull></textarea>
+                <div class="blank15"></div>
+				<div class="tips_title"><?=$c['lang_pack']['feedback_arr']['code']?><font color="red">*</font>:</div>
+				<div class="blank6"></div>
+				<div class="vcode_box">
+					<input type="text" class="text vcode" name="VCode" notnull maxlength="4" placeholder="<?=$c['lang_pack']['feedback_arr']['code']?>"/> <?=v_code::create('feedback');?>
+				</div>
+				<div class="blank15"></div>
+                <input type="hidden" name="float" value="<?//=$_SESSION['feedback_time'];?>" />
+                <input type="submit" class="send" value="<?=$c['lang_pack']['chat']['send']?>" style=" background:#<?=$footer_bg?>;" />
+                <input type="hidden" name="Site" value="<?=trim($c['lang'],'_');?>" />
+            </div>
+        </form>
+    </div>
+</div>
+<?php }?>

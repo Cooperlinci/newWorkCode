@@ -12,3 +12,332 @@
 <style>
     .ly_poster_50 .item_box.Poster-3 .content_box .c_content {}
 </style>
+
+语言切换添加确认按钮
+
+langage.php
+<?php
+use frontend\modules\LangPack;
+use yii\helpers\Html;
+
+$c = Yii::$app->params;
+$languageType = $languageType ?? 'text';
+$language = $languageName = $c['language'];
+$languageNameIcon = $languageNameIcon ?? false;
+
+$Data = $Data ?? [];
+$languageIcon = $languageIcon ?? 'icon-language1';
+$DataLanguageIcon = $Data['LanguageIcon'] ?? 'default';
+$DataLanguageName = $Data['LanguageName'] ?? 'hidden';
+$Data['LanguageEffect'] = $Data['LanguageEffect'] ?? 10;
+$LanguageEffect = $Data['LanguageEffect'] == 11 ? 'drop_down' : 'pop_ups'; 
+$languageName = strtoupper($languageName);
+if($DataLanguageName == 'full') {
+    $languageName = $languageRow[$language]['Name'];
+}
+$CountryAcronym = strtolower($languageRow[$language]['CountryAcronym']) ?? '';
+?>
+<div class="default_language_currency default_language_currency_style <?=$LanguageEffect;?> <?=(($DataLanguageIcon != 'hidden' &&  $DataLanguageName != 'hidden') || $DataLanguageName == 'full') ? 'more_show' : '';?> <?=$languageType == 'icon' ? 'default_language_currency_icon_style' : ''?>  btn_default_language_currency notranslate">
+    <?php if (count($languageRow) > 1 && ( $DataLanguageIcon != 'hidden' ||  $DataLanguageName != 'hidden')) {?> 
+        <dl>
+            <dt>
+                <?php if($DataLanguageIcon != 'hidden') {?>
+                    <?php if($DataLanguageIcon == 'flag' && $CountryAcronym) {?>
+                        <span class="flag_icon <?=$DataLanguageName == 'hidden' ? 'no_right' : '';?>"> <i class="icon_flag_big flag_big_<?=$CountryAcronym;?>"></i></span>
+                    <?php } else if($DataLanguageIcon == 'default') {?>
+                        <i class="iconfont <?=$DataLanguageName == 'hidden' ? 'no_right' : '';?> <?=$DataLanguageIcon;?> <?=$languageIcon;?>"></i>
+                    <?php }?>
+                <?php }?>
+                <?php if($DataLanguageName != 'hidden') {?>
+                    <span class="current_language_abbreviation">
+                        <?=$languageName;?>
+                        <?php if($languageNameIcon) {?>
+                            <i class="iconfont <?=$languageNameIcon;?>"></i>
+                        <?php }?>
+                    </span>
+                <?php }?> 
+            </dt>
+            <dd class="<?=$LanguageEffect == 'drop_down' ? 'hide drop_down' : 'hide'?>">
+                <div class="box">
+                    <?php foreach ((array)$languageRow as $v) {?>
+                        <a rel="nofollow" class="language-switch-custom <?=$v['Language'] == $language ? 'current': '';?>" href="#" 
+                           data-lang="<?=$v['Info']['Language'];?>" 
+                           data-language-name="<?=Html::encode($v['Info']['Name']);?>"
+                           title="<?=Html::encode($v['Info']['Name']);?>">
+                            <?php if($DataLanguageIcon == 'flag') {?>
+                                <span class="flag_icon <?=!$v['CountryAcronym'] ? 'acronym_hide' : '';?>">
+                                    <i class="icon_flag_big flag_big_<?=strtolower($v['CountryAcronym']);?>"></i>
+                                </span>
+                            <?php }?>
+                        <span class="text"><?=$v['Info']['Name'];?></span>
+                        </a>
+                    <?php }?>
+                    <div id="language-confirm-buttons" class="languageButtons">
+                        <button id="language-confirm-btn" class="saveBtn"><?=LangPack::lang('web.global.save')?></button>
+                        <button id="language-cancel-btn" class="cancelBtn"><?=LangPack::lang('web.global.cancel')?></button>
+                    </div>
+                </div>
+            </dd>
+        </dl>   
+        <div id="default_language_currency_box" class="hide themes_popups">
+            <div class="top_box"><i></i></div>
+            <div class="default_language_currency_container">
+                <div class="default_language_currency_scroll">
+                    <div class="currency_title"><?=LangPack::lang('web.header.language');?></div>
+                    <div class="default_language_currency_list default_language_item notranslate">
+                        <?php foreach ((array)$languageRow as $v) {?>
+                            <a rel="nofollow" class="popup-language-switch-custom <?=$v['Language'] == $language ? 'current': '';?>" href="#" 
+                               data-lang="<?=$v['Info']['Language'];?>" 
+                               data-language-name="<?=Html::encode($v['Info']['Name']);?>"
+                               title="<?=Html::encode($v['Info']['Name']);?>">
+                                <?php if($v['CountryAcronym'] && $DataLanguageIcon == 'flag') {?>
+                                    <span class="flag_icon">
+                                        <i class="icon_flag_big flag_big_<?=strtolower($v['CountryAcronym']);?>"></i>
+                                    </span>
+                                <?php }?>
+                                <span class="text"><?=$v['Info']['Name'];?></span>
+                            </a>
+                        <?php }?>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div id="popup-language-confirm-buttons" class="languageButtons popup">
+                    <button id="popup-language-confirm-btn" class="saveBtn popup"><?=LangPack::lang('web.global.save')?></button>
+                    <button id="popup-language-cancel-btn" class="cancelBtn popup"><?=LangPack::lang('web.global.cancel')?></button>
+                </div>
+            </div>
+        </div>
+    <?php }?>
+</div>
+
+<script>
+$(document).ready(function(){
+    let currentLang = '';
+    const activeBgColor = '#007bff';
+    const defaultBgColor = '';
+    function initPopupLang() {
+        $('.popup-language-switch-custom').css({
+            'background-color': defaultBgColor,
+            'color': ''
+        });
+        $('#popup-language-confirm-buttons').hide();
+        currentLang = '';
+    }
+    function resetDropdownLangBg() {
+        $('.language-switch-custom').css({
+            'background-color': defaultBgColor,
+            'color': ''
+        });
+    }
+    function hideConfirmButtons() {
+        $('#language-confirm-buttons').hide();
+        currentLang = '';
+    }
+    $(function() {
+        $('.language-switch-custom').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            resetDropdownLangBg();
+            if ($(this).hasClass('current')) {
+                hideConfirmButtons();
+                currentLang = '';
+                return;
+            }
+            $(this).css({
+                'background-color': activeBgColor,
+                'color': '#fff'
+            });
+            currentLang = $(this).data('lang');
+            $('#language-confirm-buttons').show();
+        });
+        $('.popup-language-switch-custom').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.popup-language-switch-custom').css({
+                'background-color': defaultBgColor,
+                'color': ''
+            });
+            if ($(this).hasClass('current')) {
+                $('#popup-language-confirm-buttons').hide();
+                currentLang = '';
+                return;
+            }
+            $(this).css({
+                'background-color': activeBgColor,
+                'color': '#fff'
+            });
+            currentLang = $(this).data('lang');
+            $('#popup-language-confirm-buttons').show();
+        });
+        $('#language-confirm-btn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (!currentLang) {
+                alert('请先选择要切换的语言');
+                return;
+            }
+            $.post('/action/switch-language', {language: currentLang}, function(data) {
+                if (data.ret == 1) {
+                    window.location.href = data.msg.url;
+                } else {
+                    alert('语言切换失败');
+                }
+            }, 'json').fail(function() {
+                alert('语言切换请求失败');
+            });
+            
+            hideConfirmButtons();
+            resetDropdownLangBg();
+        });
+        $('#language-cancel-btn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            hideConfirmButtons();
+            resetDropdownLangBg();
+            currentLang = '';
+        });
+        $('#popup-language-confirm-btn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (!currentLang) {
+                alert('请先选择要切换的语言');
+                return;
+            }
+            $.post('/action/switch-language', {language: currentLang}, function(data) {
+                if (data.ret == 1) {
+                    window.location.href = data.msg.url;
+                } else {
+                    alert('语言切换失败');
+                }
+            }, 'json').fail(function() {
+                alert('语言切换请求失败');
+            });
+            initPopupLang();
+            $('#div_mask,#default_language_currency_box').fadeOut(function(){
+                global_obj.div_mask(1);
+            });
+        });
+        $('#popup-language-cancel-btn').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            initPopupLang();
+            $('#div_mask,#default_language_currency_box').fadeOut(function(){
+                global_obj.div_mask(1);
+            });
+        });
+        $('html').on('click', '.btn_default_language_currency.pop_ups', function(){
+            if (!$('body').children('#default_language_currency_box').size()) {
+                $('body').after($('#default_language_currency_box'));
+            }
+            var max_htight = $('#default_language_currency_box').outerHeight();
+            if (max_htight > $(window).height()*0.7) {
+                max_htight = "70vh";
+            }
+            $('#default_language_currency_box').height(max_htight).css('bottom', 0).fadeIn();
+            if(!$('#div_mask').length) global_obj.div_mask();
+        }).on('click', '#default_language_currency_box i,#div_mask', function(){
+            if($(window).width() <= 1000 && $('.nav_center_fixed.active').size() > 0) return false;
+            initPopupLang();
+            $('#div_mask,#default_language_currency_box').fadeOut(function(){
+                global_obj.div_mask(1);
+            });
+        });
+    });
+});
+</script>
+
+global.css
+<style>
+#default_language_currency_box .default_language_currency_container .languageButtons.popup {padding: 10px; text-align: center; display: none;}
+#default_language_currency_box .default_language_currency_container .languageButtons .saveBtn.popup {padding: 6px 15px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; margin-right: 8px;}
+#default_language_currency_box .default_language_currency_container .languageButtons .cancelBtn.popup {padding: 6px 15px; background: #ccc; color: #333; border: none; border-radius: 4px; cursor: pointer;}
+.default_language_currency_style dl dd .box .languageButtons {padding: 10px; text-align: center; display: none;}
+.default_language_currency_style dl dd .box .languageButtons .saveBtn {padding: 6px 15px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; margin-right: 8px;}
+.default_language_currency_style dl dd .box .languageButtons .cancelBtn {padding: 6px 15px; background: #ccc; color: #333; border: none; border-radius: 4px; cursor: pointer;}
+</style>
+
+backup
+<?php
+
+use frontend\modules\LangPack;
+use yii\helpers\Html;
+
+$c = Yii::$app->params;
+$languageType = $languageType ?? 'text';
+$language = $languageName = $c['language'];
+$languageNameIcon = $languageNameIcon ?? false;
+
+$Data = $Data ?? [];
+// 语言名称
+$languageIcon = $languageIcon ?? 'icon-language1';
+$DataLanguageIcon = $Data['LanguageIcon'] ?? 'default';
+$DataLanguageName = $Data['LanguageName'] ?? 'hidden';
+$Data['LanguageEffect'] = $Data['LanguageEffect'] ?? 10;
+$LanguageEffect = $Data['LanguageEffect'] == 11 ? 'drop_down' : 'pop_ups'; 
+$languageName = strtoupper($languageName);
+if($DataLanguageName == 'full') {
+    $languageName = $languageRow[$language]['Name'];
+}
+$CountryAcronym = strtolower($languageRow[$language]['CountryAcronym']) ?? '';
+
+?>
+<div class="default_language_currency default_language_currency_style <?=$LanguageEffect;?> <?=(($DataLanguageIcon != 'hidden' &&  $DataLanguageName != 'hidden') || $DataLanguageName == 'full') ? 'more_show' : '';?> <?=$languageType == 'icon' ? 'default_language_currency_icon_style' : ''?>  btn_default_language_currency notranslate">
+    <?php if (count($languageRow) > 1 && ( $DataLanguageIcon != 'hidden' ||  $DataLanguageName != 'hidden')) {?> 
+        <dl>
+            <dt>
+                <?php if($DataLanguageIcon != 'hidden') {?>
+                    <?php if($DataLanguageIcon == 'flag' && $CountryAcronym) {?>
+                        <span class="flag_icon <?=$DataLanguageName == 'hidden' ? 'no_right' : '';?>"> <i class="icon_flag_big flag_big_<?=$CountryAcronym;?>"></i></span>
+                    <?php } else if($DataLanguageIcon == 'default') {?>
+                        <i class="iconfont <?=$DataLanguageName == 'hidden' ? 'no_right' : '';?> <?=$DataLanguageIcon;?> <?=$languageIcon;?>"></i>
+                    <?php }?>
+                <?php }?>
+                <?php if($DataLanguageName != 'hidden') {?>
+                    <span class="current_language_abbreviation">
+                        <?=$languageName;?>
+                        <?php if($languageNameIcon) {?>
+                            <i class="iconfont <?=$languageNameIcon;?>"></i>
+                        <?php }?>
+                    </span>
+                <?php }?> 
+            </dt>
+            <dd class="<?=$LanguageEffect == 'drop_down' ? 'hide drop_down' : 'hide'?>">
+                <div class="box">
+                    <?php foreach ((array)$languageRow as $v) {?>
+                        <a rel="nofollow" class="<?=$v['Language'] == $language ? 'current': '';?>" href='javascript:;' data-lang="<?=$v['Info']['Language'];?>" title="<?=Html::encode($v['Info']['Name']);?>">
+                            <?php if($DataLanguageIcon == 'flag') {?>
+                                <span class="flag_icon <?=!$v['CountryAcronym'] ? 'acronym_hide' : '';?>">
+                                    <i class="icon_flag_big flag_big_<?=strtolower($v['CountryAcronym']);?>"></i>
+                                </span>
+                            <?php }?>
+                        <span class="text"><?=$v['Info']['Name'];?></span>
+                        </a>
+                    <?php }?>
+                </div>
+            </dd>
+        </dl>   
+        <div id="default_language_currency_box" class="hide themes_popups">
+            <div class="top_box"><i></i></div>
+            <div class="default_language_currency_container">
+                <div class="default_language_currency_scroll">
+                    <div class="currency_title"><?=LangPack::lang('web.header.language');?></div>
+                    <div class="default_language_currency_list default_language_item notranslate">
+                        <?php foreach ((array)$languageRow as $v) {?>
+                            <a rel="nofollow" class="<?=$v['Language'] == $language ? 'current': '';?>" href='javascript:;' data-lang="<?=$v['Info']['Language'];?>" title="<?=Html::encode($v['Info']['Name']);?>">
+                                <?php if($v['CountryAcronym'] && $DataLanguageIcon == 'flag') {?>
+                                    <span class="flag_icon">
+                                        <i class="icon_flag_big flag_big_<?=strtolower($v['CountryAcronym']);?>"></i>
+                                    </span>
+                                <?php }?>
+                                <span class="text"><?=$v['Info']['Name'];?></span>
+                            </a>
+                        <?php }?>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php }?>
+</div>

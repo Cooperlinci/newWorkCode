@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>分类下拉菜单</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <style>
+    .default_nav .full_nav_style .nav_sec{top:auto;width: 100%;box-sizing: border-box;max-height: 630px;overflow-y: auto;}
+    .default_nav .full_nav_style .nav_sec::-webkit-scrollbar{width: 5px; background: #fff;border-radius: 5px;}
+    .default_nav .full_nav_style .nav_sec::-webkit-scrollbar-thumb{background: rgba(0, 0, 0, 0.3);border-radius: 5px;}
+    .default_nav .full_nav_style .nav_sec::-webkit-scrollbar-thumb:hover{background: rgba(0, 0, 0, 0.5);}
+    .default_nav .full_nav_style .nav_sec .nav_sec_pack{margin:0 auto;text-align: left;display: flex; /* 新增：左右布局核心 */}
+    .default_nav .full_nav_style .small_nav_sec .nav_sec_box,
+    .default_nav .full_nav_style .small_nav_sec .nav_third_box,
+    .default_nav .full_nav_style .small_nav_sec .nav_fourth_box {box-shadow: none;}
+    .default_nav .full_nav_style .small_nav_sec .nav_sec_item{display: inline-block;vertical-align:top;float: none; width: calc( 100% / 6 );margin-top: 15px;margin-bottom: 10px;}
+    .default_nav .full_nav_style .small_nav_sec .small .nav_sec_item{width: calc( 100% / 4 );}
+    .default_nav .full_nav_style .small_nav_sec .nav_sec_a{  padding-left: 0; padding-right: 0; }
+    .default_nav .full_nav_style .nav_sec_item .nav_third_box{position: static;display: block;}
+    .default_nav .full_nav_style .nav_sec_item .nav_third_box .nav_fourth_box { margin-top: 5px; position: static; display: block; width: inherit; }
+    .default_nav .full_nav_style .nav_sec .nav_list { float: none; }
+    .default_nav .full_nav_style .nav_sec .nav_img { display: inline-block; vertical-align: top; width: 285px; margin-top: 25px; margin-bottom: 30px; }
+    .default_nav .full_nav_style .nav_sec .nav_img .imgl { vertical-align: middle; overflow: hidden; width: 130px; max-width: 200px; max-height: 240px; margin: 0 25px 25px 0;}
+    .default_nav .full_nav_style .nav_sec .nav_img .imgl a { display: block; max-width: 150px; height: inherit; padding: 0; }
+    .default_nav .full_nav_style .nav_sec .nav_img .imgl:nth-child(2n) { margin-right: 0; }
+    .default_nav .full_nav_style .nav_sec .small,
+    .default_nav .full_nav_style .nav_type_3 .nav_list{ max-width: 1920px; margin: 0 auto; }
+    .default_nav .full_nav_style .nav_sec .small .nav_list { display: inline-block; vertical-align: top; max-width: calc(90% - 288px); min-width: 500px; text-align: left; }
+    .default_nav .full_nav_style .nav_type_3 .nav_list { display: flex; flex-wrap: wrap; justify-content: center; }
+    .default_nav .full_nav_style .nav_type_3 .nav_sec_item { display: flex; flex-direction: column; justify-content: space-between; width: 200px; margin-right: 25px; }
+    .default_nav .full_nav_style .nav_type_3 .nav_sec_item a,
+    .default_nav .full_nav_style .nav_type_3 .nav_sec_item dt a { padding-right: 0; padding-left: 0; }
+    .default_nav .full_nav_style .nav_type_3 .nav_img { width: inherit; max-width: inherit; margin: 0; margin-top: 12px; text-align: center; }
+    .default_nav .full_nav_style .nav_type_3 .nav_img .imgl { width: inherit; }
+    .default_nav .full_nav_style .nav_type_3 .nav_img .imgl a { max-width: inherit; padding: 0; }
+    .default_nav .full_nav_style .nav_type_2 .nav_sec_box,
+    .default_nav .full_nav_style .nav_type_3 .nav_sec_box { text-align: center; }
+    .default_nav .full_nav_style .nav_type_3 .nav_sec_item .nav_third_box { margin-top: 6px; }
+    .default_nav .full_nav_style .nav_sec_item .nav_third_box .nav_third_item { margin-bottom: 10px; }
+    
+    .default_nav .full_nav_style .nav_first_list {width: 200px;border-right: 1px solid #eee;padding-right: 15px;flex-shrink: 0;}
+    .default_nav .full_nav_style .nav_first_list .first-item {list-style: none;padding: 8px 0;cursor: pointer;font-weight: 500;margin: 5px 0;}
+    .default_nav .full_nav_style .nav_first_list .first-item.active {color: #e63946;}
+    .default_nav .full_nav_style .nav_second_content {flex: 1;padding-left: 20px;}
+    .default_nav .full_nav_style .second-content {display: flex;flex-wrap: wrap;gap: 15px;}
+    .default_nav .full_nav_style .second-content span {display: inline-block;width: 100px;padding: 5px 0;}
+  </style>
+</head>
+<body>
+  <div class="default_nav">
+    <div class="full_nav_style">
+      <div class="nav_sec nav_type_3">
+        <div class="nav_sec_pack">
+          <!-- 左侧：一级分类 -->
+          <div class="nav_first_list">
+            <ul>
+              <li class="first-item active" data-category="worldcup">World Cup 2026</li>
+              <li class="first-item" data-category="popular">Most Popular Club</li>
+              <li class="first-item" data-category="nations">All Nations</li>
+              <li class="first-item" data-category="version">All Fan/Player/Retro Version</li>
+              <li class="first-item" data-category="premier">Premier League</li>
+              <li class="first-item" data-category="bundesliga">Bundesliga</li>
+            </ul>
+          </div>
+          <!-- 右侧：二级分类 -->
+          <div class="nav_second_content">
+            <div class="second-content" id="worldcup">
+              <span>Mexico</span>
+              <span>USA</span>
+              <span>Canada</span>
+              <span>Argentina</span>
+              <span>Brazil</span>
+              <span>Colombia</span>
+              <span>Germany</span>
+              <span>Belgium</span>
+            </div>
+            <div class="second-content" id="popular" style="display:none;">
+              <span>Flamengo</span>
+              <span>Palmeiras</span>
+              <span>Manchester City</span>
+              <span>Manchester United</span>
+            </div>
+            <div class="second-content" id="nations" style="display:none;">
+              <span>Norway</span>
+              <span>Croatia</span>
+              <span>England</span>
+              <span>France</span>
+              <span>Netherlands</span>
+              <span>Italy</span>
+              <span>Portugal</span>
+              <span>Spain</span>
+            </div>
+            <div class="second-content" id="version" style="display:none;">
+              <span>Fan Version</span>
+              <span>Player Version</span>
+              <span>Retro Version</span>
+            </div>
+            <div class="second-content" id="premier" style="display:none;">
+              <span>Australia</span>
+              <span>Japan</span>
+              <span>Saudi Arabia</span>
+              <span>Ecuador</span>
+              <span>Uruguay</span>
+              <span>Paraguay</span>
+              <span>Morocco</span>
+              <span>Algeria</span>
+            </div>
+            <div class="second-content" id="bundesliga" style="display:none;">
+              <span>Bayern Munich</span>
+              <span>Borussia Dortmund</span>
+              <span>RB Leipzig</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function() {
+        $('.first-item').on('mouseenter click', function() {
+            $('.first-item').removeClass('active');
+            $(this).addClass('active');
+            var category = $(this).attr('data-category');
+            $('.second-content').hide();
+            $('#' + category).show();
+        });
+        $('.first-item').first().trigger('mouseenter');
+    });
+  </script>
+</body>
+</html>

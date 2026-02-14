@@ -1,0 +1,27 @@
+<style>
+    .ly_product_description_1 .editor_txt {text-align: justify;}
+</style>
+
+<style>
+    .ly_product_purchase_2 .goods_wrapper .goods_info .g_desc {text-align: justify;}
+</style>
+
+<style>
+    @media screen and (min-width: 1000px) {
+        .ly_product_purchase_2 .goods_wrapper .goods_info .g_desc {text-align: justify;}
+        .ly_product_description_1 .editor_txt {text-align: justify;}
+    }
+</style>
+
+.ly_product_purchase_2[data-visual-id="5861"] .goods_wrapper .goods_info .g_number
+
+<script>
+$(document).ready(function() {
+    const $target = $('.ly_product_purchase_2 .goods_wrapper .goods_info .g_number');
+    if ($target.length) {
+        let rawText = $target.text().trim();
+        let processedText = rawText.replace(/^No\./, '');
+        $target.text(processedText);
+    }
+});
+</script>

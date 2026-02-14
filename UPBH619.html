@@ -6,3 +6,249 @@
 #global_editor_contents h1, #global_editor_contents h2, #global_editor_contents h3, #global_editor_contents h4, #global_editor_contents h5, #global_editor_contents h6, #global_editor_contents b, #global_editor_contents strong {
     font-weight: bold;
 }
+
+
+<script>
+$(document).ready(function() {
+    const $chatBox = $('#chat_box');
+    const $newMenuDiv = $('<div>')
+        .addClass('menu fill')
+    const $newATag = $('<a>')
+        .attr({
+            'href': 'javascript:;',
+            'id': 'fill_in',
+            'class': 'fill_in',
+            'title': 'fill_in'
+        });
+    $newMenuDiv.append($newATag);
+    $chatBox.append($newMenuDiv);
+});
+$(function() {
+    $('#chat_window #chat_box .menu.fill a').click(function(e) {
+        e.preventDefault();
+        $('#float_message .message_title').click();
+    });
+});
+</script>
+<style>
+    #chat_window #chat_box .menu.fill a {background: #07bb8a url(//ueeshop.ly200-cdn.com/u_file/UPBE/UPBE968/2601/28/photo/fillin.png) no-repeat 0 0;background-size: 65%;background-position: center;}
+</style>
+<script>
+$(function() {
+    const floatMsg = $('#float_message');
+    const titleEl = floatMsg.find('.message_title');
+    if (titleEl.length) {
+        const hasUpClass = floatMsg.hasClass('up');
+        titleEl.css('display', hasUpClass ? 'none' : 'block');
+    }
+    if (floatMsg[0] && titleEl.length) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const hasUpClass = floatMsg.hasClass('up');
+                    titleEl.css('display', hasUpClass ? 'none' : 'block');
+                }
+            });
+        });
+        observer.observe(floatMsg[0], {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+});
+</script>
+
+<style>
+    .ly_footer_47 .default_foot_menu_style .menu_list.menu_list_contact dd {word-break: normal !important;}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    const $chatBox = $('#chat_box');
+    const $newMenuDiv = $('<div>')
+        .addClass('menu fill')
+    const $newATag = $('<a>')
+        .attr({
+            'href': 'javascript:;',
+            'id': 'fill_in',
+            'class': 'fill_in',
+            'title': 'fill_in'
+        });
+    $newMenuDiv.append($newATag);
+    $chatBox.append($newMenuDiv);
+});
+$(function() {
+    $('#chat_window #chat_box .menu.fill a').click(function(e) {
+        e.preventDefault();
+        $('#float_message .message_title').click();
+    });
+});
+</script>
+<style>
+    #chat_window #chat_box .menu.fill a {background: #FCBA08 url(https://ueeshop.ly200-cdn.com/u_file/UPBH/UPBH619/2601/30/photo/bubbleIcon.pngg) no-repeat 0 0;background-size: 65%;background-position: center;}
+</style>
+<script>
+$(function() {
+    const floatMsg = $('#float_message');
+    const titleEl = floatMsg.find('.message_title');
+    if (titleEl.length) {
+        const hasUpClass = floatMsg.hasClass('up');
+        titleEl.css('display', hasUpClass ? 'none' : 'block');
+    }
+    if (floatMsg[0] && titleEl.length) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const hasUpClass = floatMsg.hasClass('up');
+                    titleEl.css('display', hasUpClass ? 'none' : 'block');
+                }
+            });
+        });
+        observer.observe(floatMsg[0], {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  const $contactTitle = $('.float_message .title');
+  $contactTitle.prepend(`
+    <img src="https://ueeshop.ly200-cdn.com/u_file/UPBH/UPBH619/2602/02/photo/inIcon.png" style="width:16px; height:16px; margin-right:6px; vertical-align:middle;">
+  `);
+});
+</script>
+
+
+<style>
+#float_message .message_title::before {
+    content: '\e635';
+    font-family: 'iconfont'; 
+    display: none;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #fff;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+  const $floatMessage = $('#float_message');
+  const $messageTitle = $floatMessage.find('.message_title');
+  const floatMessageDom = $floatMessage[0];
+  function updateBeforeStyle() {
+    const hasUpClass = $floatMessage.hasClass('up');
+    if (!hasUpClass) {
+      $messageTitle.addClass('hide-before');
+    } else {
+      $messageTitle.removeClass('hide-before');
+    }
+  }
+  updateBeforeStyle();
+  if (floatMessageDom) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          updateBeforeStyle();
+        }
+      });
+    });
+    observer.observe(floatMessageDom, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    $(window).on('unload', () => observer.disconnect());
+  }
+});
+</script>
+
+
+<style>
+#float_message .message_title::before {
+    content: '\e635';
+    font-family: 'iconfont'; 
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    display: none;
+}
+#float_message[class*="up"] .message_title::before {
+    content: '\e635';
+    font-family: 'iconfont'; 
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    display: none;
+}
+</style>
+
+<style>
+#float_message[class*="up"] .message_title::before {
+    content: '\e635';
+    font-family: 'iconfont'; 
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    transform: 0.3s ease;
+}
+</style>
+
+
+<style>
+#float_message[class*="up"] .message_title::before {
+    content: '\e635';
+    font-family: 'iconfont'; 
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    /* 核心：开启动画，这里先使用「呼吸效果」，可替换为其他动画名 */
+    animation: breath 2s infinite ease-in-out;
+    /* 必须：伪元素默认是 inline，需改为 inline-block 才能支持 transform */
+    display: inline-block;
+}
+
+/* 效果1：呼吸/闪烁（推荐，柔和不刺眼） */
+@keyframes breath {
+    0% {
+        opacity: 1;
+        transform: scale(1); /* 初始大小 */
+    }
+    50% {
+        opacity: 0.4; /* 半透明 */
+        transform: scale(1.1); /* 轻微放大 */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* 恢复初始状态 */
+    }
+}
+
+/* 效果2：旋转（可选，动感较强） */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 效果3：上下跳动（可选，活泼风格） */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    35% {
+        transform: translateY(-5px);
+    }
+    65% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+</style>

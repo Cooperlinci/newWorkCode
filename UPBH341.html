@@ -714,3 +714,139 @@ $(document).ready(function() {
 <style>
     .header .default_nav .has_sec:has(a[title*="Products"]) .small_nav_sec {width: 601px;}
 </style>
+
+<script>
+$(function() {
+  // 1. 遍历每个包含图片和标题的.item元素
+  $('.item').each(function() {
+    // 2. 获取当前item下图片的跳转链接（核心：复用图片的href）
+    const jumpUrl = $(this).find('.computer_process_img a').attr('href');
+    
+    // 3. 给标题h2绑定点击事件（仅当链接存在时绑定，避免无效跳转）
+    if (jumpUrl) {
+      $(this).find('.title_box h2')
+        // 绑定点击跳转逻辑
+        .on('click', function() {
+          window.location.href = jumpUrl;
+        })
+        // 增加可点击的样式提示（也可通过CSS实现，二选一即可）
+        .css({
+          'cursor': 'pointer', // 鼠标悬浮显示手型
+          'user-select': 'none' // 禁止文字选中，提升交互体验
+        });
+    }
+  });
+});
+</script>
+
+<script>
+$(function() {
+  $('.item').each(function() {
+    const jumpUrl = $(this).find('.computer_process_img a').attr('href');
+    if (jumpUrl) {
+      $(this).find('.title_box h2')
+        .on('click', function() {
+          window.location.href = jumpUrl;
+        })
+        // 增加可点击的样式提示（也可通过CSS实现，二选一即可）
+        .css({
+          'cursor': 'pointer', // 鼠标悬浮显示手型
+          'user-select': 'none' // 禁止文字选中，提升交互体验
+        });
+    }
+  });
+});
+</script>
+
+<script>
+$(function() {
+    $('.item').each(function() {
+        const imgHref = $(this).find('.ly_poster_12 .list .item .compute_item_img a').attr('href');
+        if (!imgHref) return;
+        console.log(imgHref);
+        const $h2 = $(this).find('.ly_poster_12 .list .item .text_box h2');
+        if (!$h2.length) return;
+        console.log($h2);
+        const h2Text = $h2.text().trim();
+        if (h2Text) {
+        $h2.html(`<a href="${imgHref}">${h2Text}</a>`);
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_12 div[class^="item"]').each(function() {
+        const imgLinkHref = $(this).find('.ly_poster_12 .img_box .compute_item_img a').attr('href');
+        console.log(imgLinkHref);
+        if (imgLinkHref) {
+            let $titleH2 = $(this).find('.ly_poster_12 .text_box .title.themes_box_title h2');
+            $titleH2.wrap(`<a href="${imgLinkHref}" target="_blank"></a>`); 
+        }
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_12 div[class^="item"]').each(function() {
+        const imgLinkHref = $(this).find('.img_box .compute_item_img a').attr('href');
+        if (imgLinkHref) {
+            let $titleH2 = $(this).find('.text_box .title.themes_box_title h2');
+            $titleH2.wrap(`<a href="${imgLinkHref}"></a>`); 
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_12 div[class^="item"]').each(function() {
+        // 1. 获取图片的链接
+        const imgLinkHref = $(this).find('.img_box .compute_item_img a').attr('href');
+        
+        if (imgLinkHref) {
+            // 2. 定位到h2元素
+            let $titleH2 = $(this).find('.text_box .title.themes_box_title h2');
+            
+            // 3. 给h2绑定点击事件，点击时跳转
+            $titleH2
+                .on('click', function() {
+                    // 跳转至目标链接（同窗口打开，和原图片链接行为一致）
+                    window.location.href = imgLinkHref;
+                })
+                // 4. 添加鼠标样式：移上去显示"手型"，提示可点击（不影响原有样式）
+                .css('cursor', 'pointer')
+                // 可选：模拟a标签的hover效果（如需，不想要可删掉）
+                .hover(
+                    function() { $(this).css('color', '#0066cc'); }, // 鼠标移入变蓝色
+                    function() { $(this).css('color', ''); } // 鼠标移出恢复原颜色
+                );
+
+            // 可选：给h2添加title属性，鼠标悬浮时显示链接（和原生a标签一致）
+            $titleH2.attr('title', '点击跳转：' + imgLinkHref);
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_12 div[class^="item"]').each(function() {
+        const imgLinkHref = $(this).find('.img_box .compute_item_img a').attr('href');
+        if (imgLinkHref) {
+            let $titleH2 = $(this).find('.text_box .title.themes_box_title h2');
+            $titleH2
+                .on('click', function() {
+                    window.location.href = imgLinkHref;
+                })
+                .css('cursor', 'pointer');
+            // $titleH2.attr('title', '点击跳转：' + imgLinkHref);
+        }
+    });
+});
+</script>

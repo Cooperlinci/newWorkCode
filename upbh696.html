@@ -1,0 +1,53 @@
+<style>
+.visual_plugins_container[data-type="form"][data-mode="3"] .ly_form_3 .wide {background-image: url("https://ueeshop.ly200-cdn.com/u_file/UPBH/UPBH696/2602/04/photo/bgLightBlue.png");background-repeat: no-repeat;background-size: cover;background-position: center center;padding: 30px;min-height: 400px;}
+.ly_form_3 .form_wrapper>div.form_bg {width: 55%;}
+.ly_form_3 .form_wrapper>div.form_box {width: 45%;}
+</style>
+
+
+<style>
+.ly_form_3 {background-image: url("/u_file/2602/04/photo/bgLightBlue.png");background-repeat: no-repeat;background-size: cover;background-position: center center;padding: 30px;min-height: 400px;}
+.ly_form_3 .form_wrapper>div.form_bg {width: 55%;}
+.ly_form_3 .form_wrapper>div.form_box {width: 45%;}
+</style>
+
+添加后台字体在common/helps/helpsvisualv2.php 在$fontAry里加
+public static function loadFontLibrary(){
+    $fontAry = [];
+}
+
+
+<div><img src="https://ueeshop.ly200-cdn.com/u_file/UPBH/UPBH696/2602/11/photo/tubiao.gif"></div>
+
+
+<div class="gif-container">
+    <img src="/u_file/2602/11/photo/tubiao.gif" alt="图标GIF" class="adapt-gif">
+</div>
+<style>
+    .global_mode_customize .gif-container {width: 100%;max-width: 100%;margin: 0 auto;overflow: hidden;}
+    .global_mode_customize .adapt-gif {width: 100%;height: auto;object-fit: contain;vertical-align: middle;user-select: none;-webkit-user-drag: none;}
+</style>
+
+t309(版本1)
+
+
+<script>
+$(function() {
+    const cleanUrl = url => {
+        if (!url) return url;
+        return url.replace(/\?x-oss-process=.*$/g, '');
+    };
+    $('* .ly_poster_102').each(function() {
+        const $this = $(this);
+        const bgImage = $this.css('background-image');
+        if (bgImage && bgImage !== 'none' && bgImage.includes('url(')) {
+            const urlMatch = bgImage.match(/url\(['"]?(.*?)['"]?\)/);
+            if (urlMatch && urlMatch[1]) {
+                const originalUrl = urlMatch[1];
+                const cleanedUrl = cleanUrl(originalUrl);
+                $this.css('background-image', `url(${cleanedUrl})`);
+            }
+        }
+    });
+});
+</script>

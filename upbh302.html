@@ -851,3 +851,21 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+<script>
+$(function() {
+    const $container = $('.ly_footer_5 .copy > .wide');
+    const originalContent = $container.html();
+    const icpCode = '京ICP备2021003641号-3';
+    const linkContent = `<a href="https://beian.miit.gov.cn" target="_blank">${icpCode}</a>`;
+    $container.html(originalContent.replace(icpCode, linkContent));
+});
+$(function() {
+    const $container = $('.ly_footer_5 .copy > .wide');
+    const originalContent = $container.html();
+    const icpCode = '京公网安备11010502059156号';
+    const linkContent = `<a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank">${icpCode}</a>`;
+    $container.html(originalContent.replace(icpCode, linkContent));
+});
+</script>

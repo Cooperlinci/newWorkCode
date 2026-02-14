@@ -399,3 +399,59 @@ $(function() {
     #default_search_box.head_search .button::after {line-height: 40px;}
     #default_search_box.head_search .button {width: 40px;height: 40px;}
 </style>
+
+原本
+<?php foreach((array)$categoryAry as $k => $v) {
+  if($webSettings['CategoryCoverScale'] == 'adapt' && isset($photoRow[$v['PicPath']])) {
+    $width = $photoRow[$v['PicPath']]['Width'] ?? 0;
+    $height = $photoRow[$v['PicPath']]['Height'] ?? 0;
+    $width > 0 && $computeAry['ReplaceAry']['width'] = $width;
+    $height > 0 && $computeAry['ReplaceAry']['height'] = $height;
+  } 
+  ?>
+<div class="category-card">
+  <div class="img_box">
+    <div class="compute_item_img" style="<?=HelpsVisualV2::computeWidth($computeAry['ReplaceAry'], $computeAry['ReplaceAry']['PicScale']);?>">
+      <div class="compute_process_img" style="<?=HelpsVisualV2::computeRatio($computeAry['ReplaceAry'], 'products');?>">
+        <a href="<?=$link?>" <?=$FormFields ? 'data-fields="' . $FormFields . '"' : '';?> class="<?=$inquiryInfoClass;?>" <?=$labelAttrInfo?> title="<?=Html::encode($webSettings['Title']);?>">
+          <img style="<?=$computeFilling;?>" <?=Ly200::getLazyPreloadingImage($v['PicPath'], 'category-card__image');?> alt="<?=$v['Category'.$c['lang']];?>">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="category-card__content">
+    <div class="category-card__title themes_box_title"><?=$v['Category'.$c['lang']];?></div>
+    <?php if($webSettings['ButtonText']) {?>
+      <a href="<?=Ly200::getUrl($v);?>" class="link"><?=$webSettings['ButtonText'];?></a>
+    <?php }?>
+  </div>
+</div>
+<?php }?>
+
+modify
+				<?php foreach((array)$categoryAry as $k => $v) {
+					if($webSettings['CategoryCoverScale'] == 'adapt' && isset($photoRow[$v['PicPath']])) {
+						$width = $photoRow[$v['PicPath']]['Width'] ?? 0;
+						$height = $photoRow[$v['PicPath']]['Height'] ?? 0;
+						$width > 0 && $computeAry['ReplaceAry']['width'] = $width;
+						$height > 0 && $computeAry['ReplaceAry']['height'] = $height;
+					} 
+					?>
+				<div class="category-card">
+					<div class="img_box">
+						<div class="compute_item_img" style="<?=HelpsVisualV2::computeWidth($computeAry['ReplaceAry'], $computeAry['ReplaceAry']['PicScale']);?>">
+							<div class="compute_process_img" style="<?=HelpsVisualV2::computeRatio($computeAry['ReplaceAry'], 'products');?>">
+								<a href="<?=Ly200::getUrl($v);?>" <?=$FormFields ? 'data-fields="' . $FormFields . '"' : '';?> class="<?=$inquiryInfoClass;?>" <?=$labelAttrInfo?> title="<?=Html::encode($webSettings['Title']);?>">
+									<img style="<?=$computeFilling;?>" <?=Ly200::getLazyPreloadingImage($v['PicPath'], 'category-card__image');?> alt="<?=$v['Category'.$c['lang']];?>">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="category-card__content">
+						<div class="category-card__title themes_box_title"><?=$v['Category'.$c['lang']];?></div>
+						<?php if($webSettings['ButtonText']) {?>
+							<a href="<?=Ly200::getUrl($v);?>" class="link"><?=$webSettings['ButtonText'];?></a>
+						<?php }?>
+					</div>
+				</div>
+				<?php }?>

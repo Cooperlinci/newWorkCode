@@ -221,7 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 main.js
 
-<script>document.addEventListener('DOMContentLoaded', function() {
+<script>
+document.addEventListener('DOMContentLoaded', function() {
     function isPC() {
         return window.innerWidth > 1000;
     }
@@ -316,7 +317,7 @@ main.js
 
 main.css
 <style>
-    .ly_header_24 .wide {align-items: flex-start;}
+.ly_header_24 .wide {align-items: flex-start;}
 .ly_header_24 .company-info {flex: 1;padding: 10px 20px;margin: 0 15px;z-index: 100;}
 .ly_header_24 .company-name {font-size: 18px;font-weight: 600;color: #333;margin: 0 0 5px 0;}
 .ly_header_24 .company-basic {font-size: 14px;color: #666;margin: 0 0 5px 0;}

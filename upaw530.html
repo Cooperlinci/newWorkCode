@@ -14,3 +14,207 @@
     .rale_news .list .item a:hover{text-decoration: underline !important;}
     .rale_news .news_title .read_btn a:hover{text-decoration: underline !important;}
 </style>
+
+.footer_258_1 #footer .config_box .contact_box ul li p a
+
+yingyi.l@changhutech.com
+<script>
+const newEmail = 'yingyi.l@changhutech.com';
+$(document).ready(function() {
+    const $originalLink = $('.footer_258_1 #footer .config_box .contact_box ul li p .footer_mail_mta');
+    if ($originalLink.length > 0) {
+        const $newLink = $originalLink.clone();
+        $newLink.attr('href', `mailto:${newEmail}`)
+                .text(newEmail);
+        $originalLink.parent('li').append($newLink);
+    }
+});
+</script>
+
+<script>
+const newEmail = 'yingyi.l@changhutech.com';
+$(document).ready(function() {
+    const $originalLink = $('.footer_mail_mta');
+    if ($originalLink.length > 0) {
+        const $newLink = $originalLink.clone();
+        $newLink.attr('href', `mailto:${newEmail}`)
+                .text(newEmail);
+        $originalLink.parent('li').append($newLink);
+    }
+});
+</script>
+
+<style>
+    .footer_258_1 #footer .config_box .contact_box ul li:nth-child(2) {}
+</style>
+<script>
+$(document).ready(function() {
+    var newEmail = 'yingyi.l@changhutech.com';
+    const $originalLink = $('.footer_mail_mta');
+    if ($originalLink.length > 0) {
+        const $newLink = $originalLink.clone();
+        $newLink.attr('href', `mailto:${newEmail}`)
+                .text(newEmail);
+        $originalLink.parent('.footer_258_1 #footer .config_box .contact_box ul li:nth-child(2)').append($newLink);
+    }
+});
+</script>
+
+<script>
+var newEmail = 'new_inquiry@changhutech.com';
+const originalLink = document.querySelector('.footer_mail');
+if (originalLink) {
+    const parentLi = originalLink.parentElement;
+    const newLink = originalLink.cloneNode(true);
+    newLink.href = `mailto:${newEmail}`;
+    newLink.textContent = newEmail;
+    parentLi.appendChild(newLink);
+}
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    var newEmail = 'your_new_email@changhutech.com';
+    var $originalLink = $('.contact_box .other_title ul li p .footer_mail_mta');
+    if ($originalLink.length > 0) {
+        var $newLink = $originalLink.clone();）
+        $newLink.attr('href', 'mailto:' + newEmail)
+                .text(newEmail);
+        $originalLink.closest('li').append($newLink);
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    var newEmail = 'yingyi.l@changhutech.com';
+    var $originalLink = $('.footer_258_1 #footer .config_box .contact_box ul li p .footer_mail_mta');
+    if ($originalLink.length > 0) {
+        var $newLink = $originalLink.clone();
+        $newLink.attr('href', 'mailto:' + newEmail)
+                .text(newEmail);
+        $originalLink.closest('li p').append($newLink);
+    }
+});
+</script>
+
+
+    <div class="headerTell">
+        <div class="outwide">
+            <div class="contact_info">
+                <a class="text themes_box_title" href="mailto:inquiry@changhutech.com">Email: inquiry@changhutech.com</a>
+                <a class="text themes_box_title" href="mailto:yingyi.l@changhutech.com">Email: yingyi.l@changhutech.com</a>
+                <a class="text themes_box_title">Tel: +086 138 2267 3227</a>
+            </div>
+            <div class="share">
+                <div class="share foot_share foot_share_type_3">
+                    <a href="https://x.com/changhutech" target="_blank" class="foot_share_box Twitter"></a>
+                    <a href="https://www.youtube.com/@ChanghuTech" target="_blank" class="foot_share_box YouTube"></a>
+                    <a href="https://www.linkedin.com/in/changhu-tech-3425523aa/" target="_blank" class="foot_share_box LinkedIn"></a>
+                    <a href="https://www.instagram.com/changhu_technology/" target="_blank" class="foot_share_box Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+    .header_258_1 .responsive_pc_header .headerTell {height: auto;padding: 10px 0;max-width: 1920px;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide {display: flex;align-items: center;justify-content: space-between;padding: 0 20px;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide .contact_info {display: flex;justify-content: space-around;gap: 20px;width: auto;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide .contact_info .text {color: #fff;}
+    .header_258_1 .responsive_pc_header .headerTell .foot_share_type_3 .foot_share_box {transition: all .3s;background-color: #f8b31c;transform: scale(0.8);border-radius: 50%;margin-left: 0;background-size: 32px;width: 32px;margin-right: 4px;height: 32px;}
+</style>
+
+<style>
+    .header_258_1 .responsive_pc_header .header_in {}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    const targetContainer = '.header_258_1 .responsive_pc_header .header_in';
+    const sourceShareSelector = '.footer_258_1 #footer .config_box .share_box > .share';
+    const contactInfo = [
+        { type: 'email', value: 'inquiry@changhutech.com', text: 'Email: inquiry@changhutech.com' },
+        { type: 'email', value: 'yingyi.l@changhutech.com', text: 'Email: yingyi.l@changhutech.com' },
+        { type: 'tel', value: '+086 138 2267 3227', text: 'Tel: +086 138 2267 3227' }
+    ];
+    const clonedShare = $(sourceShareSelector).clone(true);
+    const $headerTell = $('<div>').addClass('headerTell')
+    const $outwide = $('<div>').addClass('outwide')
+    const $contactInfo = $('<div>').addClass('contact_info')
+    contactInfo.forEach(item => {
+        let $link = $('<a>').addClass('text themes_box_title').text(item.text);
+        if (item.type === 'email') {
+            $link.attr('href', `mailto:${item.value}`);
+        }
+        $contactInfo.append($link);
+    });
+    const $shareWrapper = $('<div>').addClass('share outside').append(clonedShare);
+    $outwide.append($contactInfo).append($shareWrapper);
+    $headerTell.append($outwide);
+    $(targetContainer).prepend($headerTell);
+});
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    const targetContainerPc = '.header_258_1 .responsive_pc_header .header_in';
+    const targetContainerMobile = '';
+    const sourceShareSelector = '.footer_258_1 #footer .config_box .share_box > .share';
+    const contactInfo = [
+        { type: 'email', value: 'inquiry@changhutech.com', text: 'Email: inquiry@changhutech.com' },
+        { type: 'email', value: 'yingyi.l@changhutech.com', text: 'Email: yingyi.l@changhutech.com' },
+        { type: 'tel', value: '+086 138 2267 3227', text: 'Tel: +086 138 2267 3227' }
+    ];
+    const clonedShare = $(sourceShareSelector).clone(true);
+    const $headerTell = $('<div>').addClass('headerTell')
+    const $outwide = $('<div>').addClass('outwide')
+    const $contactInfo = $('<div>').addClass('contact_info')
+    contactInfo.forEach(item => {
+        let $link = $('<a>').addClass('text themes_box_title').text(item.text);
+        if (item.type === 'email') {
+            $link.attr('href', `mailto:${item.value}`);
+        }
+        if (item.type === 'tel') {
+            $link.addClass('tel');
+        }
+        $contactInfo.append($link);
+    });
+    const $shareWrapper = $('<div>').addClass('share outside').append(clonedShare);
+    $outwide.append($contactInfo).append($shareWrapper);
+    $headerTell.append($outwide);
+    $(targetContainerPC).prepend($headerTell);
+});
+</script>
+<style>
+    .header_258_1 .responsive_pc_header .headerTell {height: auto;padding: 10px 0;max-width: 1200px;margin: 0 auto;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide {display: flex;align-items: center;justify-content: space-between;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide .contact_info {display: flex;justify-content: space-around;gap: 20px;width: auto;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide .contact_info .text {color: #fff;font-size: 16px;}
+    .header_258_1 .responsive_pc_header .headerTell .outwide .contact_info .text.tel {pointer-events: none;}
+    .header_258_1 .responsive_pc_header .headerTell .foot_share_type_3 .foot_share_box {transition: all .3s;background-color: #f8b31c;transform: scale(0.8);border-radius: 50%;margin-left: 0;background-size: 32px;width: 32px;margin-right: 4px;height: 32px;}
+</style>
+
+mobile 没有用上
+
+    <div class="headerTell">
+        <div class="outwide">
+            <div class="contact_info" style="display: grid;">
+                <a class="text themes_box_title" href="mailto:inquiry@changhutech.com" style="color: #fff;text-align: center;">Email: inquiry@changhutech.com</a>
+                <a class="text themes_box_title" href="mailto:yingyi.l@changhutech.com" style="color: #fff;text-align: center;">Email: yingyi.l@changhutech.com</a>
+                <a class="text themes_box_title" style="color: #fff;text-align: center;">Tel: +086 138 2267 3227</a>
+            </div>
+            <div class="share" style="text-align: center;">
+                <div class="share foot_share foot_share_type_3">
+                    <a href="https://x.com/changhutech" target="_blank" class="foot_share_box Twitter"></a>
+                    <a href="https://www.youtube.com/@ChanghuTech" target="_blank" class="foot_share_box YouTube"></a>
+                    <a href="https://www.linkedin.com/in/changhu-tech-3425523aa/" target="_blank" class="foot_share_box LinkedIn"></a>
+                    <a href="https://www.instagram.com/changhu_technology/" target="_blank" class="foot_share_box Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </div>

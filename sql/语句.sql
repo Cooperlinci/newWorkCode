@@ -104,3 +104,24 @@ CREATE TABLE `faq_category` LIKE `info_category`;
 -- 复制info_content表为faq_content表
 CREATE TABLE `faq_content` LIKE `info_content`;
 ALTER TABLE `faq_content` CHANGE `InfoId` `FaqId` INT(10) NOT NULL COMMENT '关联FAQ主键';
+
+
+SELECT SUM(length) AS lengthSUM FROM `translation_v2_data` WHERE `trackId` LIKE '%5%' AND `status` NOT LIKE '%complete%';
+
+SELECT * FROM `translation_v2_data` WHERE `trackId` LIKE '%5%' AND `status` NOT LIKE '%complete%'
+
+SELECT * FROM `translation_v2_data` WHERE `trackId` LIKE '%5%' AND `status` NOT LIKE '%complete%'AND `status` = 'process';
+
+UPDATE `translation_v2_data` SET `status` = 'fail' WHERE `trackId` LIKE '%5%' AND `status` NOT LIKE '%complete%'AND `status` = 'process';
+
+UPDATE products_cn SET PageUrl = Number WHERE 1=1 LIMIT 1;
+
+UPDATE products_cn SET PageUrl = Number;
+
+UPDATE products_en SET PageUrl = Number;
+
+UPDATE products_ru SET PageUrl = Number;
+
+
+
+UPDATE products_cn SET PageUrl = Number;
