@@ -19,7 +19,7 @@
     });
 </script>
 
-
+// 备案号
 <script>
     $(function() {
         const $container = $('.ly_footer_20 .copy > .wide');
@@ -29,9 +29,9 @@
         const icpLinkContent = `<a href="${icpLink}" rel="noreferrer" target="_blank">${icpCode}</a>`;
         content = content.replace(icpCode, icpLinkContent);
         const securityCode = '粤公网安备44030002010670号';
-        const securityRecordCode = '44195202000271';
+        const securityRecordCode = '44030002010670';
         const securityLink = `http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${securityRecordCode}`;
-        const securityLinkContent = `<a href="${securityLink}" rel="noreferrer" target="_blank"><img class="securityicon" src="https://ueeshop.ly200-cdn.com/u_file/UPBF/UPBF029/2602/13/photo/logo01.png" alt="粤公网安备图标">${securityCode}</a>`;
+        const securityLinkContent = `<a href="${securityLink}" rel="noreferrer" target="_blank"><img class="securityicon" src="/u_file/2602/13/photo/logo01.png" alt="粤公网安备图标">${securityCode}</a>`;
         content = content.replace(securityCode, securityLinkContent);
         $container.html(content);
     });
@@ -40,7 +40,83 @@
     .ly_footer_20 .copy > .wide .securityicon { width: 14px;height: 14px;object-fit: cover; }
 </style>
 
-
 <div>
     <img class="Securityicon" src="" alt="">
 </div>
+
+
+
+<script>
+$(document).ready(function() {
+    const $targetDd = $('dd'); 
+    const aTagList = $targetDd.find('a').toArray();
+
+
+    // ========== 示例1：倒序排列（原顺序反过来） ==========
+    aTagList.sort((a, b) => {
+        return $targetDd.find('a').index(b) - $targetDd.find('a').index(a);
+    });
+
+    // ========== 示例2：按href中「attr_xxx」的数字升序/降序 ==========
+    // 取消下面注释即可启用，替换示例1的排序逻辑
+    /*
+    aTagList.sort((a, b) => {
+        // 提取href中attr_后的数字（适配你截图中的href格式）
+        const getAttrNumber = (el) => {
+            const match = el.href.match(/attr_(\d+)/);
+            return match ? parseInt(match[1], 10) : 0;
+        };
+        const numA = getAttrNumber(a);
+        const numB = getAttrNumber(b);
+        return numA - numB; // 升序（改为numB - numA则降序）
+    });
+    */
+
+    // ========== 示例3：自定义固定顺序（精准控制） ==========
+    // 取消下面注释即可启用，替换示例1的排序逻辑
+    /*
+    // 自定义优先级：按数组顺序排列（包含对应特征的a排在前面）
+    const customOrder = ['attr_11', 'attr_3', 'attr_37', 'attr_44'];
+    aTagList.sort((a, b) => {
+        const getPriority = (el) => {
+            const href = el.href;
+            for (let i = 0; i < customOrder.length; i++) {
+                if (href.includes(customOrder[i])) return i;
+            }
+            return customOrder.length; // 不在列表的排最后
+        };
+        return getPriority(a) - getPriority(b);
+    });
+    */
+
+    $targetDd.empty();
+    aTagList.forEach(aTag => $targetDd.append(aTag));
+});
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    const $targetDd = $('.prdocuts_wrapper .newNarrowBy dd'); 
+    console.log('✅ 选中的dd元素数量：', $targetDd.length);
+    console.log('✅ 选中的dd元素详情：', $targetDd);
+    const aTagList = $targetDd.find('a').toArray();
+
+    // ========== 示例2：按href中「attr_xxx」的数字升序/降序 ==========
+    // 取消下面注释即可启用，替换示例1的排序逻辑
+    aTagList.sort((a, b) => {
+        // 提取href中attr_后的数字（适配你截图中的href格式）
+        const getAttrNumber = (el) => {
+            const match = el.href.match(/attr_(\d+)/);
+            return match ? parseInt(match[1], 10) : 0;
+        };
+        const numA = getAttrNumber(a);
+        const numB = getAttrNumber(b);
+        return numA - numB; // 升序（改为numB - numA则降序）
+    });
+
+    $targetDd.empty();
+    aTagList.forEach(aTag => $targetDd.append(aTag));
+});
+</script>

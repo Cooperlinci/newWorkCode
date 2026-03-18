@@ -1,0 +1,14 @@
+<script>
+$(document).ready(function() {
+    const $mailLink = $('.ly_footer_24 .default_foot_menu_style .menu_list_contact dd a.notranslate');
+    if ($mailLink.length) {
+        const originalHref = $mailLink.attr('href');
+        if (originalHref && originalHref.startsWith('mailto:')) {
+            const emailAddress = originalHref.replace('mailto:', '');
+            const emailSubject = 'Product Inquiry from zzolive.com';
+            const newHref = `mailto:${emailAddress}?subject=${encodeURIComponent(emailSubject)}`;
+            $mailLink.attr('href', newHref);
+        }
+    }
+});
+</script>

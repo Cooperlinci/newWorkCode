@@ -6,3 +6,58 @@
 </style>
 
 .default_nav .full_nav_style .nav_second_content {flex: 1;background-color: #f0f3f6;padding-left: 126px;padding-top: 64px;padding-bottom: 30px;height: 830px;overflow-y: auto;box-sizing: border-box;padding-bottom: 200px;-webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%);mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%); -webkit-mask-repeat: no-repeat;mask-repeat: no-repeat;-webkit-mask-size: 100% 100%;mask-size: 100% 100%; }
+
+
+<style>
+@media screen and (min-width: 1000px) {
+    body .ly_faq_1 .wide .faq_list .faq_item.current .i_title,
+    body .ly_faq_1 .wide .faq_list .faq_item:hover .i_title {color: #111111 !important;}
+    .ly_faq_1 .faq_list .faq_item .content_height {display: block !important;margin-top: 20px;}
+    .ly_faq_1 .faq_list .faq_item .content_height .i_content {line-height: 1.875;background-color: transparent;}
+    .ly_faq_1 .faq_list .faq_item .i_title i {display: none;}
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    const $target = $('.ly_product_purchase_2 .goods_wrapper .goods_info .g_number');
+    if ($target.length) {
+        let rawText = $target.text().trim();
+        let processedText = rawText.replace(/^No\./, 'SKU:');
+        $target.text(processedText);
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  const $targetElement = $('.ly_products_6 .products_box .themes_prod .number');
+  if ($targetElement.length) {
+    const originalText = $targetElement.text();
+    const newText = originalText.replace('No.', 'SKU:');
+    $targetElement.text(newText);
+  }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.ly_products_6 .products_box .themes_prod').each(function() {
+        const $nameEle = $(this).find('.name');
+        const $numberEle = $(this).find('.number');
+        if ($numberEle.text()) {
+        const newText = $numberEle.text().replace('No.', 'SKU:');
+        $numberEle.text(newText);
+        }
+        $numberEle.insertAfter($nameEle);
+    });
+});
+</script>
+
+
+<style>
+.ly_poster_106 .wide .poster_box .item_box .i_title { display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis; }
+@media screen and (max-width: 1480px) and (min-width: 1000px) {
+    .ly_poster_106 .wide .poster_box .item_box .i_title { height: 56px; }
+}
+</style>

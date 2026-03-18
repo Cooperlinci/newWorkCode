@@ -252,3 +252,46 @@ $(document).ready(function() {
     }
 }
 </style>
+
+
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_header_12 .wide .company-name-tag {font-family: 'Roboto-Bold' ;color: #1B447C ;font-size: 30px ;line-height: 1.2;display: inline-flex ;align-items: center;height: 100%;padding: 0 10px;}
+}
+</style>
+<script>
+$(document).ready(function() {
+    var $wideContainer = $('.ly_header_12 .wide');
+    var $companyText = $('<span class="company-name-tag">Shandong Shengxiang Truck Import and Export Co., Ltd.</span>');
+    $wideContainer.find('.logo').after($companyText);
+    function adaptFontSize() {
+        $companyText;
+    }
+    adaptFontSize();
+    $(window).resize(adaptFontSize);
+});
+</script>
+
+
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_form_6 .form_wrapper .form_box .input_box .input_txt {height: 35px;}
+    .ly_form_6 .wide .form_wrapper {padding-bottom: 50px;padding-top: 50px;}
+    .ly_form_6 .global_inquiry_form .field_box {justify-content: center;}
+    .ly_form_6 .global_inquiry_form .field_box .rows.colums_order_1 ,
+    .ly_form_6 .global_inquiry_form .field_box .rows.button_rows {width: 60%;}
+}
+</style>
+
+<style>
+    .ly_header_43 .nav li:has(a[href="/"]) .nav_sec.nav_type_3.small_nav_sec {display: none !important;}
+    .nav_center_fixed .box_center .menu_item .menu_title:has(a[href="/"]) .son_btn {display: none !important;}
+</style>
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_product_purchase_2 .wide .goods_wrapper {justify-content: space-evenly;}   
+}
+</style>

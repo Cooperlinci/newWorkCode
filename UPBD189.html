@@ -1,0 +1,31 @@
+<script>
+$(document).ready(function() {
+    const $mailLink = $('.ly_footer_20 .default_foot_menu_style .menu_list_contact dd a.notranslate');
+    if ($mailLink.length) {
+        const originalHref = $mailLink.attr('href');
+        if (originalHref && originalHref.startsWith('mailto:')) {
+            const emailAddress = originalHref.replace('mailto:', '');
+            const emailSubject = 'Product Inquiry from magiquehuaer.com';
+            const newHref = `mailto:${emailAddress}?subject=${encodeURIComponent(emailSubject)}`;
+            $mailLink.attr('href', newHref);
+        }
+    }
+});
+$(document).ready(function() {
+    const $mailLink = $('#chat_window .chat_box .chat_email.icon-tool_email1');
+    if ($mailLink.length) {
+        const originalHref = $mailLink.attr('href');
+        if (originalHref && originalHref.startsWith('mailto:')) {
+            const emailAddress = originalHref.replace('mailto:', '');
+            const emailSubject = 'Product Inquiry from magiquehuaer.com';
+            const newHref = `mailto:${emailAddress}?subject=${encodeURIComponent(emailSubject)}`;
+            $mailLink.attr('href', newHref);
+        }
+    }
+});
+</script>
+
+
+<style>
+    .ly_footer_20 .default_foot_menu_style .menu_list dd, .ly_footer_20 .default_foot_menu_style .menu_list dd a {}
+</style>

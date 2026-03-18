@@ -25,3 +25,221 @@ $(document).ready(function() {
     }
 });
 </script>
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_poster_106 .poster_box .item_box .i_title {height: 66px;display: flex;align-items: center;justify-content: center;box-sizing: border-box;}
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_106 .poster_box .item_box .i_title').each(function() {
+        const text = $(this).text().trim();
+        if (/Test/i.test(text)) {
+        const newText = text.replace(/(Test)/i, '\n$1');
+        $(this).text(newText);
+        $(this).css({
+            'white-space': 'pre-line',
+            'display': 'block'
+        });
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const productNameSelector = '.ly_poster_106 .poster_box .item_box .i_title';
+    $(productNameSelector).each(function() {
+        const $this = $(this);
+        const originalText = $this.text().trim();
+        const testRegex = /\bTest\b/;
+        if (testRegex.test(originalText)) {
+            const newText = originalText.replace(testRegex, '\nTest');
+            $this.text(newText);
+            $this.css({
+                'white-space': 'pre-line',
+                'display': 'block',
+                'text-align': 'center'
+            });
+        }
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const productNameSelector = '.ly_poster_106 .poster_box .item_box .i_title';
+    $(productNameSelector).each(function() {
+        const $this = $(this);
+        const originalText = $this.text().trim();
+        const testRegex = /\b(Test)\b(.*)/;
+        if (testRegex.test(originalText)) {
+            const newText = originalText.replace(testRegex, '$1\n$2').trim();
+            $this.text(newText);
+            $this.css({
+                'white-space': 'pre-line',
+                'display': 'block',
+                'text-align': 'center',
+                'line-height': '1.4'
+            });
+        }
+    });
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    if (window.innerWidth > 1000) {
+        const productNameSelector = '.ly_poster_106 .poster_box .item_box .i_title';
+        $(productNameSelector).each(function() {
+            const $this = $(this);
+            const originalText = $this.text().trim();
+            const testWordRegex = /\bTest\b/;
+            if (testWordRegex.test(originalText)) {
+                let newText = '';
+                const isTestStart = /^\s*Test\b/.test(originalText);
+                if (isTestStart) {
+                    newText = originalText.replace(/\b(Test)\b(.*)/, '$1\n$2').trim();
+                } else {
+                    newText = originalText.replace(/\b(Test)\b/, '\n$1').trim();
+                }
+                $this.text(newText);
+                $this.css({
+                    'white-space': 'pre-line',
+                    'display': 'block',
+                    'text-align': 'center',
+                    'line-height': '1.4'
+                });
+            }
+        });
+    }
+});
+</script>
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_poster_106 .poster_box .item_box .i_title {height: 66px;}
+}
+</style>
+<script>
+$(document).ready(function() {
+    if (window.innerWidth > 1000) {
+        $('.ly_poster_106 .poster_box .item_box .i_title').each(function() {
+            const $this = $(this);
+            const txt = $this.text().trim();
+            if (/Test/.test(txt)) {
+                $this.text(
+                    txt.startsWith('Test') 
+                        ? txt.replace('Test', 'Test\n')
+                        : txt.replace('Test', '\nTest')
+                ).css({
+                    'white-space': 'pre-line',
+                    'display': 'block',
+                    'text-align': 'center',
+                    'line-height': '1.4'
+                });
+            }
+        });
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const $targetH1 = $('.ly_product_list_2 .list_wrapper .top_title h1');
+    const originalText = $targetH1.text();
+    const lowerCaseText = originalText.toLowerCase();
+    $targetH1.text(lowerCaseText);
+});
+</script>
+
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_product_list_2 .prdocuts_wrapper .top_title{ text-transform: capitalize; }
+}
+</style>
+
+
+<!-- content: "\e707"; 是微信图标 -->
+<!-- content: "\e653"; 是WhatsApp图标-->
+
+
+<style>
+.ly_about_9 .poster_box .left_side .content {text-align: justify;}
+</style>
+
+<style>
+.default_foot_menu_style .menu_list.menu_list_custom_content .custom_content {text-align: justify;}
+.ly_footer_43 .icon-whatsapp::before {content: "\e653";}
+.ly_footer_43 .icon-wechat::before {content: "\e707";}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    const phoneDd = $('.ly_footer_43 i.iconfont.icon-tell1').closest('dd.row');
+    function createContactDd(iconClass, number, title) {
+        return $(`<dd class="row">
+            <span class="icon"><i class="iconfont ${iconClass}"></i></span>
+            <a href="javascript:;" title="${title}">${number}</a>
+        </dd>`);
+    }
+    const contactConfig = [
+        {
+            iconClass: 'icon-whatsapp',
+            number: '+86-13670054780',
+            title: 'WhatsApp: +86-13670054780'
+        },
+        {
+            iconClass: 'icon-wechat',
+            number: '+86-13670054780',
+            title: 'WeChat: +86-13670054780'
+        }
+    ];
+    contactConfig.forEach(config => {
+        const newDd = createContactDd(config.iconClass, config.number, config.title);
+        phoneDd.after(newDd);
+    });
+});
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    const phoneDd = $('.ly_footer_43 i.iconfont.icon-tell1').closest('dd.row');
+    function createContactDd(iconClass, number, title, href) {
+        return $(`<dd class="row">
+            <span class="icon"><i class="iconfont ${iconClass}"></i></span>
+            <a href="${href}" target="_blank" title="${title}">${number}</a>
+        </dd>`);
+    }
+    const contactConfig = [
+        {
+            iconClass: 'icon-whatsapp',
+            number: '+86-13670054780',
+            title: 'WhatsApp: +86-13670054780',
+            href: 'https://wa.me/8613670054780'
+        },
+        {
+            iconClass: 'icon-wechat',
+            number: '+86-13670054780',
+            title: 'WeChat: +86-13670054780',
+            href: ''
+        }
+    ];
+    contactConfig.forEach(config => {
+        const newDd = createContactDd(
+            config.iconClass, 
+            config.number, 
+            config.title, 
+            config.href
+        );
+        phoneDd.after(newDd);
+    });
+});
+</script>

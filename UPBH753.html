@@ -1,0 +1,35 @@
+<script>
+$(document).ready(function() {
+    const config = {
+        targetSelector: '.ly_form_5 .form_wrapper .form_left',
+        address: 'Room 305-68, Building 6, No.1 Guantao Road, Shibei District, Qingdao City, Shandong Province, China',
+        width: '80%',
+        height: '400px',
+        zoom: 18,
+        size: '800x400',
+        maptype: 'roadmap'
+    };
+    const encodedAddress = encodeURIComponent(config.address);
+    const mapUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=${config.zoom}&ie=UTF8&iwloc=&output=embed`;
+    const iframe = $('<iframe>')
+        .addClass('google-map')
+        .attr('src', mapUrl)
+        .attr('width', config.width)
+        .attr('height', config.height)
+        .attr('frameborder', '0')
+        .attr('allowfullscreen', true)
+        .css({
+            border: 'none',
+            borderRadius: '4px',
+            marginTop: '10px'
+        });
+    const targetContainer = $(config.targetSelector);
+    if (targetContainer.length > 0) {
+        targetContainer.append(iframe);
+    }
+});
+</script>
+<style>
+    .ly_form_5 .form_wrapper .form_left {position: relative;}
+    .ly_form_5 .form_wrapper .form_left .google-map {position: absolute;transform: translate(-50%, -50%);top: 50%;left: 50%;}
+</style>

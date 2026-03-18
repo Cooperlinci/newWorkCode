@@ -1,0 +1,129 @@
+<script>
+    // 放在页面底部或单独的 JS 文件中
+$(document).ready(function() {
+  // 找到你的表单（根据实际情况修改选择器）
+  const $form = $('form'); // 或更精确的选择器，如 $('#contact-form')
+
+  $form.on('submit', function(e) {
+    // 找到邮箱输入框（根据实际情况修改选择器）
+    const $email = $('input[type="email"], [name="Email"]');
+    const email = $email.val().trim().toLowerCase();
+    const blockedSuffix = '@jmailservice.com';
+
+    if (email.endsWith(blockedSuffix)) {
+      e.preventDefault(); // 阻止表单提交
+      alert('该邮箱后缀不被允许，请使用其他邮箱。');
+      // 也可以自定义错误提示，如：
+      // $email.after('<span class="error">该邮箱后缀不被允许</span>');
+    }
+  });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  // 1. 精准选择所有目标表单：询盘表单 + 订阅表单
+  // 匹配class为global_inquiry_form的询盘表单 和 id为newsletter_form的订阅表单
+  const $targetForms = $('form.global_inquiry_form, form#newsletter_form');
+
+  // 2. 为表单绑定点击提交按钮的事件（因为按钮是button类型，不是submit）
+  $targetForms.on('click', '.inquiry_submit, .subscribe', function(e) {
+    // 找到当前点击按钮所属的表单
+    const $form = $(this).closest('form');
+    // 精准匹配name="Email"的邮箱输入框（你的页面里邮箱框name是Email）
+    const $emailInput = $form.find('input[name="Email"]');
+    
+    // 容错：如果当前表单没有邮箱输入框，直接放行
+    if (!$emailInput.length) return;
+
+    // 3. 校验邮箱后缀
+    const email = $emailInput.val().trim().toLowerCase();
+    const blockedSuffix = '@jmailservice.com';
+
+    if (email.endsWith(blockedSuffix)) {
+      e.preventDefault(); // 阻止提交
+      e.stopPropagation(); // 防止事件冒泡触发其他逻辑
+      
+      // 4. 友好的错误提示（替代alert，更美观且不阻断页面样式）
+      // 先移除之前的错误提示，避免重复
+      $emailInput.next('.email-error-tip').remove();
+      // 新增错误提示样式
+      $emailInput.after(`
+        <span class="email-error-tip" style="color: red; font-size: 12px; margin-left: 8px; display: block;">
+          该邮箱后缀不被允许，请使用其他邮箱提交！
+        </span>
+      `);
+      // 给输入框加红色边框提示
+      $emailInput.css('border', '1px solid red');
+      
+      // 3秒后自动清除错误提示和边框样式
+      setTimeout(() => {
+        $emailInput.next('.email-error-tip').remove();
+        $emailInput.css('border', '');
+      }, 3000);
+      
+      return false; // 彻底阻止提交逻辑
+    }
+  });
+
+  // 5. 输入框输入时清除错误提示（提升用户体验）
+  $('input[name="Email"]').on('input', function() {
+    $(this).next('.email-error-tip').remove();
+    $(this).css('border', '');
+  });
+});
+</script>
+
+
+<?php
+$c['db_cfg']=array(
+	'host'		=>	'172.20.212.38',
+	'port'		=>	'',
+	'database'	=>	'upbc668',
+	'username'	=>	'upbc668',
+	'password'	=>	'f2c7cf187bbbfe6',
+	'charset'	=>	'utf8mb4'
+);
+$c['ProjectVersion']='6.0480';
+$c['FunVersion']='0';
+$c['NewFunVersion']='7';
+$c['ApiKey']='3c0d1182ec73a59';
+$c['HideSupport']='1';
+$c['Number']='UPBC668';
+
+function get_ip_config($istry=0){    //浏览者IP
+    if (isset($_SERVER['HTTP_CF_PSEUDO_IPV4']) && $_SERVER['HTTP_CF_PSEUDO_IPV4']) { //返回IPV6地址时用IPV4的地址
+        $ip = $_SERVER['HTTP_CF_PSEUDO_IPV4'];
+    } else if (isset($_SERVER['HTTP_TRUE_CLIENT_IP']) && $_SERVER['HTTP_TRUE_CLIENT_IP']) {
+        $ip = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+    } else if ($istry || (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = @trim(reset(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])));
+    } elseif(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && isset($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    }
+    return preg_match('/^[\d]([\d\.]){5,13}[\d]$/', $ip) ? $ip : '';
+}
+$_ip = get_ip_config();
+if(in_array($_ip, ['170.231.251.173', '95.164.234.11'])){
+    @header('HTTP/1.1 403');
+    exit;
+}
+
+$path = dirname($_SERVER['SCRIPT_FILENAME']);
+$pos = strpos($path, "manage");
+if ($pos === false) {
+    session_start();
+
+    $restrictedEmails = ['hristopher.hughes@jmailservice.com', 'william.grant@jmailservice.com'];
+    $fieldsToCheck = [3, 9];
+    foreach ($fieldsToCheck as $field) {
+        if (isset($_POST['Field'][$field]) && in_array($_POST['Field'][$field], $restrictedEmails)) {
+            header('HTTP/1.1 403');
+            exit;
+        }
+    }
+}
+
+

@@ -1,0 +1,222 @@
+<style>
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: #E3F2FD;
+    font-size: 1em;
+    user-select: none;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.8;
+}
+
+body {
+    overflow-x: hidden;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const snowflakeCount = 50;
+    const snowflakeContainer = document.createElement('div');
+    snowflakeContainer.className = 'snowflakes';
+    document.body.appendChild(snowflakeContainer);
+
+    for (let i = 0; i < snowflakeCount; i++) {
+        createSnowflake();
+    }
+
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.innerHTML = '❄';
+        snowflake.className = 'snowflake';
+        
+        const startX = Math.random() * window.innerWidth;
+        const size = Math.random() * 0.8 + 0.7;
+        const duration = Math.random() * 10 + 10;
+        const delay = Math.random() * 5;
+        
+        snowflake.style.left = startX + 'px';
+        snowflake.style.fontSize = size + 'em';
+        snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+        
+        snowflakeContainer.appendChild(snowflake);
+        
+        animateSnowflake(snowflake, startX, duration, delay);
+    }
+
+    function animateSnowflake(element, startX, duration, delay) {
+        let startTime = null;
+        const amplitude = Math.random() * 100 + 50;
+        const period = Math.random() * 2 + 1;
+        
+        function animate(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = (elapsed / 1000 - delay) / duration;
+            
+            if (progress < 1) {
+                const x = startX + Math.sin(progress * Math.PI * period) * amplitude;
+                const y = progress * (window.innerHeight + 20);
+                
+                element.style.transform = `translate(${x}px, ${y}px)`;
+                element.style.opacity = 1 - progress * 0.5;
+                
+                requestAnimationFrame(animate);
+            } else {
+                element.remove();
+                createSnowflake();
+            }
+        }
+        
+        setTimeout(() => {
+            requestAnimationFrame(animate);
+        }, delay * 1000);
+    }
+
+    // 调整窗口大小后重新初始化
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            document.querySelectorAll('.snowflake').forEach(el => el.remove());
+            for (let i = 0; i < snowflakeCount; i++) {
+                createSnowflake();
+            }
+        }, 250);
+    });
+});
+</script>
+
+
+<style>
+@media screen and (min-width: 1000px){
+    .ly_poster_63 .wide .top_title { justify-content: center;box-sizing: border-box;position: relative; }
+    .ly_poster_63 .wide .top_title .btn_box { position: absolute;right: 0; }
+    .ly_poster_63 .wide .poster_box .poster_item {margin-right: 0;}
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    const $infoBox = $('.ly_poster_94 .poster_box .poster_list .poster_item .info_box');
+    const $titleBox = $infoBox.find('.i_title');
+    if ($infoBox.length && $titleBox.length) {
+        $infoBox.append($titleBox);
+    }
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const $infoBox = $('.ly_poster_94 .poster_box .poster_list .poster_item .info_box').eq(0);
+    const $titleBox = $infoBox.find('.i_title').eq(0);
+    if ($infoBox.length > 0 && $titleBox.length > 0) {
+        $infoBox.append($titleBox);
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.ly_poster_94 .poster_box .poster_list .poster_item').each(function() {
+        const $infoBox = $(this).find('.info_box').eq(0);
+        const $allTitleBoxes = $infoBox.find('.i_title');
+        const $targetTitleBox = $allTitleBoxes.eq(0);
+        $allTitleBoxes.not($targetTitleBox).remove();
+        if ($infoBox.length && $targetTitleBox.length) {
+            $infoBox.append($targetTitleBox);
+        }
+    });
+});
+</script>
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_poster_94 .poster_box .poster_list .poster_item .info_box {top: unset;bottom: 0;padding: 40px 0 10px 0;}
+    .ly_poster_94 .poster_box .poster_list .poster_item .info_box .i_content {padding-left: 40px;padding-right: 40px;}
+    .ly_poster_94 .poster_box .poster_list .poster_item .info_box .i_title {margin-top: 60px !important;}   
+}
+@media screen and (max-width: 1000px) {
+    .ly_poster_94 .poster_box .poster_list .poster_item .info_box {top: unset;bottom: 0;padding: 20px 0 5px 0;}
+    .ly_poster_94 .poster_box .poster_list .poster_item .info_box .i_content {padding-left: 20px;padding-right: 20px;}
+}
+</style>
+
+
+<style>
+.ly_header_10 .wide .tool {flex: unset;}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    const $secondNavItem = $('.ly_header_10 .nav li.default_nav_themes').eq(1);
+    const $logoDiv = $('.ly_header_10 .logo');
+    if ($secondNavItem.length && $logoDiv.length) {
+        $logoDiv.insertAfter($secondNavItem);
+    }
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+    const $secondNavItem = $('.ly_header_10 .nav li.default_nav_themes').eq(1);
+    const $logoDiv = $('.ly_header_10 .logo');
+    if ($secondNavItem.length && $logoDiv.length) {
+        $logoDiv.detach();
+        $logoDiv.insertAfter($secondNavItem);
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const $secondNavItem = $('.ly_header_10 .nav li.default_nav_themes').eq(1);
+    const $logoDiv = $('.ly_header_10 .logo').first();
+    if ($secondNavItem.length && $logoDiv.length) {
+        $('.ly_header_10 .logo').not($logoDiv).remove();
+        $logoDiv.detach();
+        $logoDiv.insertAfter($secondNavItem);
+    }
+});
+</script>
+<style>
+@media screen and (min-width: 1000px){
+    .ly_header_10 .nav li.default_nav_themes {display: flex;align-items: center;}
+    .ly_header_10 .wide .logo {padding: 0;}
+    .ly_header_10 .wide .tool {flex: unset;}
+    .ly_header_10 .wide .nav .default_nav_style {justify-content: space-between;}
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    const $targetNav = $('.ly_header_10 .nav li.default_nav_themes').eq(4);
+    const $wideContainer = $('.ly_header_10 .wide');
+    if ($targetNav.length && $wideContainer.length) {
+        $targetNav.insertAfter($wideContainer);
+        $targetNav.addClass('moved-nav-outside-wide');
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const $originalWideDiv = $('.themes_global_header .wide');
+    const $newWideList2Div = $('<div class="wide nav list2"></div>');
+    $newWideList2Div.insertAfter($originalWideDiv);
+    const $newUl = $('<ul class="default_nav_themes_nav_point default_nav_style"></ul>');
+    $newWideList2Div.append($newUl);
+    const $targetNav = $('.default_nav_themes').slice(4);
+    
+    if ($targetNav.length) {
+        $targetNav.appendTo($newUl);
+        $targetNav.addClass('moved-nav-outside-wide');
+    }
+});
+</script>
+<style>
+.ly_header_10 .wide.nav.list2 {justify-content: space-evenly;flex: 1;}
+</style>

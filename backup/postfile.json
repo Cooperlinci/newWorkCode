@@ -1,0 +1,41 @@
+{
+  "info": {
+    "name": "Voxrealfixture Gateway POST Request",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Gateway POST",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ApiName\": \"openapi\",\n  \"Number\": \"UPBE699\",\n  \"encryptionApiKey\": \"53b8a31d297186c\",\n  \"Action\": \"sync_get_products\",\n  \"timestamp\": \"1773718572\",\n  \"sign\": \"2.1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://www.voxrealfixture.com/gateway/",
+          "protocol": "https",
+          "host": ["www", "voxrealfixture", "com"],
+          "path": ["gateway", ""],
+          "query": [],
+          "variable": []
+        },
+        "description": "POST 请求"
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<style>
+@media screen and (min-width: 1000px){
+    .ly_products_35 .wide .pro_box .pro_list .prod_item { padding: 30px 25px; }
+    .ly_products_35 .wide .pro_box .pro_list .prod_item .s_box .img_box { margin: 30px auto 0; }
+    .ly_products_35 .wide .pro_box { margin-top: 30px; }   
+}
+</style>
+
+
+<script>
+$(document).ready(function() {
+    const $emailBox = $('.ly_form_10 .flex_box .s_left .list .item.Form-3 .text');
+    if (!$emailBox.length) return;
+    const text = $emailBox.text().trim();
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+    const email = text.match(emailRegex)?.[0];
+    if (!email) return;
+    $emailBox.on('click', function() {
+        window.location.href = `mailto:${email}`;
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    const $emailBox = $('.ly_form_10 .flex_box .s_left .list .item.Form-3 .text');
+    if (!$emailBox.length) return;
+    const text = $emailBox.text().trim();
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
+    const email = text.match(emailRegex)?.[0];
+    if (!email) return;
+    const $emailLink = $('<a>')
+        .attr('href', `mailto:${email}`)
+        .attr('target', '_blank')
+        .addClass($emailBox.attr('class'))
+        .text(text);
+    $emailBox.replaceWith($emailLink);
+});
+</script>

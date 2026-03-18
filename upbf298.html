@@ -1,0 +1,25 @@
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_cases_list_2 .right_side .app_title {display: none;}
+}
+.ly_cases_list_2 .wide .right_side .list_box .themes_cases .button a {text-transform: unset;}
+</style>
+
+
+<style>
+    .ly_footer_8 .default_foot_menu_style .menu_list_contact dd a {}
+</style>
+<script>
+$(document).ready(function() {
+    const $mailLink = $('.ly_footer_8 .default_foot_menu_style .menu_list_contact dd a.notranslate[href="mailto:admin@zzolive.com"]');
+    if ($mailLink.length) {
+        const emailSubject = 'Product Inquiry from haohealthy';
+        const newHref = `mailto:admin@zzolive.com?subject=${encodeURIComponent(emailSubject)}`;
+        $mailLink.attr('href', newHref);
+    }
+});
+</script>
+
+<style>
+    .ly_cases_detail_2 .wide .wrapper .right_side>.contents {min-height: 0;}
+</style>

@@ -52,3 +52,38 @@ ease-in-out;background-repeat: no-repeat;}
 <style>
     .ueeshop_responsive_products_detail .gallery #zoom-big .MagicZoomHeader {display: none !important;}
 </style>
+
+
+<script>
+$(function() {
+    const htmlLang = $('html').attr('lang')?.trim() || '';
+    if (htmlLang === 'cn') {
+        const monthMap = {
+            Jan: '01', Feb: '02', Mar: '03', Apr: '04',
+            May: '05', Jun: '06', Jul: '07', Aug: '08',
+            Sep: '09', Oct: '10', Nov: '11', Dec: '12'
+        };
+        $('.ly_news_detail_2 .wrapper .right_side .right_news_info .n_date').each(function() {
+            const $this = $(this);
+            const originalText = $this.text().trim();
+            if (!originalText) return;
+            const [monthAbbr, dayYearStr] = originalText.split(' ');
+            if (!monthAbbr || !dayYearStr) return;
+            const [dayWithSuffix, year] = dayYearStr.split(',');
+            if (!dayWithSuffix || !year) return;
+            const day = dayWithSuffix.replace(/[a-zA-Z]+/g, '').padStart(2, '0');
+            const normalizedMonthAbbr = monthAbbr.charAt(0).toUpperCase() + monthAbbr.slice(1).toLowerCase();
+            const month = monthMap[normalizedMonthAbbr];
+            if (!month) return;
+            const newDateText = `${year}年${month}月${day}日`;
+            $this.text(newDateText);
+        });
+    }
+});
+</script>
+
+
+<!-- <div class="time"><div class="h1"><?//=date('M d, Y', $v['AccTime']);?></h1><h2><?//=date('m-d', $v['AccTime']);?><span><?//=date('Y', $v['AccTime']);?></span></div></div> -->
+
+
+    <!-- <div><?=$c['lang_pack']['up_time']." : ".date("Y-m-d H:i:s",$info_row['AccTime']);?></div> -->

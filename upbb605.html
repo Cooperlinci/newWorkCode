@@ -1,0 +1,102 @@
+
+<script>
+function addFlagToToolDiv() {
+    const flagConfigs = [
+        {
+            imgUrl: "https://ueeshop.ly200-cdn.com/u_file/UPBB/UPBB605/2602/26/photo/rsImg.png",
+            alt: "国旗1",
+            className: "tool-flag tool-flag-1"
+        },
+        {
+            imgUrl: "https://ueeshop.ly200-cdn.com/u_file/UPBB/UPBB605/2602/26/photo/cnImg.png",
+            alt: "国旗2",
+            className: "tool-flag tool-flag-2"
+        }
+    ];
+    const $toolDiv = $(".ly_header_17 .tool");
+    flagConfigs.forEach(config => {
+        const $flagImg = $("<img>").attr("src", config.imgUrl).attr("alt", config.alt).addClass(config.className);
+        $toolDiv.prepend($flagImg);
+    });
+}
+$(document).ready(function() {
+    addFlagToToolDiv();
+});
+</script>
+
+
+
+<script>
+function addFlagToToolDiv() {
+    const flagConfigs = [
+        {
+            imgUrl: "/u_file/2602/26/photo/rsImg.png",
+            alt: "国旗1",
+            imgClass: "tool-flag tool-flag-1",
+            divClass: "tool-flag-wrapper"
+        },
+        {
+            imgUrl: "/u_file/2602/26/photo/cnImg.png",
+            alt: "国旗2",
+            imgClass: "tool-flag tool-flag-2",
+            divClass: "tool-flag-wrapper"
+        }
+    ];
+    const $toolDiv = $(".ly_header_17 .tool");
+    flagConfigs.forEach(config => {
+        const $flagImg = $("<img>").attr("src", config.imgUrl).attr("alt", config.alt).addClass(config.imgClass);
+        const $flagWrapper = $("<div>").addClass(config.divClass).append($flagImg);
+        $toolDiv.prepend($flagWrapper);
+    });
+}
+$(document).ready(function() {
+    addFlagToToolDiv();
+});
+</script>
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_header_17 .tool .tool-flag-wrapper {}
+}
+</style>
+
+
+
+
+<script>
+function addFlagToToolDiv() {
+    const flagConfigs = [
+        {
+            imgUrl: "/u_file/2602/26/photo/rsImg.png",
+            alt: "国旗1",
+            imgClass: "tool-flag tool-flag-1",
+            divClass: "tool-flag-wrapper",
+            href: "javascript:;",
+            aClass: "tool-flag-link"
+        },
+        {
+            imgUrl: "/u_file/2602/26/photo/cnImg.png",
+            alt: "国旗2",
+            imgClass: "tool-flag tool-flag-2",
+            divClass: "tool-flag-wrapper",
+            href: "javascript:;",
+            aClass: "tool-flag-link"
+        }
+    ];
+
+    const $toolDiv = $(".ly_header_17 .tool");
+    flagConfigs.forEach(config => {
+        const $flagImg = $("<img>").attr("src", config.imgUrl).attr("alt", config.alt).addClass(config.imgClass);
+        const $flagLink = $("<a>").attr("href", config.href).attr("target", "_blank").addClass(config.aClass).append($flagImg);
+        const $flagWrapper = $("<div>").addClass(config.divClass).append($flagLink);
+        $toolDiv.prepend($flagWrapper);
+    });
+}
+$(document).ready(function() {
+    addFlagToToolDiv();
+});
+</script>
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_header_17 .tool .tool-flag-wrapper {width: 60px;margin-right: 10px;display: flex;align-items: center;justify-content: center;}
+}
+</style>

@@ -1,0 +1,76 @@
+<script>
+$(document).ready(function () {
+    const imgElements = document.querySelectorAll('.ly_products_31 .cate_list_box .c_item_img img , .ly_poster_47 .left_box img');
+    const cleanImageUrl = (url) => {
+        if (!url) return url;
+        return url.replace(/(\.\d+x\d+\.\w+)?(\?x-oss-process=.*)?$/g, '');
+    };
+    Array.from(imgElements).forEach(img => {
+        const $img = $(img);
+        
+        ['data-srcset', 'srcset', 'src'].forEach(attr => {
+            const value = $img.attr(attr);
+            if (value) $img.attr(attr, cleanImageUrl(value));
+        });
+    });
+});
+</script>
+
+.ly_products_31 .cate_list_box .c_item_img
+
+.ly_poster_47 .left_box img
+
+
+<!-- 1 -->
+<script>
+$(document).ready(function() {
+  const $targetElement = $('.ly_product_purchase_2 .goods_wrapper .goods_info .g_number');
+  if ($targetElement.length) {
+    const originalText = $targetElement.text();
+    const newText = originalText.replace('No.', '');
+    $targetElement.text(newText);
+  }
+});
+</script>
+
+<!-- 2 -->
+<style>
+body .header .default_nav .small_nav_sec {width: auto;}
+@media screen and (max-width: 1000px) {
+    body #mobile_header .menu_box {position: relative;justify-content: right;}
+    body #mobile_header .menu_box .logo {margin-left: 0;margin-right: 0;position: absolute;transform: translate(-50%,-50%);top: 50%;left: 50%;}
+}
+</style>
+
+<!-- 3 -->
+<style>
+.ly_special_14 .box .box_item .img_box .compute_item_img .compute_process_img {padding-top: 70% !important;}
+</style>
+
+<!-- 4 -->
+<style>
+@media screen and (max-width: 1000px) {
+    body .ly_product_list_2 .products_category_wrapper .products_category_box .category_box .cate_item.cur {
+        background-color: #EF5B2A;
+    }
+}
+</style>
+
+<!-- 5 -->
+<script>
+$(document).ready(function () {
+    const imgElements = document.querySelectorAll('img');
+    const cleanImageUrl = (url) => {
+        if (!url) return url;
+        return url.replace(/(\.\d+x\d+\.\w+)?(\?x-oss-process=.*)?$/g, '');
+    };
+    Array.from(imgElements).forEach(img => {
+        const $img = $(img);
+        
+        ['data-srcset', 'srcset', 'src'].forEach(attr => {
+            const value = $img.attr(attr);
+            if (value) $img.attr(attr, cleanImageUrl(value));
+        });
+    });
+});
+</script>

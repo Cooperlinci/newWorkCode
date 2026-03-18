@@ -177,3 +177,30 @@ $(document).ready(function () {
         .ly_carousel_41 .wide .carousel_wrapper .carousel_box .carousel_item .carousel_info {padding: 80px 0px;width: 45%;}   
     }
 </style>
+
+
+<script>
+$(document).ready(function() {
+  const $targetElement = $('.ly_product_purchase_2 .goods_wrapper .goods_info .g_number');
+  if ($targetElement.length) {
+    const originalText = $targetElement.text();
+    const newText = originalText.replace('No.', '');
+    $targetElement.text(newText);
+  }
+});
+</script>
+
+<style>
+    body .header .default_nav .small_nav_sec {width: auto;}
+</style>
+
+<style>
+@media screen and (max-width: 1000px) {
+    body #mobile_header .menu_box {position: relative;justify-content: right;}
+    body #mobile_header .menu_box .logo {margin-left: 0;margin-right: 0;position: absolute;transform: translate(-50%,-50%);top: 50%;left: 50%;}
+}
+</style>
+
+<style>
+    body {}
+</style>

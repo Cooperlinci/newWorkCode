@@ -125,3 +125,57 @@ UPDATE products_ru SET PageUrl = Number;
 
 
 UPDATE products_cn SET PageUrl = Number;
+
+
+RENAME TABLE visual_drafts_cn TO visual_drafts_cn_temp;
+
+RENAME TABLE visual_drafts_cn_2 TO visual_drafts_cn;
+
+RENAME TABLE visual_drafts_cn_temp TO visual_drafts_cn_2;
+
+
+RENAME TABLE visual_drafts_cn TO visual_drafts_cn_temp;
+RENAME TABLE visual_drafts_cn_2 TO visual_drafts_cn;
+RENAME TABLE visual_drafts_cn_temp TO visual_drafts_cn_2;
+
+RENAME TABLE visual_pages_cn TO visual_pages_cn_temp;
+RENAME TABLE visual_pages_cn_2 TO visual_pages_cn;
+RENAME TABLE visual_pages_cn_temp TO visual_pages_cn_2;
+
+RENAME TABLE visual_plugins_cn TO visual_plugins_cn_temp;
+RENAME TABLE visual_plugins_cn_2 TO visual_plugins_cn;
+RENAME TABLE visual_plugins_cn_temp TO visual_plugins_cn_2;
+
+RENAME TABLE products_category_cn TO products_category_cn_temp;
+RENAME TABLE products_category_cn_2 TO products_category_cn;
+RENAME TABLE products_category_cn_temp TO products_category_cn_2;
+
+
+RENAME TABLE config_ext_cn TO config_ext_cn_temp;
+RENAME TABLE config_ext_cn_2 TO config_ext_cn;
+RENAME TABLE config_ext_cn_temp TO config_ext_cn_2;
+
+RENAME TABLE menu_cn TO menu_cn_temp;
+RENAME TABLE menu_cn_2 TO menu_cn;
+RENAME TABLE menu_cn_temp TO menu_cn_2;
+
+
+RENAME TABLE visual_drafts_en TO visual_drafts_en_temp;
+RENAME TABLE visual_drafts_en_2 TO visual_drafts_en;
+RENAME TABLE visual_drafts_en_temp TO visual_drafts_en_2;
+
+RENAME TABLE visual_pages_en TO visual_pages_en_temp;
+RENAME TABLE visual_pages_en_2 TO visual_pages_en;
+RENAME TABLE visual_pages_en_temp TO visual_pages_en_2;
+
+RENAME TABLE visual_plugins_en TO visual_plugins_en_temp;
+RENAME TABLE visual_plugins_en_2 TO visual_plugins_en;
+RENAME TABLE visual_plugins_en_temp TO visual_plugins_en_2;
+
+[36564,36604,36595,36602,36603,36605,36612,36613,36565]
+
+Lightduty Belt Fastener and Tool
+
+
+ALTER TABLE seo_detection 
+ADD COLUMN `ModifyTime` int(11) NULL DEFAULT 0 COMMENT '最后修改时间';

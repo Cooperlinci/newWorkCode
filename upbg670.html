@@ -1,3 +1,17 @@
 <style>
     body .ly_products_35 .top_tab .list .tab_item.current img, .ly_products_35 .top_tab .list .tab_item:hover img {filter: unset;}
 </style>
+
+
+<script>
+$(document).ready(function() {
+    var currentUrl = window.location.href;
+    if (currentUrl.indexOf('/search/') > -1 && currentUrl.indexOf('Keyword=') > -1) {
+        $('.ly_product_list_2 .list_box .themes_prod .name.themes_products_title').css({
+            'text-align': 'left',
+            'float': 'none',
+            'margin': '0'
+        });
+    }
+});
+</script>

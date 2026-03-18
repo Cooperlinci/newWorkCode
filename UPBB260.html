@@ -1,0 +1,29 @@
+<style>
+    .ly_footer_8 .default_foot_menu_style .menu_list_contact dd a {}
+</style>
+<script>
+$(document).ready(function() {
+    const $mailLink = $('.ly_footer_8 .default_foot_menu_style .menu_list_contact dd a.notranslate[href="mailto:admin@zzolive.com"]');
+    if ($mailLink.length) {
+        const emailSubject = 'Product Inquiry from haohealthy';
+        const newHref = `mailto:admin@zzolive.com?subject=${encodeURIComponent(emailSubject)}`;
+        $mailLink.attr('href', newHref);
+    }
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const $mailLink = $('.ly_footer_8 .default_foot_menu_style .menu_list_contact dd a.notranslate');
+    if ($mailLink.length) {
+        const originalHref = $mailLink.attr('href');
+        if (originalHref && originalHref.startsWith('mailto:')) {
+            const emailAddress = originalHref.replace('mailto:', '');
+            const emailSubject = 'Product Inquiry from haohealthy';
+            const newHref = `mailto:${emailAddress}?subject=${encodeURIComponent(emailSubject)}`;
+            $mailLink.attr('href', newHref);
+        }
+    }
+});
+</script>

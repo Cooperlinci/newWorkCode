@@ -1,0 +1,152 @@
+<style>
+.ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_contact dd.row { word-break: break-word; }
+</style>
+
+<style>
+@media screen and (min-width: 1000px) {
+    .default_foot_menu_style { justify-content: center; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list dl { padding-right: 10%;padding-left: 10%; }
+}
+</style>
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_footer_43 .default_foot_menu_style .menu_list.menu_list_menu { display: flex; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list dl:not(.dl_list2) dd:nth-child(n+4) {display: none;}
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    const CONTAINER_SELECTOR = '.ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu';
+    const DL_TARGET_INDEX = 0;
+    const KEEP_FROM_INDEX = 4;
+    const INSERT_POSITION = 'after'; 
+    const $container = $(CONTAINER_SELECTOR);
+    const $originalDl = $container.find('dl').eq(DL_TARGET_INDEX);
+    if (!$originalDl.length || !$originalDl.find('dd').length) {
+        return;
+    }
+    const $clonedDl = $originalDl.clone(true);
+    $clonedDl.addClass('dl_list2');
+    $clonedDl.find('dd').each(function(index) {
+        if (index < KEEP_FROM_INDEX) {
+            $(this).remove();
+        }
+    });
+    if (!$clonedDl.find('dd').length) {
+        return;
+    }
+    if (INSERT_POSITION === 'after') {
+        $originalDl.after($clonedDl);
+    } else if (INSERT_POSITION === 'before') {
+        $originalDl.before($clonedDl);
+    } else if (INSERT_POSITION === 'appendTo') {
+        $container.append($clonedDl);
+    }
+});
+</script>
+
+
+<script>
+$(document).ready(function() {
+    const CONTAINER_SELECTOR = '.ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu';
+    const DL_TARGET_INDEX = 0;
+    const KEEP_FROM_INDEX = 4;
+    const INSERT_POSITION = 'after'; 
+    const $container = $(CONTAINER_SELECTOR);
+    const $originalDl = $container.find('dl').eq(DL_TARGET_INDEX);
+    if (!$originalDl.length || !$originalDl.find('dd').length) {
+        return;
+    }
+    const $clonedDl = $originalDl.clone(true);
+    $clonedDl.addClass('dl_list2');
+    $clonedDl.find('dt').remove();
+    $clonedDl.find('dd').each(function(index) {
+        if (index < KEEP_FROM_INDEX) {
+            $(this).remove();
+        }
+    });
+    if (!$clonedDl.find('dd').length) {
+        return;
+    }
+    if (INSERT_POSITION === 'after') {
+        $originalDl.after($clonedDl);
+    } else if (INSERT_POSITION === 'before') {
+        $originalDl.before($clonedDl);
+    } else if (INSERT_POSITION === 'appendTo') {
+        $container.append($clonedDl);
+    }
+});
+</script>
+
+
+<style>
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu dl.dl_list2 { width: 40%;padding-top: 59px;padding-left: 0; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu dl:not(.dl_list2) { width: 40%;padding-right: 0; }
+
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_contact dl { padding-right: 10%;padding-left: 10%; }
+</style>
+
+
+<style>
+.ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_contact dd.row { word-break: break-word; }
+@media screen and (min-width: 1000px) {
+    .default_foot_menu_style { justify-content: center; }
+    .ly_footer_43 .default_foot_menu_style .menu_list.menu_list_menu { display: flex; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list dl:not(.dl_list2) dd:nth-child(n+6) {display: none;}
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu dl.dl_list2 { width: 40%;padding-top: 59px;padding-right: 0; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu dl:not(.dl_list2) { width: 40%;padding-right: 0;padding-left: 20%; }
+    .ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_contact dl { padding-right: 10%;padding-left: 10%; }
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    const CONTAINER_SELECTOR = '.ly_footer_43 .wide .default_foot_menu_style .menu_list.menu_list_menu';
+    const DL_TARGET_INDEX = 0;
+    const KEEP_FROM_INDEX = 4;
+    const INSERT_POSITION = 'after'; 
+    const $container = $(CONTAINER_SELECTOR);
+    const $originalDl = $container.find('dl').eq(DL_TARGET_INDEX);
+    if (!$originalDl.length || !$originalDl.find('dd').length) {
+        return;
+    }
+    const $clonedDl = $originalDl.clone(true);
+    $clonedDl.addClass('dl_list2');
+    $clonedDl.find('dt').remove();
+    $clonedDl.find('dd').each(function(index) {
+        if (index < KEEP_FROM_INDEX) {
+            $(this).remove();
+        }
+    });
+    if (!$clonedDl.find('dd').length) {
+        return;
+    }
+    if (INSERT_POSITION === 'after') {
+        $originalDl.after($clonedDl);
+    } else if (INSERT_POSITION === 'before') {
+        $originalDl.before($clonedDl);
+    } else if (INSERT_POSITION === 'appendTo') {
+        $container.append($clonedDl);
+    }
+});
+</script>
+
+<style>
+.ly_poster_16 .left_box .r_content { text-align: justify; }
+</style>
+
+<style>
+.ly_footer_43 .default_foot_menu_style .menu_list.menu_list_contact dd.row a[title*="Room 1001, The World Financial Center Tower B, No.118 Shennan East Road, Shenzhen City, Guangdong Province, P.R. China"],
+.default_foot_menu_style .menu_list.menu_list_custom_content .custom_content { text-align: justify; }
+</style>
+
+
+<style>
+@media screen and (min-width: 1000px) {
+    .ly_poster_19 .item_container .srcoll_list .srcoll_btn.srcoll_btn_prev { left: -2%; }
+    .ly_poster_19 .item_container .srcoll_list .srcoll_btn.srcoll_btn_next { left: 100%; }
+    .ly_poster_19 .section .item_container .srcoll_list .srcoll_btn {top: 50%;}
+}
+</style>
